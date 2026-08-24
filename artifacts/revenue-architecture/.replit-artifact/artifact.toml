@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Revenue Architecture"
+description = "A premium personal website for a B2B SaaS monetization strategist, built to sell a focused asynchronous Revenue Leak Diagnosis to founders with existing demand but commercial leakage."
+version = "1.0.0"
+id = "artifacts/revenue-architecture"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24028
+
+[services.development]
+run = "pnpm --filter @workspace/revenue-architecture run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/revenue-architecture", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/revenue-architecture/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24028"
+BASE_PATH = "/"

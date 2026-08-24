@@ -1,0 +1,521 @@
+Build a premium, conversion-focused personal website for a B2B SaaS monetization strategist.
+
+IMPORTANT CONTEXT
+
+This is NOT a generic copywriter portfolio.
+This is NOT an agency website.
+This is NOT a SaaS product website.
+This is NOT a consulting-firm website with corporate jargon.
+
+The website is the primary trust asset for selling a $1,000 asynchronous Revenue Leak Diagnosis to B2B SaaS founders.
+
+The target buyer is a SaaS founder/CEO who already has:
+- meaningful traffic and/or active users
+- an existing product
+- an existing monetization model
+- evidence of product demand
+- a conversion, monetization, positioning, or expansion problem
+
+The core commercial problem:
+
+A SaaS product can have traffic, users and genuine product value while still losing revenue between first interest and payment.
+
+The work is about identifying where that commercial path breaks and restructuring the architecture that turns product interest into revenue.
+
+The positioning must NOT be:
+"I write better copy."
+
+Instead:
+
+"I diagnose the commercial gaps between product interest and revenue."
+
+CORE OFFER
+
+Revenue Leak Diagnosis
+$1,000
+Asynchronous
+3–4 day turnaround
+
+The diagnosis examines:
+
+1. POSITIONING
+How the market perceives the product, what mental category it enters, what alternatives it is compared against, and whether the value proposition is clear to the intended buyer.
+
+2. ECONOMIC FRAMING
+Whether the product is being understood as a feature/tool or as something that creates a meaningful economic outcome.
+
+3. OFFER ARCHITECTURE
+Whether Free → Paid → Higher Tier / Expansion creates a logical progression of value.
+
+4. BUYING EVENTS
+What specific customer event should create a rational reason to buy now.
+
+5. UPGRADE LOGIC
+Why a customer should move to the next paid level, what triggers that transition, and whether the upgrade is tied to actual customer intent rather than arbitrary limits.
+
+6. MESSAGING / HOMEPAGE IMPLICATIONS
+How the commercial architecture should translate into the homepage, hero, messaging hierarchy and key conversion surfaces.
+
+IMPORTANT POSITIONING PRINCIPLE
+
+Do not frame the work as "conversion rate optimization" in the generic CRO sense.
+
+Do not focus on:
+- button colors
+- tiny UX tweaks
+- generic copywriting
+- superficial A/B testing
+- "10 ways to improve your landing page"
+
+The thesis is:
+
+"Most monetization problems are architectural before they are copy problems."
+
+The website should communicate that idea throughout.
+
+TARGET CUSTOMER
+
+Primary:
+- B2B SaaS founders
+- AI SaaS founders
+- SaaS CEOs / product-led founders
+- Companies with existing users/traffic
+- Companies already attempting to monetize
+
+NOT for:
+- pre-revenue startups
+- people looking for cheap copywriting
+- generic landing page redesigns
+- founders who only want a few headline variations
+
+DESIGN DIRECTION
+
+Create a visually exceptional, minimal, editorial, premium website.
+
+Think:
+- sophisticated B2B SaaS
+- private equity / strategy firm precision
+- modern technology company
+- high-end independent specialist
+
+Do NOT make it look like:
+- a marketing agency
+- a freelancer template
+- an AI startup landing page
+- a Webflow clone
+- a SaaS dashboard
+- an overly futuristic "AI" website
+
+Visual principles:
+- strong typography
+- generous whitespace
+- excellent hierarchy
+- restrained color palette
+- subtle borders
+- precise spacing
+- strong grid
+- editorial composition
+- no excessive gradients
+- no cartoon illustrations
+- no stock photography
+- no cheesy "growth" graphics
+- no animated blobs
+- no excessive glassmorphism
+
+Use subtle motion only where it improves perceived quality.
+
+The page should feel expensive because of typography, spacing, hierarchy and restraint — not because of visual effects.
+
+COLOR SYSTEM
+
+Use a sophisticated mostly monochromatic palette:
+- near-black / charcoal primary
+- warm off-white background
+- one restrained accent color
+- muted gray secondary text
+
+Avoid loud purple/blue AI gradients.
+
+TYPOGRAPHY
+
+Use a premium modern sans-serif such as:
+- Inter
+- Geist
+- Satoshi
+- Manrope
+
+Use very large typography for the hero, but maintain excellent readability.
+
+PAGE STRUCTURE
+
+SECTION 1 — HERO
+
+Headline should be extremely clear and outcome-oriented.
+
+Use:
+
+"Find where your SaaS is losing revenue."
+
+Subheadline:
+
+"An asynchronous diagnosis of the commercial gaps between product interest and payment — from positioning and economic value to buying events, upgrade logic and messaging."
+
+Primary CTA:
+
+"Get the Revenue Leak Diagnosis — $1,000"
+
+Secondary microcopy:
+
+"Async · 3–4 days · Fixed scope"
+
+Do not add a generic "Book a Call" CTA.
+
+Below the hero, add a small credibility statement:
+
+"For SaaS products that already have users, traffic or demand — but aren't converting enough of it into revenue."
+
+SECTION 2 — THE CORE THESIS
+
+Headline:
+
+"Most monetization problems aren't copy problems."
+
+Body:
+
+"You can have a strong product, real users and meaningful traffic — and still lose revenue because the path from interest to payment isn't commercially coherent."
+
+Then show a visual sequence:
+
+INTEREST
+↓
+UNDERSTANDING
+↓
+PERCEIVED ECONOMIC VALUE
+↓
+BUYING EVENT
+↓
+PAYMENT
+↓
+EXPANSION
+
+Explain that revenue leaks occur when one of these transitions breaks.
+
+This should be a visually elegant horizontal or vertical architecture diagram.
+
+SECTION 3 — WHAT I LOOK FOR
+
+Headline:
+
+"I look for the break in the revenue path."
+
+Create six premium cards or a structured editorial grid:
+
+POSITIONING
+What does the buyer think they're buying?
+
+ECONOMIC FRAMING
+Why is this worth paying for?
+
+OFFER ARCHITECTURE
+Why does the next tier exist?
+
+BUYING EVENTS
+What makes the customer buy now?
+
+UPGRADE LOGIC
+What makes expansion rational?
+
+MESSAGING
+Does the homepage communicate the architecture clearly?
+
+Avoid generic icons. Use typography and layout instead.
+
+SECTION 4 — BEFORE THE COPY
+
+Headline:
+
+"Don't rewrite the homepage before fixing the economics."
+
+Explain:
+
+"If the buyer doesn't understand who the product is for, what economic problem it solves, why it matters now, and what they should buy next, better copy only makes the wrong architecture more persuasive."
+
+This should be a major conceptual section.
+
+Use a visual comparison:
+
+WEAK APPROACH
+
+Traffic
+→ Homepage
+→ Better Copy
+→ CTA
+→ Hope
+
+VERSUS
+
+COMMERCIAL APPROACH
+
+Market
+→ Positioning
+→ Economic Value
+→ Offer
+→ Buying Event
+→ Upgrade
+→ Revenue
+
+Make this visually powerful and memorable.
+
+SECTION 5 — WHAT YOU GET
+
+Headline:
+
+"One diagnosis. A clear commercial map."
+
+List the deliverables:
+
+- Positioning diagnosis
+- Economic framing analysis
+- Offer / upgrade architecture
+- Buying-event analysis
+- Revenue leak identification
+- Priority recommendations
+- Messaging and homepage implications
+
+Then clearly state:
+
+"Delivered asynchronously in 3–4 days."
+
+"Fixed scope. Fixed price. No retainer."
+
+SECTION 6 — CASE STUDIES
+
+Create a premium case study section using four case studies from the supplied source material.
+
+IMPORTANT:
+I will provide the actual case-study content separately.
+
+Do NOT invent:
+- clients
+- metrics
+- revenue numbers
+- conversion lifts
+- testimonials
+- logos
+- results
+
+If a case does not contain a verified quantitative result, present the strategic problem and intervention without fabricating an outcome.
+
+Each case should use:
+
+CLIENT / PRODUCT
+Commercial problem
+What was wrong
+What changed
+Result / outcome if verified
+
+The case studies should look like evidence, not testimonials.
+
+SECTION 7 — PUBLIC THINKING
+
+Headline:
+
+"Selected public analyses"
+
+Create a section for selected public SaaS breakdowns.
+
+I will provide the actual links/content separately.
+
+Do NOT fabricate links.
+
+Do not make LinkedIn/Twitter the core credibility mechanism.
+
+This section should communicate that the strategist publicly analyzes:
+- positioning
+- monetization
+- offer architecture
+- buying events
+- SaaS conversion problems
+
+SECTION 8 — WHO THIS IS FOR
+
+Headline:
+
+"This is for products that already have something to lose."
+
+Good fit:
+
+✓ Existing users or meaningful traffic
+✓ Existing monetization
+✓ Clear evidence of demand
+✓ Conversion or expansion problem
+✓ Founder-led / product-led SaaS
+✓ Willingness to make commercial changes
+
+Not a fit:
+
+× Pre-revenue products
+× Generic copywriting projects
+× Cosmetic homepage redesigns
+× "Can you just improve the headline?"
+
+SECTION 9 — OFFER
+
+Make this extremely clean.
+
+Headline:
+
+"Revenue Leak Diagnosis"
+
+Price:
+
+"$1,000"
+
+Details:
+
+"Async"
+"3–4 days"
+"Fixed scope"
+
+Description:
+
+"A focused analysis of where your current path from interest to payment is breaking, what is causing the leakage, and what commercial architecture needs to change."
+
+Deliverables listed clearly.
+
+CTA:
+
+"Start the Diagnosis"
+
+Microcopy:
+
+"No retainer. No ongoing consulting. No recurring commitment."
+
+IMPORTANT:
+Do NOT make this look like a cheap audit.
+Do NOT use language like "quick audit", "mini audit", "cheap consultation", or "feedback."
+
+It is a paid strategic diagnosis.
+
+SECTION 10 — FAQ
+
+Answer:
+
+What does asynchronous mean?
+→ No recurring meetings or calls. The work is conducted through the provided product, website, pricing, onboarding and relevant business context, with the final diagnosis delivered asynchronously.
+
+Who is this for?
+→ B2B / AI SaaS with existing demand and a monetization problem.
+
+Is this a copywriting service?
+→ No. Copy and homepage recommendations are downstream of the commercial diagnosis.
+
+How long does it take?
+→ 3–4 days.
+
+How much?
+→ $1,000 fixed fee.
+
+Do you work on retainers?
+→ No. The engagement is deliberately focused and asynchronous.
+
+SECTION 11 — FINAL CTA
+
+Headline:
+
+"Your product may not need more traffic."
+
+Subheadline:
+
+"It may need a better path from the attention you already have to the revenue you want."
+
+CTA:
+
+"Get the Revenue Leak Diagnosis — $1,000"
+
+Footer:
+Name
+Revenue Architecture / SaaS Monetization
+Email
+Relevant links only
+
+COPY STYLE
+
+The writing must be:
+- direct
+- intelligent
+- commercially precise
+- calm
+- founder-to-founder
+- concise
+- confident
+
+Avoid:
+- "unlock"
+- "supercharge"
+- "revolutionize"
+- "game-changing"
+- "leverage AI"
+- "take your business to the next level"
+- "holistic"
+- "end-to-end solutions"
+- "empower"
+- "seamless"
+- "cutting-edge"
+- "transform your business"
+- generic consultant language
+
+Never sound like an agency.
+
+Never sound desperate.
+
+Never use fake urgency.
+
+Never invent social proof.
+
+Never invent results.
+
+TECHNICAL REQUIREMENTS
+
+Build a production-quality responsive website.
+
+Requirements:
+- mobile-first
+- excellent desktop layout
+- semantic HTML
+- accessible contrast
+- keyboard navigation
+- fast loading
+- SEO metadata
+- Open Graph metadata
+- favicon
+- clean URL structure
+- polished hover states
+- subtle animations
+- no unnecessary dependencies
+- no broken links
+- no placeholder lorem ipsum
+
+Use reusable components.
+
+Make the visual hierarchy extremely strong.
+
+The first viewport must communicate within approximately 5 seconds:
+
+1. What this is
+2. Who it is for
+3. What problem it solves
+4. What the offer costs
+5. What the next step is
+
+IMPORTANT FINAL INSTRUCTION
+
+Do not generate generic copy or generic SaaS marketing language.
+
+The entire website should feel like it was built by a highly experienced specialist who understands SaaS monetization, buyer psychology, positioning, pricing architecture and revenue mechanics.
+
+The website should make a skeptical SaaS founder think:
+
+"This person isn't trying to sell me copywriting. They understand why our product isn't converting existing demand into revenue."
+
+Build the site now.
