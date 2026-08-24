@@ -1,0 +1,794 @@
+We are iterating on the existing Nasiba website.
+
+IMPORTANT:
+DO NOT redesign the website from scratch.
+DO NOT replace the current visual direction.
+DO NOT turn this into a generic SaaS website, agency website, freelancer portfolio, or corporate consulting site.
+
+The current visual direction is strong:
+- editorial
+- premium
+- dark navy / warm off-white / restrained orange
+- sophisticated serif display typography
+- precise grid
+- thin rules
+- numbered sections
+- strong whitespace
+- restrained motion
+
+KEEP that visual language.
+
+Your job now is to improve the COMMERCIAL ARCHITECTURE and TRUST layer of the existing site.
+
+The website represents:
+
+NASIBA
+
+Revenue architecture for SaaS.
+
+Nasiba is an independent specialist practice focused on SaaS companies that already have users, traffic or product demand but are losing revenue somewhere between interest and payment.
+
+The core thesis:
+
+MOST MONETIZATION PROBLEMS ARE ARCHITECTURAL BEFORE THEY ARE COPY PROBLEMS.
+
+The business has two levels of engagement:
+
+1. REVENUE LEAK DIAGNOSIS — $1,000
+2. REVENUE ARCHITECTURE — $10,000
+
+The $1,000 diagnosis is the primary entry offer.
+
+The $10,000 engagement is the deeper follow-on engagement when the diagnosis reveals a broader commercial architecture problem.
+
+The work is asynchronous.
+
+NO recurring consulting.
+NO retainers.
+NO ongoing advisory.
+NO default sales calls.
+
+Diagnosis turnaround:
+3–4 days.
+
+Revenue Architecture engagement:
+2 weeks.
+
+--------------------------------------------------
+1. BRAND / NAVIGATION
+--------------------------------------------------
+
+Change the site branding from generic:
+
+"REVENUE ARCHITECTURE"
+
+to:
+
+NASIBA
+
+Subtitle / descriptor:
+
+"Revenue architecture for SaaS."
+
+Use NASIBA as the primary brand.
+
+The domain will be:
+
+nasiba.co
+
+The visual identity should remain sophisticated and understated.
+
+Do NOT add startup-style logos, gradients, mascots, or AI imagery.
+
+Navigation should be:
+
+THE THESIS
+THE LENSES
+THE DIAGNOSIS
+THE ENGAGEMENT
+WORK
+ABOUT
+FAQ
+
+Primary CTA:
+
+"START THE DIAGNOSIS — $1,000"
+
+The price MUST appear in the primary CTA.
+
+Do not use a generic CTA such as:
+"Get the Diagnosis"
+"Learn More"
+"Book a Call"
+
+The primary action needs to communicate that this is a paid diagnostic engagement.
+
+--------------------------------------------------
+2. HERO
+--------------------------------------------------
+
+KEEP the existing visual composition.
+
+Current hero concept:
+
+"Find where your SaaS is losing revenue."
+
+Keep that headline.
+
+Improve the supporting copy so it is immediately understandable to a skeptical SaaS founder.
+
+Use:
+
+"An asynchronous diagnosis of the commercial gaps between product interest and payment — from positioning and economic value to buying events, upgrade logic and messaging."
+
+Under this, prominently display:
+
+"$1,000 · 3–4 DAYS · ASYNCHRONOUS"
+
+Primary CTA:
+
+"START THE REVENUE LEAK DIAGNOSIS — $1,000 →"
+
+Secondary credibility line:
+
+"For SaaS products that already have users, traffic or demand — but aren't converting enough of it into revenue."
+
+Do NOT add:
+"Book a call"
+"Schedule a consultation"
+"Free consultation"
+
+--------------------------------------------------
+3. MAKE THE COMMERCIAL THESIS MORE CONCRETE
+--------------------------------------------------
+
+The existing conceptual section is strong, but it currently risks feeling too abstract.
+
+Keep the existing:
+
+INTEREST
+→ UNDERSTANDING
+→ PERCEIVED ECONOMIC VALUE
+→ BUYING EVENT
+→ PAYMENT
+→ EXPANSION
+
+But add a short explanation:
+
+"Revenue leaks when one of these transitions breaks."
+
+Then make the concept concrete:
+
+INTEREST
+Someone notices a problem.
+
+UNDERSTANDING
+They understand what the product does.
+
+PERCEIVED ECONOMIC VALUE
+The outcome feels worth paying for.
+
+BUYING EVENT
+Something creates a rational reason to act now.
+
+PAYMENT
+The paid decision is specific and credible.
+
+EXPANSION
+The next level of value has a logical trigger.
+
+Do not over-explain this section.
+
+--------------------------------------------------
+4. ADD A MAJOR POSITIONING STATEMENT
+--------------------------------------------------
+
+Add a visually strong section:
+
+"Most monetization problems aren't copy problems."
+
+Body:
+
+"You can have a strong product, real users and meaningful traffic — and still lose revenue because the path from interest to payment isn't commercially coherent."
+
+Then add:
+
+"If the commercial architecture is broken, rewriting the homepage only makes the same problem sound better."
+
+This should be one of the strongest sections on the homepage.
+
+--------------------------------------------------
+5. MAKE THE DIAGNOSIS OUTPUT EXTREMELY CONCRETE
+--------------------------------------------------
+
+Add a section titled:
+
+"One diagnosis. A clear commercial map."
+
+Explain that the $1,000 diagnosis produces a concrete commercial diagnosis rather than generic advice.
+
+Use these six outputs:
+
+01 — REVENUE LEAK
+Where the commercial path currently breaks.
+
+02 — ROOT CAUSE
+Why the current structure creates the friction.
+
+03 — ECONOMIC LOGIC
+What the buyer needs to perceive as worth paying for.
+
+04 — BUYING EVENT
+What should create a rational reason to buy now.
+
+05 — OFFER / UPGRADE LOGIC
+What should change across free, paid and expansion stages.
+
+06 — PRIORITY MAP
+What should be fixed first, second and third.
+
+This section should feel like a tangible deliverable.
+
+Avoid the word "audit" wherever possible.
+
+The product is a PAID DIAGNOSIS, not a generic audit.
+
+--------------------------------------------------
+6. DIAGNOSIS OFFER
+--------------------------------------------------
+
+Create a dedicated section for:
+
+REVENUE LEAK DIAGNOSIS
+
+$1,000
+
+3–4 days · Asynchronous · Fixed scope
+
+Description:
+
+"A focused analysis of where your current path from interest to payment is breaking, what is causing the leakage, and what commercial architecture needs to change."
+
+Deliverables:
+
+- Positioning diagnosis
+- Economic framing analysis
+- Offer / upgrade architecture
+- Buying-event analysis
+- Revenue leak identification
+- Priority recommendations
+- Messaging and homepage implications
+
+Add:
+
+"No retainer. No recurring commitment. No ongoing consulting."
+
+Primary CTA:
+
+"START THE $1,000 DIAGNOSIS →"
+
+This should be one of the most commercially polished sections on the site.
+
+--------------------------------------------------
+7. ADD THE $10,000 ENGAGEMENT
+--------------------------------------------------
+
+Add a second offer below or adjacent to the diagnosis.
+
+Do NOT make it look like a SaaS pricing table.
+
+It should look like the next level of engagement.
+
+Title:
+
+REVENUE ARCHITECTURE
+
+$10,000
+
+2 weeks · Asynchronous
+
+Description:
+
+"For products where the diagnosis reveals a broader problem in how positioning, economics, offers, buying events and upgrades work together."
+
+Deliverables:
+
+- Positioning audit
+- Economic framing
+- Offer ladder restructuring
+- Buying-event design
+- Pricing & upgrade logic
+- Homepage & messaging implementation guidance
+
+Clarify the relationship:
+
+"The diagnosis identifies the leak. Revenue Architecture rebuilds the system around it."
+
+CTA:
+
+"EXPLORE REVENUE ARCHITECTURE →"
+
+DO NOT use:
+"Book a call"
+
+Do not force visitors to purchase the $10k engagement directly.
+
+The $1k diagnosis remains the primary entry point.
+
+--------------------------------------------------
+8. CREATE A CLEAR TWO-STEP ENGAGEMENT ARCHITECTURE
+--------------------------------------------------
+
+Visually communicate:
+
+01
+DIAGNOSE
+
+Revenue Leak Diagnosis
+$1,000
+3–4 days
+
+↓
+
+02
+REBUILD
+
+Revenue Architecture
+$10,000
+2 weeks
+
+Copy:
+
+"Not every diagnosis requires deeper work. The second engagement exists when the commercial problem is architectural rather than isolated."
+
+This is important.
+
+Do not imply every $1k client must buy the $10k engagement.
+
+--------------------------------------------------
+9. ADD "HOW IT WORKS"
+--------------------------------------------------
+
+Create a simple three-step section:
+
+01 — CONTEXT
+
+"You provide the product, pricing, funnel, onboarding and relevant business context."
+
+02 — DIAGNOSIS
+
+"I analyze the commercial path asynchronously."
+
+03 — DELIVERY
+
+"You receive the diagnosis and prioritized recommendations within 3–4 days."
+
+Add:
+
+"No recurring meetings. No retainer."
+
+This reinforces the asynchronous operating model.
+
+--------------------------------------------------
+10. ADD REQUIRED INPUTS
+--------------------------------------------------
+
+Add a small section:
+
+"WHAT I NEED"
+
+Use:
+
+- Product / website
+- Pricing
+- Acquisition context
+- Conversion or activation context
+- Onboarding flow
+- Relevant analytics or business data
+- Anything you already know about the monetization problem
+
+Do not make this sound bureaucratic.
+
+The purpose is to demonstrate that the work is genuinely asynchronous.
+
+--------------------------------------------------
+11. CASE STUDIES / WORK
+--------------------------------------------------
+
+Create a strong "WORK" section.
+
+There are four real case studies that will be added later.
+
+IMPORTANT:
+Do NOT invent:
+- clients
+- logos
+- metrics
+- revenue numbers
+- conversion improvements
+- testimonials
+- results
+
+Use placeholders where actual case material is not yet available.
+
+Structure each case:
+
+CLIENT / PRODUCT
+
+COMMERCIAL PROBLEM
+
+WHAT WAS WRONG
+
+WHAT CHANGED
+
+RESULT / OUTCOME
+
+If there is no verified quantitative result, do not fabricate one.
+
+The cases should communicate strategic thinking, not just copywriting.
+
+--------------------------------------------------
+12. PUBLIC THINKING
+--------------------------------------------------
+
+Add a section:
+
+"PUBLIC THINKING"
+
+Subheadline:
+
+"Selected public analyses of SaaS positioning, monetization and revenue architecture."
+
+There will be external links added later.
+
+Do NOT invent URLs.
+
+Do NOT make social media the primary trust mechanism.
+
+This section exists as evidence of thinking.
+
+--------------------------------------------------
+13. CREATE AN ABOUT PAGE
+--------------------------------------------------
+
+Create a dedicated /about page.
+
+The About page should NOT be a generic biography.
+
+It should answer:
+
+WHO IS BEHIND NASIBA?
+
+WHY DOES THIS WORK EXIST?
+
+WHAT EVIDENCE IS THERE?
+
+Use this structure:
+
+NASIBA
+
+"An independent revenue architecture practice for SaaS companies with existing demand."
+
+Then:
+
+THE APPROACH
+
+"Nasiba focuses on the commercial architecture between product interest and revenue — positioning, economic framing, offers, buying events and upgrade logic."
+
+Then:
+
+PROOF OF WORK
+
+Display the four case studies.
+
+Then:
+
+FOUNDER FEEDBACK
+
+Create a polished testimonial section.
+
+IMPORTANT:
+Only use real founder feedback that will be supplied later.
+Do NOT fabricate testimonials.
+
+Then:
+
+PUBLIC WORK
+
+Links to public SaaS analyses will be added later.
+
+--------------------------------------------------
+14. IDENTITY / PAUL
+--------------------------------------------------
+
+IMPORTANT CONTEXT:
+
+The founder operates publicly under another professional identity, Paul.
+
+Paul is the main public-facing strategist identity associated with:
+- LinkedIn
+- Twitter/X
+- public SaaS analyses
+
+Do NOT present Paul as a separate unrelated person.
+
+Do NOT fabricate two people.
+
+The About page should explain the relationship transparently and professionally.
+
+Use a structure such as:
+
+"Behind Nasiba"
+
+[PRIMARY NAME]
+
+Founder, Nasiba
+
+Then:
+
+"Public strategy work is also published under the professional name Paul, where I share SaaS positioning, monetization and conversion analyses."
+
+Then provide placeholders for:
+- LinkedIn
+- Twitter/X
+
+Do NOT invent URLs.
+
+The goal is identity consistency and transparency.
+
+--------------------------------------------------
+15. ABOUT PAGE TRUST ARCHITECTURE
+--------------------------------------------------
+
+The About page should make a skeptical founder feel:
+
+"I can verify who this is."
+"I can see how they think."
+"I can see evidence of their work."
+"I understand what they actually do."
+
+Do NOT fill the page with personal biography.
+
+Prioritize:
+- professional identity
+- methodology
+- proof
+- founder feedback
+- public work
+- clear scope
+
+--------------------------------------------------
+16. FAQ
+--------------------------------------------------
+
+Expand the FAQ.
+
+Include:
+
+WHAT DOES ASYNCHRONOUS MEAN?
+
+"No recurring meetings or calls. The engagement is conducted through the product, website, pricing, onboarding and business context you provide, with the diagnosis delivered asynchronously."
+
+WHO IS THIS FOR?
+
+"B2B and AI SaaS companies with existing users, traffic or demand and a monetization problem worth solving."
+
+IS THIS COPYWRITING?
+
+"No. Copy and homepage recommendations are downstream of the commercial diagnosis."
+
+HOW LONG DOES IT TAKE?
+
+"Revenue Leak Diagnosis: 3–4 days.
+Revenue Architecture: 2 weeks."
+
+HOW MUCH DOES IT COST?
+
+"Revenue Leak Diagnosis: $1,000 fixed.
+Revenue Architecture: $10,000 fixed."
+
+DO YOU WORK ON RETAINERS?
+
+"No. The work is deliberately focused and asynchronous."
+
+DO I NEED TO BOOK A CALL?
+
+"No. The standard engagement is asynchronous."
+
+--------------------------------------------------
+17. FINAL CTA
+--------------------------------------------------
+
+End the homepage with:
+
+"Your product may not need more traffic."
+
+Subheadline:
+
+"It may need a better path from the attention you already have to the revenue you want."
+
+CTA:
+
+"START THE $1,000 DIAGNOSIS →"
+
+Do NOT use a generic "Let's talk" CTA.
+
+--------------------------------------------------
+18. TRUST / CREDIBILITY
+--------------------------------------------------
+
+Add subtle trust signals throughout the website:
+
+- four case studies
+- founder feedback
+- public analyses
+- transparent methodology
+- clear fixed pricing
+- clear delivery time
+- clear asynchronous process
+
+Do NOT add:
+- fake client logos
+- fake testimonials
+- fake numbers
+- fake awards
+- fake certifications
+- fake "trusted by" sections
+
+--------------------------------------------------
+19. COPY QUALITY
+--------------------------------------------------
+
+The copy must sound like a highly experienced commercial strategist speaking directly to a SaaS founder.
+
+Tone:
+- precise
+- calm
+- intelligent
+- direct
+- commercially literate
+- founder-to-founder
+
+Avoid:
+- unlock
+- supercharge
+- revolutionize
+- game-changing
+- leverage
+- empower
+- seamless
+- cutting-edge
+- holistic
+- end-to-end
+- transform your business
+- growth hacking
+- conversion ninja
+- AI-powered nonsense
+
+Never sound like a marketing agency.
+
+Never sound like an infobusiness.
+
+Never sound like a generic consultant.
+
+--------------------------------------------------
+20. DESIGN RULE
+--------------------------------------------------
+
+DO NOT destroy the existing visual system.
+
+Preserve:
+- typography
+- colors
+- spacing
+- editorial layout
+- dark navy
+- orange accent
+- warm off-white
+- thin borders
+- numbered sections
+- sophisticated serif headings
+- restrained animations
+
+Improve hierarchy where necessary.
+
+The website should feel like:
+
+"A private, specialist revenue architecture practice."
+
+Not:
+
+"A SaaS agency."
+
+Not:
+
+"A freelancer portfolio."
+
+Not:
+
+"An AI startup."
+
+--------------------------------------------------
+21. MOBILE
+--------------------------------------------------
+
+Ensure all new sections and pages work beautifully on mobile.
+
+The hero must still communicate:
+
+WHAT
+WHO FOR
+PRICE
+FORMAT
+CTA
+
+within the first screen or two.
+
+Do not allow the $1,000 price or primary CTA to disappear below excessive content.
+
+--------------------------------------------------
+22. SEO / META
+--------------------------------------------------
+
+Set:
+
+Site title:
+"Nasiba — Revenue Architecture for SaaS"
+
+Meta description:
+
+"Nasiba diagnoses the commercial gaps between SaaS product interest and revenue — positioning, economic value, offers, buying events and upgrade logic."
+
+Use appropriate Open Graph metadata.
+
+Do not use generic AI-generated SEO keyword stuffing.
+
+--------------------------------------------------
+23. FINAL QUALITY CHECK
+--------------------------------------------------
+
+Before finishing, audit the entire site against these questions:
+
+1. Can a founder understand what Nasiba does in 5 seconds?
+
+2. Is it obvious that this is NOT generic copywriting?
+
+3. Is the $1,000 diagnosis clearly priced?
+
+4. Is the 3–4 day async delivery clear?
+
+5. Is the $10,000 engagement clearly differentiated?
+
+6. Is the 2-week timeline clear?
+
+7. Is the relationship between $1k diagnosis and $10k engagement clear?
+
+8. Is the asynchronous model clear?
+
+9. Can a skeptical founder verify the person behind the business?
+
+10. Are case studies and founder feedback positioned as proof?
+
+11. Is the Paul public identity explained transparently?
+
+12. Does the site feel premium without looking like an agency?
+
+13. Are there any fake claims, invented testimonials or fabricated results?
+
+14. Does every CTA communicate the next commercial step clearly?
+
+15. Does the site make a $1,000 purchase feel like a rational, low-risk first step rather than an arbitrary consulting fee?
+
+IMPORTANT:
+
+Do not merely append new sections at the bottom.
+
+Integrate them into the existing information architecture.
+
+Preserve the strongest existing design decisions and improve the commercial clarity.
+
+The final result should make a skeptical SaaS founder think:
+
+"This person understands why our product is generating interest but not enough revenue — and I can see exactly what I'm buying to find out where the problem is."
+
+Implement all changes now.
