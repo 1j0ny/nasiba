@@ -25,6 +25,7 @@ const navItems = [
   { label: 'THE LENSES', id: 'lenses' },
   { label: 'THE DIAGNOSIS', id: 'diagnosis' },
   { label: 'THE ENGAGEMENT', id: 'engagement' },
+  { label: 'WHO THIS IS FOR', id: 'who-this-is-for' },
   { label: 'WORK', id: 'work' },
   { label: 'ABOUT', id: 'about' },
   { label: 'FAQ', id: 'faq' },
@@ -354,7 +355,7 @@ function Work() {
     <section id="work" className="scroll-mt-10 bg-[#f5f0e7]">
       <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
         <div className="mb-16 border-t border-[#cfc7b7] pt-10">
-          <Eyebrow>09 / WORK</Eyebrow>
+          <Eyebrow>10 / WORK</Eyebrow>
           <h2 className="font-display text-[clamp(3.5rem,6vw,6.3rem)] leading-[.88] tracking-[-.07em] text-[#202536]">Selected<br /><em className="text-[#e15b2e]">engagements.</em></h2>
           <p className="mt-6 max-w-[520px] text-[17px] leading-[1.6] text-[#55575c]">Four recent engagements. Client names withheld. The commercial problems and structural thinking are real.</p>
         </div>
@@ -395,7 +396,7 @@ function PublicThinking() {
   return (
     <section id="thinking" className="border-b border-[#cfc7b7] bg-[#ddd8ce]">
       <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-        <Eyebrow>10 / PUBLIC THINKING</Eyebrow>
+        <Eyebrow>11 / PUBLIC THINKING</Eyebrow>
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-[.82fr_1.18fr] lg:gap-24">
           <div>
             <h2 className="max-w-[500px] font-display text-[clamp(3.5rem,6vw,6.3rem)] leading-[.88] tracking-[-.07em] text-[#202536]">Public thinking.<br /><em className="text-[#e15b2e]">Selected analyses.</em></h2>
@@ -425,7 +426,7 @@ function FAQ() {
   return (
     <section id="faq" className="scroll-mt-10 bg-[#f5f0e7]">
       <div className="mx-auto max-w-[1100px] px-5 py-24 sm:px-8 lg:py-32">
-        <Eyebrow>11 / FAQ</Eyebrow>
+        <Eyebrow>12 / FAQ</Eyebrow>
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-24"><h2 className="font-display text-[clamp(3.3rem,5.5vw,5.6rem)] leading-[.9] tracking-[-.07em] text-[#202536]">The useful<br /><em className="text-[#e15b2e]">short version.</em></h2><div className="border-t border-[#cfc7b7]">{faqs.map(([question, answer], index) => { const isOpen = openIndex === index; return <div key={question} className="border-b border-[#cfc7b7]"><button type="button" onClick={() => setOpenIndex(isOpen ? null : index)} className="flex w-full items-center justify-between gap-6 py-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e15b2e]" aria-expanded={isOpen} data-testid={`button-faq-${index}`}><span className="font-display text-[25px] leading-[1.1] tracking-[-.03em] text-[#202536]">{question}</span><ChevronDown size={18} className={`shrink-0 text-[#e15b2e] transition-transform ${isOpen ? 'rotate-180' : ''}`} /></button>{isOpen && <div className="max-w-[620px] pb-7 pr-8 text-[15px] leading-[1.6] text-[#55575c]" data-testid={`text-faq-answer-${index}`}>{answer}</div>}</div>; })}</div></div>
       </div>
     </section>
@@ -438,6 +439,51 @@ function FinalCTA({ onNavigate }: { onNavigate: (id: string) => void }) {
       <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-12 lg:py-36">
         <div className="max-w-[1000px]"><Eyebrow dark>Start with the leak</Eyebrow><h2 className="font-display text-[clamp(4rem,9vw,9.2rem)] leading-[.84] tracking-[-.08em]">Your product may not need more traffic<span className="text-[#e96a3a]">.</span></h2><p className="mt-8 max-w-[590px] text-[18px] leading-[1.55] text-[#f5f0e7]/60">It may need a better path from the attention you already have to the revenue you want.</p><div className="mt-12 flex flex-col items-start gap-7 sm:flex-row sm:items-center"><button type="button" onClick={() => onNavigate('offer')} className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-colors hover:bg-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]" data-testid="button-final-cta">START THE $1,000 DIAGNOSIS → <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" /></button><span className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45">No retainer. No recurring commitment.</span></div></div>
         <footer className="mt-24 flex flex-col justify-between gap-8 border-t border-[#f5f0e7]/20 pt-7 sm:flex-row sm:items-end"><div><div className="flex items-center gap-3"><span className="flex h-7 w-7 items-center justify-center border border-[#e96a3a] font-mono-ui text-[11px] font-bold text-[#e96a3a]">N</span><span className="font-mono-ui text-[11px] font-bold uppercase tracking-[.16em]">NASIBA</span></div><p className="mt-4 font-mono-ui text-[9px] uppercase tracking-[.13em] text-[#f5f0e7]/38">Revenue architecture for SaaS.</p></div><div className="font-mono-ui text-[9px] uppercase tracking-[.13em] text-[#f5f0e7]/38">© {new Date().getFullYear()} · Private working room</div></footer>
+      </div>
+    </section>
+  );
+}
+
+function WhoThisIsFor() {
+  const goodFit = [
+    'Existing users and active traffic',
+    'Unclear conversion path from interest to payment',
+    'Monetisation friction at pricing, upgrade or onboarding',
+    'Founder-led SaaS with commercial architecture questions',
+  ];
+  const notFit = [
+    'Pre-PMF products still searching for product-market fit',
+    'Traffic-only problems with no underlying product demand',
+    'Generic copywriting or brand refresh projects',
+    'Execution retainer relationships',
+  ];
+  return (
+    <section id="who-this-is-for" className="scroll-mt-10 bg-[#f5f0e7]">
+      <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+        <div className="grid grid-cols-1 gap-14 lg:grid-cols-[.8fr_1.2fr] lg:gap-24">
+          <div>
+            <Eyebrow>WHO THIS IS FOR</Eyebrow>
+            <h2 className="mt-4 max-w-[480px] font-display text-[clamp(3rem,5.5vw,5.5rem)] leading-[.9] tracking-[-.07em] text-[#202536]">Built for SaaS companies with demand — but unclear conversion.</h2>
+          </div>
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
+            <div className="border-t border-[#cfc7b7] pt-6">
+              <span className="font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#202536]/50">Good fit</span>
+              <ul className="mt-6 space-y-4">
+                {goodFit.map((item) => (
+                  <li key={item} className="flex gap-3 text-[15px] leading-[1.5] text-[#55575c]"><Check size={16} className="mt-0.5 shrink-0 text-[#e15b2e]" />{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="border-t border-[#cfc7b7] pt-6">
+              <span className="font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#202536]/50">Not fit</span>
+              <ul className="mt-6 space-y-4">
+                {notFit.map((item) => (
+                  <li key={item} className="flex gap-3 text-[15px] leading-[1.5] text-[#55575c]"><Minus size={16} className="mt-0.5 shrink-0 text-[#202536]/30" />{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -468,7 +514,7 @@ function Home() {
     }
     scrollToSection(id);
   };
-  return <main className="page-grain overflow-hidden"><Hero onNavigate={navigate} /><Thesis /><RevenuePath /><Lenses /><Comparison /><Diagnosis /><Offer /><Engagement /><HowItWorks /><Work /><PublicThinking /><FAQ /><FinalCTA onNavigate={navigate} /></main>;
+  return <main className="page-grain overflow-hidden"><Hero onNavigate={navigate} /><Thesis /><RevenuePath /><Lenses /><Comparison /><Diagnosis /><Offer /><Engagement /><HowItWorks /><WhoThisIsFor /><Work /><PublicThinking /><FAQ /><FinalCTA onNavigate={navigate} /></main>;
 }
 
 function About() {
@@ -495,6 +541,69 @@ function About() {
           </p>
         </div>
 
+        {/* Why Nasiba Exists */}
+        <div className="mt-24 border-t border-[#f5f0e7]/15 pt-10">
+          <Eyebrow dark>Why Nasiba Exists</Eyebrow>
+          <div className="mt-8 grid grid-cols-1 gap-14 lg:grid-cols-[.8fr_1.2fr] lg:gap-24">
+            <div>
+              <h2 className="max-w-[480px] font-display text-[clamp(2.8rem,5vw,4.5rem)] leading-[.9] tracking-[-.06em] text-[#f5f0e7]">
+                Most SaaS companies are taught to think in traffic, leads, funnels and conversion rates.
+              </h2>
+            </div>
+            <div>
+              <p className="max-w-[600px] text-[17px] leading-[1.6] text-[#f5f0e7]/65">
+                But revenue is a sequence of commercial transitions. If a company cannot see where interest stops becoming payment, it often optimises the wrong thing.
+              </p>
+              <div className="mt-10 border-l-2 border-[#e96a3a] pl-6">
+                <p className="font-display text-[22px] leading-[1.35] tracking-[-.03em] text-[#f5f0e7]/80">
+                  Revenue problems are often diagnosed too late — and at the wrong level.
+                </p>
+              </div>
+              <p className="mt-8 max-w-[560px] text-[16px] leading-[1.6] text-[#f5f0e7]/50">
+                Nasiba exists to make that path visible — before the problem becomes a redesign, a rebrand, or a new round of fundraising to cover a structural gap.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Small by Design */}
+        <div className="mt-24 border-t border-[#f5f0e7]/15 pt-10">
+          <Eyebrow dark>Small by Design</Eyebrow>
+          <div className="mt-8 max-w-[680px]">
+            <p className="font-display text-[clamp(2rem,4vw,3.2rem)] leading-[1.05] tracking-[-.05em] text-[#f5f0e7]/85">
+              Senior-led work. Focused engagements. Fixed scope. No retainers.
+            </p>
+            <p className="mt-8 text-[17px] leading-[1.6] text-[#f5f0e7]/55">
+              No account managers. No layers between thinking and execution. The work stays focused because the diagnosis stays close to the thinking.
+            </p>
+          </div>
+        </div>
+
+        {/* How We Think */}
+        <div className="mt-24 border-t border-[#f5f0e7]/15 pt-10">
+          <Eyebrow dark>How We Think</Eyebrow>
+          <div className="mt-10 grid grid-cols-1 gap-0">
+            <div className="border-b border-[#f5f0e7]/15 py-8">
+              <p className="max-w-[520px] font-display text-[clamp(1.8rem,3vw,2.4rem)] leading-[1.15] tracking-[-.03em] text-[#f5f0e7]/80">
+                Interest<br />is not<br />revenue.
+              </p>
+            </div>
+            <div className="border-b border-[#f5f0e7]/15 py-8">
+              <p className="max-w-[520px] font-display text-[clamp(1.8rem,3vw,2.4rem)] leading-[1.15] tracking-[-.03em] text-[#f5f0e7]/80">
+                Traffic<br />is not<br />payment.
+              </p>
+            </div>
+            <div className="border-b border-[#f5f0e7]/15 py-8">
+              <p className="max-w-[520px] font-display text-[clamp(1.8rem,3vw,2.4rem)] leading-[1.15] tracking-[-.03em] text-[#f5f0e7]/80">
+                Attention<br />is not<br />economic value.
+              </p>
+            </div>
+          </div>
+          <p className="mt-10 max-w-[520px] text-[17px] leading-[1.6] text-[#f5f0e7]/50">
+            Most SaaS teams optimise parts. Nasiba examines the path.
+          </p>
+        </div>
+
         {/* The Approach */}
         <div className="mt-24 border-t border-[#f5f0e7]/15 pt-10">
           <Eyebrow dark>The Approach</Eyebrow>
@@ -509,11 +618,47 @@ function About() {
         {/* Behind Nasiba */}
         <div className="mt-24 border-t border-[#f5f0e7]/15 pt-10">
           <Eyebrow dark>Behind Nasiba</Eyebrow>
-          <div className="mt-8 grid grid-cols-1 gap-12 lg:grid-cols-[.4fr_1.6fr] lg:gap-24">
+          <p className="mt-6 max-w-[520px] text-[17px] leading-[1.6] text-[#f5f0e7]/55">
+            A focused practice built around commercial diagnosis for SaaS.
+          </p>
+          <div className="mt-12 grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
+            {/* Paul */}
+            <div className="border-t border-[#f5f0e7]/15 pt-8">
+              <div className="flex h-14 w-14 items-center justify-center border border-[#e96a3a] font-mono-ui text-[16px] font-bold text-[#e96a3a]">P</div>
+              <h3 className="mt-6 font-display text-[28px] leading-[1.05] tracking-[-.04em] text-[#f5f0e7]">Paul</h3>
+              <p className="mt-2 font-mono-ui text-[10px] uppercase tracking-[.14em] text-[#e96a3a]">Founder &amp; CEO</p>
+              <p className="mt-5 max-w-[420px] text-[15px] leading-[1.6] text-[#f5f0e7]/58">
+                Paul leads commercial diagnosis, positioning, economic framing, offer architecture and messaging for Nasiba's engagements.
+              </p>
+              <div className="mt-6 space-y-2">
+                <p className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45">
+                  <a href="#" className="border-b border-[#f5f0e7]/20 pb-0.5 transition-colors hover:text-[#e96a3a] hover:border-[#e96a3a]">LinkedIn →</a>
+                </p>
+                <p className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45">
+                  <a href="#" className="border-b border-[#f5f0e7]/20 pb-0.5 transition-colors hover:text-[#e96a3a] hover:border-[#e96a3a]">Twitter / X →</a>
+                </p>
+              </div>
+            </div>
+
+            {/* John */}
+            <div className="border-t border-[#f5f0e7]/15 pt-8">
+              <div className="flex h-14 w-14 items-center justify-center border border-[#f5f0e7]/30 font-mono-ui text-[16px] font-bold text-[#f5f0e7]/60">J</div>
+              <h3 className="mt-6 font-display text-[28px] leading-[1.05] tracking-[-.04em] text-[#f5f0e7]">John</h3>
+              <p className="mt-2 font-mono-ui text-[10px] uppercase tracking-[.14em] text-[#e96a3a]">Co-Founder</p>
+              <p className="mt-5 max-w-[420px] text-[15px] leading-[1.6] text-[#f5f0e7]/58">
+                John complements the firm's work across commercial thinking, strategic support and revenue architecture. The two-person structure is intentional.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Public Work Identity */}
+        <div className="mt-24 border-t border-[#f5f0e7]/15 pt-10">
+          <Eyebrow dark>Public Work</Eyebrow>
+          <div className="mt-8 grid grid-cols-1 gap-14 lg:grid-cols-[.4fr_1.6fr] lg:gap-24">
             <div>
-              <div className="flex h-16 w-16 items-center justify-center border border-[#e96a3a] font-mono-ui text-[18px] font-bold text-[#e96a3a]">N</div>
-              <p className="mt-6 font-mono-ui text-[11px] font-bold uppercase tracking-[.16em] text-[#f5f0e7]">Founder, Nasiba</p>
-              <div className="mt-6 space-y-3">
+              <p className="font-mono-ui text-[11px] font-bold uppercase tracking-[.16em] text-[#f5f0e7]">Public Identity</p>
+              <div className="mt-6 space-y-2">
                 <p className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45">
                   <a href="#" className="border-b border-[#f5f0e7]/20 pb-0.5 transition-colors hover:text-[#e96a3a] hover:border-[#e96a3a]">LinkedIn →</a>
                 </p>
@@ -524,10 +669,10 @@ function About() {
             </div>
             <div>
               <p className="max-w-[600px] text-[17px] leading-[1.6] text-[#f5f0e7]/65">
-                Public strategy work is also published under the professional name Paul, where I share SaaS positioning, monetization and conversion analyses.
+                Paul is the public identity used for LinkedIn, X / Twitter and public SaaS analyses. Nasiba is the firm. Paul is one of the public faces of the firm.
               </p>
               <p className="mt-5 max-w-[550px] text-[15px] leading-[1.6] text-[#f5f0e7]/48">
-                The same person, the same thinking, two surfaces. Nasiba is the commercial practice. Paul is the public analytical voice.
+                The same thinking, applied at two levels. Public teardowns and analyses demonstrate the method. Client engagements apply it.
               </p>
             </div>
           </div>
@@ -537,45 +682,74 @@ function About() {
         <div className="mt-24 border-t border-[#f5f0e7]/15 pt-10">
           <Eyebrow dark>Proof of Work</Eyebrow>
           <p className="mt-6 max-w-[520px] text-[17px] leading-[1.6] text-[#f5f0e7]/55">
-            Four recent engagements. Client names withheld. The commercial problems and structural thinking are real.
+            The structure exists. Content will be added as it is verified and approved.
           </p>
-          <div className="mt-10 border-t border-[#f5f0e7]/15">
-            {caseStudies.map((c) => (
-              <article key={c.number} className="grid grid-cols-1 gap-4 border-b border-[#f5f0e7]/15 py-8 sm:grid-cols-[120px_1fr]">
-                <span className="font-mono-ui text-[10px] text-[#e96a3a]">{c.number}</span>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                  <div>
-                    <span className="font-mono-ui text-[9px] uppercase tracking-[.12em] text-[#e96a3a]">Client</span>
-                    <p className="mt-2 font-mono-ui text-[11px] font-bold uppercase tracking-[.12em] text-[#f5f0e7]/78">{c.client}</p>
+          <div className="mt-12 grid grid-cols-1 gap-px border-t border-[#f5f0e7]/15 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Cases */}
+            <div className="bg-[#202536] p-6">
+              <span className="font-mono-ui text-[10px] uppercase tracking-[.14em] text-[#e96a3a]">Cases</span>
+              <p className="mt-4 text-[15px] leading-[1.55] text-[#f5f0e7]/50">
+                Four recent engagements. Client names withheld. The commercial problems and structural thinking are real.
+              </p>
+              <div className="mt-8 border-t border-[#f5f0e7]/10 pt-5">
+                {caseStudies.map((c) => (
+                  <div key={c.number} className="py-3 border-b border-[#f5f0e7]/8 last:border-0">
+                    <div className="flex items-center gap-3">
+                      <span className="font-mono-ui text-[10px] text-[#e96a3a]">{c.number}</span>
+                      <span className="font-mono-ui text-[10px] font-bold uppercase tracking-[.12em] text-[#f5f0e7]/70">{c.client}</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className="font-mono-ui text-[9px] uppercase tracking-[.12em] text-[#e96a3a]">Problem</span>
-                    <p className="mt-2 text-[14px] leading-[1.5] text-[#f5f0e7]/58">{c.problem}</p>
-                  </div>
-                  <div>
-                    <span className="font-mono-ui text-[9px] uppercase tracking-[.12em] text-[#e96a3a]">What changed</span>
-                    <p className="mt-2 text-[14px] leading-[1.5] text-[#f5f0e7]/58">{c.whatChanged}</p>
-                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Founder Feedback */}
+            <div className="bg-[#202536] p-6">
+              <span className="font-mono-ui text-[10px] uppercase tracking-[.14em] text-[#e96a3a]">Founder Feedback</span>
+              <p className="mt-4 text-[15px] leading-[1.55] text-[#f5f0e7]/50">
+                Founder feedback will be added here as it is verified and approved.
+              </p>
+              <div className="mt-8 border-t border-[#f5f0e7]/10 pt-5">
+                <div className="border-l-2 border-[#f5f0e7]/15 pl-4">
+                  <p className="font-display text-[16px] leading-[1.4] tracking-[-.02em] text-[#f5f0e7]/35 italic">
+                    "Placeholder — founder feedback will appear here."
+                  </p>
                 </div>
-              </article>
-            ))}
+              </div>
+            </div>
+
+            {/* Public Analyses */}
+            <div className="bg-[#202536] p-6">
+              <span className="font-mono-ui text-[10px] uppercase tracking-[.14em] text-[#e96a3a]">Public Analyses</span>
+              <p className="mt-4 text-[15px] leading-[1.55] text-[#f5f0e7]/50">
+                Public SaaS analyses and teardowns demonstrating the method in practice.
+              </p>
+              <div className="mt-8 border-t border-[#f5f0e7]/10 pt-5">
+                <div className="flex items-center justify-between py-3">
+                  <span className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/35">Links will be added as published</span>
+                  <ExternalLink size={14} className="text-[#f5f0e7]/20" />
+                </div>
+              </div>
+            </div>
+
+            {/* Method */}
+            <div className="bg-[#202536] p-6">
+              <span className="font-mono-ui text-[10px] uppercase tracking-[.14em] text-[#e96a3a]">Method</span>
+              <p className="mt-4 text-[15px] leading-[1.55] text-[#f5f0e7]/50">
+                The Revenue Architecture method: six diagnostic lenses applied to the full commercial path.
+              </p>
+              <div className="mt-8 border-t border-[#f5f0e7]/10 pt-5">
+                <ol className="space-y-2">
+                  <li className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/50"><span className="text-[#e96a3a]">01</span> Positioning</li>
+                  <li className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/50"><span className="text-[#e96a3a]">02</span> Economic framing</li>
+                  <li className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/50"><span className="text-[#e96a3a]">03</span> Offer architecture</li>
+                  <li className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/50"><span className="text-[#e96a3a]">04</span> Buying events</li>
+                  <li className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/50"><span className="text-[#e96a3a]">05</span> Upgrade logic</li>
+                  <li className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/50"><span className="text-[#e96a3a]">06</span> Messaging</li>
+                </ol>
+              </div>
+            </div>
           </div>
-        </div>
-
-        {/* Founder Feedback */}
-        <div className="mt-24 border-t border-[#f5f0e7]/15 pt-10">
-          <Eyebrow dark>Founder Feedback</Eyebrow>
-          <p className="mt-6 max-w-[520px] text-[17px] leading-[1.6] text-[#f5f0e7]/55">
-            Founder feedback will be added here as it is verified and approved.
-          </p>
-        </div>
-
-        {/* Public Work */}
-        <div className="mt-24 border-t border-[#f5f0e7]/15 pt-10">
-          <Eyebrow dark>Public Work</Eyebrow>
-          <p className="mt-6 max-w-[520px] text-[17px] leading-[1.6] text-[#f5f0e7]/55">
-            Public SaaS analyses will be linked here.
-          </p>
         </div>
 
         {/* Footer */}
