@@ -44,6 +44,11 @@ export const routes: RouteConfig[] = [
     description: 'How Nasiba shifted CreativeLens messaging toward commercial decisions behind paid acquisition.',
   },
   {
+    path: '/diagnosis',
+    title: 'Revenue Leak Diagnosis \u2014 Nasiba',
+    description: 'A focused async commercial diagnosis of where the path from interest to payment is breaking. Diagnostic lenses, deliverables, and engagement details.',
+  },
+  {
     path: '/privacy',
     title: 'Privacy \u2014 Nasiba',
     description: 'Nasiba privacy policy for nasiba.co.',

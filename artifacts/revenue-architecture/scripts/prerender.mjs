@@ -75,6 +75,35 @@ async function main() {
   }
 
   console.log(`[prerender] Done — wrote ${written} HTML files.`);
+
+  // ── 5. QA: Check for visible literal Unicode escapes in HTML ────
+  const { readdirSync, statSync } = await import('fs');
+  const unicodePattern = /\\u[0-9a-fA-F]{4}/g;
+  let qaFailed = false;
+
+  function checkDir(dir) {
+    for (const entry of readdirSync(dir)) {
+      const full = join(dir, entry);
+      if (statSync(full).isDirectory()) {
+        checkDir(full);
+      } else if (entry.endsWith('.html')) {
+        const content = readFileSync(full, 'utf-8');
+        const matches = content.match(unicodePattern);
+        if (matches) {
+          console.error(`[qa] FAIL: ${full} contains literal Unicode escapes: ${matches.join(', ')}`);
+          qaFailed = true;
+        }
+      }
+    }
+  }
+
+  checkDir(distDir);
+  if (qaFailed) {
+    console.error('[qa] Unicode QA check FAILED — visible \\uXXXX sequences found in HTML.');
+    process.exit(1);
+  } else {
+    console.log('[qa] Unicode QA check passed — no visible \\uXXXX sequences in HTML.');
+  }
 }
 
 main().catch((err) => {
