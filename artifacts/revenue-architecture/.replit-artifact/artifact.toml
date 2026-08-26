@@ -17,11 +17,7 @@ run = "pnpm --filter @workspace/revenue-architecture run dev"
 [services.production]
 build = [ "pnpm", "--filter", "@workspace/revenue-architecture", "run", "build" ]
 serve = "static"
-publicDir = "artifacts/revenue-architecture/dist/public"
-
-[[services.production.rewrites]]
-from = "/*"
-to = "/index.html"
+publicDir = "artifacts/revenue-architecture/dist"
 
 [services.env]
 PORT = "24028"

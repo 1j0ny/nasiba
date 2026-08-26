@@ -22,9 +22,9 @@ const queryClient = new QueryClient();
 /* ─── Navigation ─── */
 
 const navItems = [
-  { label: 'THESIS', id: 'thesis' },
-  { label: 'DIAGNOSIS', id: 'diagnosis' },
-  { label: 'REVENUE ARCHITECTURE', id: 'engagement' },
+  { label: 'THESIS', id: 'thesis', href: '/#thesis' },
+  { label: 'DIAGNOSIS', id: 'diagnosis', href: '/#diagnosis' },
+  { label: 'REVENUE ARCHITECTURE', id: 'engagement', href: '/#engagement' },
   { label: 'CASES', id: 'cases-nav', href: '/cases' },
   { label: 'ABOUT', id: 'about-nav', href: '/about' },
 ];
@@ -251,22 +251,22 @@ function Header({ onNavigate, variant = 'dark' }: { onNavigate: (id: string) => 
   return (
     <header className={`absolute left-0 right-0 top-0 z-40 px-5 py-5 ${textMain} sm:px-8 lg:px-12`}>
       <div className={`mx-auto flex max-w-[1400px] items-center justify-between border-b ${border} pb-5`}>
-        <button type="button" onClick={() => handleNavigation('top')} className={`group flex items-center gap-3 text-left focus-visible:outline-none focus-visible:ring-2 ${accentBorder}`} aria-label="NASIBA, back to top">
+        <a href="/" className={`group flex items-center gap-3 text-left focus-visible:outline-none focus-visible:ring-2 ${accentBorder}`} aria-label="NASIBA, back to top">
           <span className={`flex h-7 w-7 items-center justify-center border ${accentBorder} font-mono-ui text-[11px] font-bold ${accentText}`}>N</span>
           <span>
             <span className={`block font-mono-ui text-[11px] font-bold uppercase tracking-[0.18em] transition-colors ${accentText}`}>NASIBA</span>
             <span className={`mt-0.5 block font-mono-ui text-[8px] uppercase tracking-[0.12em] ${dark ? 'text-[#f5f0e7]/45' : 'text-[#202536]/45'}`}>Revenue architecture for SaaS</span>
           </span>
-        </button>
+        </a>
         <nav className="hidden items-center gap-5 xl:gap-7 md:flex" aria-label="Primary navigation">
           {navItems.map((item) => (
-            <button key={item.id} type="button" onClick={() => handleNavigation(item.id)} className={`font-mono-ui text-[9px] uppercase tracking-[0.13em] ${textMuted} transition-colors ${dark ? 'hover:text-[#f5f0e7]' : 'hover:text-[#202536]'} focus-visible:outline-none focus-visible:ring-2 ${accentBorder} focus-visible:ring-offset-2 ${dark ? 'focus-visible:ring-offset-[#202536]' : 'focus-visible:ring-offset-[#f5f0e7]'}`}>
+            <a key={item.id} href={item.href} onClick={(e) => { if (item.href.startsWith('/#')) { e.preventDefault(); scrollToSection(item.id); } }} className={`font-mono-ui text-[9px] uppercase tracking-[0.13em] ${textMuted} transition-colors ${dark ? 'hover:text-[#f5f0e7]' : 'hover:text-[#202536]'} focus-visible:outline-none focus-visible:ring-2 ${accentBorder} focus-visible:ring-offset-2 ${dark ? 'focus-visible:ring-offset-[#202536]' : 'focus-visible:ring-offset-[#f5f0e7]'}`}>
               {item.label}
-            </button>
+            </a>
           ))}
-          <button type="button" onClick={() => handleNavigation('offer')} className={`flex items-center gap-2 ${btnBg} px-4 py-2.5 font-mono-ui text-[9px] font-bold uppercase tracking-[0.1em] ${btnText} transition-colors ${hoverBg} focus-visible:outline-none focus-visible:ring-2 ${dark ? 'focus-visible:ring-[#f5f0e7]' : 'focus-visible:ring-[#202536]'}`}>
+          <a href="/#offer" className={`flex items-center gap-2 ${btnBg} px-4 py-2.5 font-mono-ui text-[9px] font-bold uppercase tracking-[0.1em] ${btnText} transition-colors ${hoverBg} focus-visible:outline-none focus-visible:ring-2 ${dark ? 'focus-visible:ring-[#f5f0e7]' : 'focus-visible:ring-[#202536]'}`}>
             START THE DIAGNOSIS \u2014 $1,000 <ArrowRight size={13} strokeWidth={2.5} />
-          </button>
+          </a>
         </nav>
         <button type="button" className={`inline-flex h-10 w-10 items-center justify-center border ${dark ? 'border-[#f5f0e7]/25' : 'border-[#202536]/25'} ${textMain} md:hidden`} onClick={() => setOpen((current) => !current)} aria-expanded={open} aria-controls="mobile-navigation">
           {open ? <X size={19} /> : <Menu size={19} />}
@@ -276,14 +276,14 @@ function Header({ onNavigate, variant = 'dark' }: { onNavigate: (id: string) => 
       {open && (
         <nav id="mobile-navigation" className={`${border} border-b ${bg} px-2 py-4 md:hidden`} aria-label="Mobile navigation">
           {navItems.map((item) => (
-            <button key={item.id} type="button" onClick={() => handleNavigation(item.id)} className={`flex w-full items-center justify-between border-b ${dark ? 'border-[#f5f0e7]/10' : 'border-[#cfc7b7]'} px-3 py-4 text-left font-mono-ui text-[10px] uppercase tracking-[0.16em] ${dark ? 'text-[#f5f0e7]/75' : 'text-[#202536]/75'} last:border-0 focus-visible:outline-none focus-visible:ring-2 ${accentBorder}`}>
+            <a key={item.id} href={item.href} onClick={(e) => { if (item.href.startsWith('/#')) { e.preventDefault(); scrollToSection(item.id); } }} className={`flex w-full items-center justify-between border-b ${dark ? 'border-[#f5f0e7]/10' : 'border-[#cfc7b7]'} px-3 py-4 text-left font-mono-ui text-[10px] uppercase tracking-[0.16em] ${dark ? 'text-[#f5f0e7]/75' : 'text-[#202536]/75'} last:border-0 focus-visible:outline-none focus-visible:ring-2 ${accentBorder}`}>
               {item.label}
               <ArrowDownRight size={14} className={accentText} />
-            </button>
+            </a>
           ))}
-          <button type="button" onClick={() => handleNavigation('offer')} className={`mt-3 flex w-full items-center justify-between ${btnBg} px-3 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[0.12em] ${btnText}`}>
+          <a href="/#offer" className={`mt-3 flex w-full items-center justify-between ${btnBg} px-3 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[0.12em] ${btnText}`}>
             START THE DIAGNOSIS \u2014 $1,000 <ArrowRight size={14} />
-          </button>
+          </a>
         </nav>
       )}
     </header>
@@ -310,9 +310,9 @@ function Hero({ onNavigate }: { onNavigate: (id: string) => void }) {
             An asynchronous diagnosis of the commercial gaps between product interest and payment \u2014 from positioning and economic value to buying events, upgrade logic and messaging.
           </p>
           <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
-            <button type="button" onClick={() => onNavigate('offer')} className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[0.1em] text-[#202536] transition-colors hover:bg-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">
+            <a href="/#offer" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[0.1em] text-[#202536] transition-colors hover:bg-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">
               START THE REVENUE LEAK DIAGNOSIS \u2014 $1,000 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-            </button>
+            </a>
           </div>
           <div className="mt-7 font-mono-ui text-[11px] font-bold uppercase tracking-[.16em] text-[#f5f0e7]/78">$1,000 \u00b7 3\u20134 DAYS \u00b7 ASYNCHRONOUS</div>
           <p className="mt-5 max-w-[520px] text-[14px] leading-[1.5] text-[#f5f0e7]/48">For SaaS products that already have users, traffic or demand \u2014 but aren&apos;t converting enough of it into revenue.</p>
@@ -635,7 +635,7 @@ function Engagement() {
           </div>
           <div>
             <div className="border-t border-[#f5f0e7]/20 py-8"><div className="flex items-start gap-5"><span className="font-mono-ui text-[10px] text-[#e96a3a]">01</span><div><h3 className="font-display text-[40px] leading-none tracking-[-.05em]">DIAGNOSE</h3><p className="mt-4 max-w-[540px] text-[16px] leading-[1.6] text-[#f5f0e7]/65">$1,000 \u00b7 3\u20134 days \u00b7 Asynchronous. Find the leak, its root cause, and the priority map. This is enough when one commercial transition is unclear.</p></div></div></div>
-            <div className="border-y border-[#f5f0e7]/20 py-8"><div className="flex items-start gap-5"><span className="font-mono-ui text-[10px] text-[#e96a3a]">02</span><div><h3 className="font-display text-[40px] leading-none tracking-[-.05em]">REBUILD</h3><p className="mt-4 max-w-[540px] text-[16px] leading-[1.6] text-[#f5f0e7]/65">For products where the diagnosis reveals a broader problem in how positioning, economics, offers, buying events and upgrades work together.</p><div className="mt-5 flex items-baseline gap-5 font-mono-ui text-[10px] uppercase tracking-[.13em] text-[#e96a3a]"><span>$10,000</span><span>2 weeks \u00b7 Asynchronous</span></div><ul className="mt-6 grid max-w-[570px] grid-cols-1 gap-x-6 gap-y-3 border-t border-[#f5f0e7]/15 pt-5 font-mono-ui text-[10px] uppercase leading-[1.5] tracking-[.1em] text-[#f5f0e7]/55 sm:grid-cols-2"><li>\u2014 Positioning audit</li><li>\u2014 Economic framing</li><li>\u2014 Offer ladder restructuring</li><li>\u2014 Buying-event design</li><li>\u2014 Pricing &amp; upgrade logic</li><li>\u2014 Homepage &amp; messaging implementation guidance</li></ul><button type="button" onClick={() => scrollToSection('offer')} className="mt-8 border-b border-[#e96a3a] pb-1 font-mono-ui text-[10px] font-bold uppercase tracking-[.12em] text-[#e96a3a] transition-colors hover:text-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e96a3a]">EXPLORE REVENUE ARCHITECTURE \u2192</button></div></div></div>
+            <div className="border-y border-[#f5f0e7]/20 py-8"><div className="flex items-start gap-5"><span className="font-mono-ui text-[10px] text-[#e96a3a]">02</span><div><h3 className="font-display text-[40px] leading-none tracking-[-.05em]">REBUILD</h3><p className="mt-4 max-w-[540px] text-[16px] leading-[1.6] text-[#f5f0e7]/65">For products where the diagnosis reveals a broader problem in how positioning, economics, offers, buying events and upgrades work together.</p><div className="mt-5 flex items-baseline gap-5 font-mono-ui text-[10px] uppercase tracking-[.13em] text-[#e96a3a]"><span>$10,000</span><span>2 weeks \u00b7 Asynchronous</span></div><ul className="mt-6 grid max-w-[570px] grid-cols-1 gap-x-6 gap-y-3 border-t border-[#f5f0e7]/15 pt-5 font-mono-ui text-[10px] uppercase leading-[1.5] tracking-[.1em] text-[#f5f0e7]/55 sm:grid-cols-2"><li>\u2014 Positioning audit</li><li>\u2014 Economic framing</li><li>\u2014 Offer ladder restructuring</li><li>\u2014 Buying-event design</li><li>\u2014 Pricing &amp; upgrade logic</li><li>\u2014 Homepage &amp; messaging implementation guidance</li></ul><a href="/#offer" className="mt-8 border-b border-[#e96a3a] pb-1 font-mono-ui text-[10px] font-bold uppercase tracking-[.12em] text-[#e96a3a] transition-colors hover:text-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e96a3a]">EXPLORE REVENUE ARCHITECTURE \u2192</a></div></div></div>
             <p className="mt-9 max-w-[580px] font-display text-[29px] leading-[1.05] tracking-[-.04em] text-[#f5f0e7]">The diagnosis identifies the leak. Revenue Architecture rebuilds the system around it.</p>
             <p className="mt-5 max-w-[530px] text-[15px] leading-[1.55] text-[#f5f0e7]/58">Not every diagnosis requires deeper work. The second engagement exists when the commercial problem is architectural rather than isolated.</p>
           </div>
@@ -710,7 +710,7 @@ function FinalCTA({ onNavigate }: { onNavigate: (id: string) => void }) {
           <h2 className="font-display text-[clamp(4rem,9vw,9.2rem)] leading-[.84] tracking-[-.08em]">Your product may not need more traffic<span className="text-[#e96a3a]">.</span></h2>
           <p className="mt-8 max-w-[590px] text-[18px] leading-[1.55] text-[#f5f0e7]/60">It may need a better path from the attention you already have to the revenue you want.</p>
           <div className="mt-12 flex flex-col items-start gap-7 sm:flex-row sm:items-center">
-            <button type="button" onClick={() => onNavigate('offer')} className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-colors hover:bg-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">START THE $1,000 DIAGNOSIS \u2192 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" /></button>
+            <a href="/#offer" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-colors hover:bg-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">START THE $1,000 DIAGNOSIS \u2192 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" /></a>
             <a href="mailto:paul@nasiba.co" className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45 border-b border-[#f5f0e7]/20 pb-0.5 transition-colors hover:text-[#e96a3a] hover:border-[#e96a3a]">EMAIL PAUL</a>
           </div>
         </div>
@@ -1077,7 +1077,7 @@ function TermsPage() {
 
 /* ─── Router ─── */
 
-function Router() {
+export function Router() {
   return (
     <RoutedErrorBoundary>
       <Switch>
