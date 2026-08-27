@@ -22,8 +22,8 @@ const queryClient = new QueryClient();
 /* ─── Navigation ─── */
 
 const navItems = [
-  { label: 'DIAGNOSIS', id: 'diagnosis', href: '/#diagnosis' },
-  { label: 'REVENUE ARCHITECTURE', id: 'engagement', href: '/#engagement' },
+  { label: 'DIAGNOSIS', id: 'diagnosis', href: '/diagnosis' },
+  { label: 'REVENUE ARCHITECTURE', id: 'revenue-architecture', href: '/revenue-architecture' },
   { label: 'CASES', id: 'cases-nav', href: '/cases' },
   { label: 'ABOUT', id: 'about-nav', href: '/about' },
 ];
@@ -184,8 +184,8 @@ function SiteFooter({ variant = 'dark' }: { variant?: 'dark' | 'light' }) {
           <p className={`font-mono-ui text-[9px] font-bold uppercase tracking-[.14em] ${textMuted} mb-4`}>Navigation</p>
           <ul className="space-y-2">
             {[
-              { label: 'Diagnosis', href: '/#diagnosis' },
-              { label: 'Revenue Architecture', href: '/#engagement' },
+              { label: 'Diagnosis', href: '/diagnosis' },
+              { label: 'Revenue Architecture', href: '/revenue-architecture' },
               { label: 'Cases', href: '/cases' },
               { label: 'About', href: '/about' },
             ].map((link) => (
@@ -264,7 +264,7 @@ function Header({ onNavigate, variant = 'dark' }: { onNavigate: (id: string) => 
               {item.label}
             </a>
           ))}
-          <a href="/#offer" className={`flex items-center gap-2 ${btnBg} px-4 py-2.5 font-mono-ui text-[9px] font-bold uppercase tracking-[0.1em] ${btnText} transition-colors ${hoverBg} focus-visible:outline-none focus-visible:ring-2 ${dark ? 'focus-visible:ring-[#f5f0e7]' : 'focus-visible:ring-[#202536]'}`}>
+          <a href="/start" className={`flex items-center gap-2 ${btnBg} px-4 py-2.5 font-mono-ui text-[9px] font-bold uppercase tracking-[0.1em] ${btnText} transition-colors ${hoverBg} focus-visible:outline-none focus-visible:ring-2 ${dark ? 'focus-visible:ring-[#f5f0e7]' : 'focus-visible:ring-[#202536]'}`}>
             START DIAGNOSIS <ArrowRight size={13} strokeWidth={2.5} />
           </a>
         </nav>
@@ -281,7 +281,7 @@ function Header({ onNavigate, variant = 'dark' }: { onNavigate: (id: string) => 
               <ArrowDownRight size={14} className={accentText} />
             </a>
           ))}
-          <a href="/#offer" className={`mt-3 flex w-full items-center justify-between ${btnBg} px-3 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[0.12em] ${btnText}`}>
+          <a href="/start" className={`mt-3 flex w-full items-center justify-between ${btnBg} px-3 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[0.12em] ${btnText}`}>
             START DIAGNOSIS <ArrowRight size={14} />
           </a>
         </nav>
@@ -309,7 +309,7 @@ function Hero({ onNavigate }: { onNavigate: (id: string) => void }) {
             An asynchronous diagnosis of the commercial gaps between product interest and payment — from positioning and economic value to buying events, upgrade logic and messaging.
           </p>
           <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
-            <a href="/#offer" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[0.1em] text-[#202536] transition-colors hover:bg-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">
+            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[0.1em] text-[#202536] transition-colors hover:bg-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">
               START THE REVENUE LEAK DIAGNOSIS <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </a>
           </div>
@@ -484,7 +484,6 @@ function RevenueLeakExamples() {
 
 /* Consolidated Diagnosis + Offer — one primary homepage section */
 function Diagnosis() {
-  const [requested, setRequested] = useState(false);
   return (
     <section id="diagnosis" className="scroll-mt-10 bg-[#f5f0e7]">
       <div className="mx-auto max-w-[1400px] px-5 py-28 sm:px-8 lg:px-12 lg:py-40">
@@ -524,10 +523,9 @@ function Diagnosis() {
               <span>ASYNCHRONOUS</span>
               <span>FIXED SCOPE</span>
             </div>
-            <button type="button" onClick={() => setRequested(true)} className="mt-8 flex w-full items-center justify-between bg-[#e96a3a] px-5 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-colors hover:bg-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">
-              {requested ? 'REQUEST NOTED \u2014 I\u2019LL BE IN TOUCH.' : 'START THE DIAGNOSIS'} <ArrowRight size={16} />
-            </button>
-            {requested && <p className="mt-4 font-mono-ui text-[10px] uppercase leading-[1.5] tracking-[.1em] text-[#f5f0e7]/55">This prototype records your intent locally. The final intake channel can be connected here.</p>}
+            <a href="/start" className="mt-8 flex w-full items-center justify-between bg-[#e96a3a] px-5 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-colors hover:bg-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">
+              START THE DIAGNOSIS <ArrowRight size={16} />
+            </a>
             <p className="mt-8 border-t border-[#f5f0e7]/15 pt-5 font-mono-ui text-[9px] uppercase tracking-[.14em] text-[#f5f0e7]/40">No retainer. No recurring commitment. No ongoing consulting.</p>
           </div>
         </div>
@@ -716,7 +714,7 @@ function FinalCTA({ onNavigate }: { onNavigate: (id: string) => void }) {
           <h2 className="font-display text-[clamp(4rem,9vw,9.2rem)] leading-[.84] tracking-[-.08em]">Your product may not need more traffic<span className="text-[#e96a3a]">.</span></h2>
           <p className="mt-8 max-w-[590px] text-[18px] leading-[1.55] text-[#f5f0e7]/60">It may need a better path from the attention you already have to the revenue you want.</p>
           <div className="mt-12 flex flex-col items-start gap-7 sm:flex-row sm:items-center">
-            <a href="/#offer" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-colors hover:bg-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">START THE DIAGNOSIS → <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" /></a>
+            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-colors hover:bg-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">START THE DIAGNOSIS → <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" /></a>
             <a href="mailto:paul@nasiba.co" className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45 border-b border-[#f5f0e7]/20 pb-0.5 transition-colors hover:text-[#e96a3a] hover:border-[#e96a3a]">EMAIL PAUL</a>
           </div>
         </div>
@@ -749,7 +747,8 @@ function Home() {
   const navigate = (id: string) => {
     if (id === 'about-nav') { setLocation('/about'); return; }
     if (id === 'cases-nav') { setLocation('/cases'); return; }
-    if (id === 'engagement') { scrollToSection('engagement'); return; }
+    if (id === 'revenue-architecture') { setLocation('/revenue-architecture'); return; }
+    if (id === 'diagnosis') { setLocation('/diagnosis'); return; }
     scrollToSection(id);
   };
 
@@ -766,6 +765,378 @@ function Home() {
   </main>;
 }
 
+/* ─── /start — Intake Page ─── */
+
+function StartPage() {
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    document.title = 'Start a Revenue Leak Diagnosis — Nasiba';
+    const meta = document.querySelector('meta[name="description"]') ?? document.createElement('meta');
+    meta.setAttribute('name', 'description');
+    meta.setAttribute('content', 'Start a $1,000 asynchronous Revenue Leak Diagnosis for your SaaS. Share your product and primary monetization issue to begin.');
+    document.head.appendChild(meta);
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError(null);
+    setFieldErrors({});
+
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const name = String(fd.get('name') ?? '').trim();
+    const website = String(fd.get('website') ?? '').trim();
+    const email = String(fd.get('email') ?? '').trim();
+    const primaryIssue = String(fd.get('primaryIssue') ?? '').trim();
+
+    const errors: Record<string, string> = {};
+    if (!name) errors.name = 'Name is required';
+    if (!website) errors.website = 'URL is required';
+    else { try { new URL(website); } catch { errors.website = 'Enter a valid URL'; } }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = 'Valid email is required';
+    if (!primaryIssue) errors.primaryIssue = 'Please select an option';
+
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const res = await fetch('/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, website, email, primaryIssue }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Submission failed');
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Try again, or email paul@nasiba.co.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const [, setLocation] = useLocation();
+  const navigate = (id: string) => {
+    if (id === 'about-nav') { setLocation('/about'); return; }
+    if (id === 'cases-nav') { setLocation('/cases'); return; }
+    if (id === 'revenue-architecture') { setLocation('/revenue-architecture'); return; }
+    if (id === 'diagnosis') { setLocation('/diagnosis'); return; }
+    setLocation('/');
+  };
+
+  return (
+    <main className="page-grain min-h-[100dvh] bg-[#202536] text-[#f5f0e7]">
+      <Header onNavigate={navigate} />
+      <div className="mx-auto max-w-[640px] px-5 pb-20 pt-40 sm:px-8 lg:pb-28">
+        <div className="border-t border-[#f5f0e7]/20 pt-6">
+          <div className="mb-6 flex items-center gap-3 font-mono-ui text-[10px] font-bold uppercase tracking-[0.2em] text-[#e96a3a]">
+            <span className="h-px w-8 bg-current" />
+            <span>REVENUE LEAK DIAGNOSIS</span>
+          </div>
+          <h1 className="font-display text-[clamp(2.8rem,6vw,5rem)] leading-[.88] tracking-[-.07em]">
+            Start with the problem.
+          </h1>
+          <p className="mt-6 max-w-[520px] text-[17px] leading-[1.55] text-[#f5f0e7]/65">
+            Give us the minimum context needed to understand where monetization appears to be breaking. If it looks like a fit, you&apos;ll receive the next step by email.
+          </p>
+          <div className="mt-6 flex items-baseline gap-4 font-mono-ui text-[10px] uppercase tracking-[.13em] text-[#f5f0e7]/55">
+            <span>$1,000</span>
+            <span className="text-[#f5f0e7]/30">·</span>
+            <span>3–4 days</span>
+            <span className="text-[#f5f0e7]/30">·</span>
+            <span>asynchronous</span>
+          </div>
+        </div>
+
+        {submitted ? (
+          <div className="mt-16 border-t border-[#f5f0e7]/20 pt-12">
+            <div className="mb-6 flex items-center gap-3 font-mono-ui text-[10px] font-bold uppercase tracking-[0.2em] text-[#e96a3a]">
+              <span className="h-px w-8 bg-current" />
+              <span>SUBMITTED</span>
+            </div>
+            <h2 className="font-display text-[clamp(2.2rem,4vw,3.5rem)] leading-[.9] tracking-[-.06em]">
+              REQUEST RECEIVED.
+            </h2>
+            <p className="mt-6 max-w-[480px] text-[17px] leading-[1.55] text-[#f5f0e7]/65">
+              If the diagnosis looks like a fit, Paul will reply by email with the next step and payment details.
+            </p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} noValidate className="mt-12 border-t border-[#f5f0e7]/20 pt-10 space-y-8">
+            {/* Name */}
+            <div>
+              <label htmlFor="start-name" className="block font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#f5f0e7]/60 mb-3">Name</label>
+              <input
+                id="start-name"
+                name="name"
+                type="text"
+                autoComplete="name"
+                required
+                className={`w-full border ${fieldErrors.name ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-transparent px-4 py-3.5 font-mono-ui text-[13px] text-[#f5f0e7] outline-none transition-colors placeholder:text-[#f5f0e7]/30 focus:border-[#e96a3a] sm:text-[14px]`}
+                placeholder="Your name"
+              />
+              {fieldErrors.name && <p className="mt-2 font-mono-ui text-[10px] uppercase tracking-[.1em] text-[#e96a3a]">{fieldErrors.name}</p>}
+            </div>
+
+            {/* Website */}
+            <div>
+              <label htmlFor="start-website" className="block font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#f5f0e7]/60 mb-3">Company / product URL</label>
+              <input
+                id="start-website"
+                name="website"
+                type="url"
+                autoComplete="url"
+                required
+                className={`w-full border ${fieldErrors.website ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-transparent px-4 py-3.5 font-mono-ui text-[13px] text-[#f5f0e7] outline-none transition-colors placeholder:text-[#f5f0e7]/30 focus:border-[#e96a3a] sm:text-[14px]`}
+                placeholder="https://"
+              />
+              {fieldErrors.website && <p className="mt-2 font-mono-ui text-[10px] uppercase tracking-[.1em] text-[#e96a3a]">{fieldErrors.website}</p>}
+            </div>
+
+            {/* Email */}
+            <div>
+              <label htmlFor="start-email" className="block font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#f5f0e7]/60 mb-3">Work email</label>
+              <input
+                id="start-email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                className={`w-full border ${fieldErrors.email ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-transparent px-4 py-3.5 font-mono-ui text-[13px] text-[#f5f0e7] outline-none transition-colors placeholder:text-[#f5f0e7]/30 focus:border-[#e96a3a] sm:text-[14px]`}
+                placeholder="you@company.com"
+              />
+              {fieldErrors.email && <p className="mt-2 font-mono-ui text-[10px] uppercase tracking-[.1em] text-[#e96a3a]">{fieldErrors.email}</p>}
+            </div>
+
+            {/* Primary Issue */}
+            <div>
+              <label htmlFor="start-issue" className="block font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#f5f0e7]/60 mb-3">Where does the problem seem to be?</label>
+              <select
+                id="start-issue"
+                name="primaryIssue"
+                required
+                className={`w-full border ${fieldErrors.primaryIssue ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-[#202536] px-4 py-3.5 font-mono-ui text-[13px] text-[#f5f0e7] outline-none transition-colors focus:border-[#e96a3a] sm:text-[14px]`}
+                defaultValue=""
+              >
+                <option value="" disabled>Select an issue</option>
+                <option value="Weak paid conversion">Weak paid conversion</option>
+                <option value="No upgrade trigger">No upgrade trigger</option>
+                <option value="Unclear buying event">Unclear buying event</option>
+                <option value="Pricing / packaging">Pricing / packaging</option>
+                <option value="Weak value framing">Weak value framing</option>
+                <option value="Unclear positioning">Unclear positioning</option>
+                <option value="Expansion stalls">Expansion stalls</option>
+                <option value="Not sure yet">Not sure yet</option>
+                <option value="Other">Other</option>
+              </select>
+              {fieldErrors.primaryIssue && <p className="mt-2 font-mono-ui text-[10px] uppercase tracking-[.1em] text-[#e96a3a]">{fieldErrors.primaryIssue}</p>}
+            </div>
+
+            {/* Submit */}
+            <div className="pt-2">
+              <button
+                type="submit"
+                disabled={submitting}
+                className="flex w-full items-center justify-between bg-[#e96a3a] px-5 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-colors hover:bg-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7] disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {submitting ? 'SENDING...' : 'SEND DIAGNOSIS REQUEST'} <ArrowRight size={16} />
+              </button>
+              <p className="mt-3 font-mono-ui text-[9px] uppercase tracking-[.12em] text-[#f5f0e7]/40">No call required. No retainer attached.</p>
+            </div>
+
+            {error && (
+              <div className="border border-[#e96a3a]/40 bg-[#e96a3a]/10 px-5 py-4">
+                <p className="font-mono-ui text-[11px] uppercase tracking-[.1em] text-[#e96a3a]">{error}</p>
+              </div>
+            )}
+          </form>
+        )}
+
+        <div className="mt-12 border-t border-[#f5f0e7]/15 pt-8">
+          <p className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45">
+            Prefer email? <a href="mailto:paul@nasiba.co" className="border-b border-[#f5f0e7]/20 pb-0.5 transition-colors hover:text-[#e96a3a] hover:border-[#e96a3a]">paul@nasiba.co</a>
+          </p>
+        </div>
+
+        <SiteFooter variant="dark" />
+      </div>
+    </main>
+  );
+}
+
+/* ─── /revenue-architecture — Full Page ─── */
+
+function RevenueArchitecturePage() {
+  useEffect(() => {
+    document.title = 'Revenue Architecture — Nasiba';
+    const meta = document.querySelector('meta[name="description"]') ?? document.createElement('meta');
+    meta.setAttribute('name', 'description');
+    meta.setAttribute('content', 'A focused two-week engagement to rebuild SaaS positioning, economic framing, offers, buying events, pricing and upgrade logic around the path to revenue.');
+    document.head.appendChild(meta);
+  }, []);
+
+  const [, setLocation] = useLocation();
+  const navigate = (id: string) => {
+    if (id === 'about-nav') { setLocation('/about'); return; }
+    if (id === 'cases-nav') { setLocation('/cases'); return; }
+    if (id === 'revenue-architecture') return;
+    if (id === 'diagnosis') { setLocation('/diagnosis'); return; }
+    setLocation('/');
+  };
+
+  const covers = [
+    ['POSITIONING', 'Clarify who the product is for, what category it belongs in, and what the buyer believes they are purchasing.'],
+    ['ECONOMIC FRAMING', 'Connect product capability to workload removed, revenue created, cost reduced, risk reduced, throughput increased or another relevant economic outcome.'],
+    ['OFFER ARCHITECTURE', 'Restructure the commercial path across free, paid and expansion stages.'],
+    ['BUYING-EVENT DESIGN', 'Define the event or threshold that creates a rational reason to buy now.'],
+    ['PRICING & UPGRADE LOGIC', 'Align packaging and expansion with increasing customer value rather than arbitrary feature gates.'],
+    ['MESSAGING IMPLEMENTATION GUIDANCE', 'Translate the commercial architecture into homepage, pricing, onboarding and upgrade messaging direction.'],
+  ];
+
+  const strongFit = [
+    'Existing SaaS product',
+    'Existing users / traffic / demand',
+    'Evidence of commercial friction',
+    'Monetization problem appears structural',
+    'Team can implement strategic changes',
+  ];
+
+  const notFit = [
+    'Pre-PMF product',
+    'Traffic acquisition problem only',
+    'Generic copywriting request',
+    'Ongoing execution retainer',
+    'Company looking only for more features',
+  ];
+
+  return (
+    <main className="page-grain min-h-[100dvh] bg-[#202536] text-[#f5f0e7]">
+      <Header onNavigate={navigate} />
+      <div className="mx-auto max-w-[1400px] px-5 pb-20 pt-40 sm:px-8 lg:px-12 lg:pb-28">
+
+        {/* Hero */}
+        <div className="border-t border-[#f5f0e7]/20 pt-6">
+          <div className="mb-6 flex items-center gap-3 font-mono-ui text-[10px] font-bold uppercase tracking-[0.2em] text-[#e96a3a]">
+            <span className="h-px w-8 bg-current" />
+            <span>REVENUE ARCHITECTURE</span>
+          </div>
+          <h1 className="font-display text-[clamp(3rem,7vw,7rem)] leading-[.87] tracking-[-.07em]">
+            Rebuild the path from interest to revenue.
+          </h1>
+          <p className="mt-6 max-w-[640px] text-[18px] leading-[1.55] text-[#f5f0e7]/65">
+            When the diagnosis shows that the problem is structural, Revenue Architecture redesigns the commercial system around the buying decision — positioning, economic framing, offers, buying events, pricing and upgrade logic.
+          </p>
+          <div className="mt-6 flex items-baseline gap-4 font-mono-ui text-[10px] uppercase tracking-[.13em] text-[#f5f0e7]/55">
+            <span>$10,000</span>
+            <span className="text-[#f5f0e7]/30">·</span>
+            <span>2 weeks</span>
+            <span className="text-[#f5f0e7]/30">·</span>
+            <span>asynchronous</span>
+          </div>
+        </div>
+
+        {/* What it covers */}
+        <div className="mt-28">
+          <p className="font-mono-ui text-[10px] font-bold uppercase tracking-[.18em] text-[#e96a3a]">What the engagement covers</p>
+          <div className="mt-12 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            {covers.map(([title, body]) => (
+              <article key={title} className="border-t border-[#f5f0e7]/20 py-6">
+                <h3 className="font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#e96a3a]">{title}</h3>
+                <p className="mt-4 max-w-[340px] text-[15px] leading-[1.55] text-[#f5f0e7]/58">{body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        {/* Relationship */}
+        <div className="mt-28 border-t border-[#f5f0e7]/15 pt-12">
+          <div className="grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-24">
+            <div>
+              <div className="border-t border-[#f5f0e7]/20 py-8">
+                <span className="font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#e96a3a]">01</span>
+                <h3 className="mt-4 font-display text-[clamp(2rem,3.5vw,3rem)] leading-none tracking-[-.05em]">DIAGNOSE</h3>
+                <p className="mt-2 font-mono-ui text-[11px] uppercase tracking-[.12em] text-[#f5f0e7]/45">Revenue Leak Diagnosis</p>
+                <p className="mt-1 font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#e96a3a]">$1,000 · 3–4 days</p>
+                <p className="mt-4 max-w-[380px] text-[16px] leading-[1.5] text-[#f5f0e7]/60">Find the break.</p>
+              </div>
+            </div>
+            <div>
+              <div className="border-t border-[#f5f0e7]/20 py-8">
+                <span className="font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#e96a3a]">02</span>
+                <h3 className="mt-4 font-display text-[clamp(2rem,3.5vw,3rem)] leading-none tracking-[-.05em]">REBUILD</h3>
+                <p className="mt-2 font-mono-ui text-[11px] uppercase tracking-[.12em] text-[#f5f0e7]/45">Revenue Architecture</p>
+                <p className="mt-1 font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#e96a3a]">$10,000 · 2 weeks</p>
+                <p className="mt-4 max-w-[380px] text-[16px] leading-[1.5] text-[#f5f0e7]/60">Rebuild the system around it.</p>
+              </div>
+            </div>
+          </div>
+          <p className="mt-8 font-display text-[22px] leading-[1.2] tracking-[-.03em] text-[#f5f0e7]/70">Two steps, only when the problem calls for both.</p>
+        </div>
+
+        {/* Who it is for */}
+        <div className="mt-28 border-t border-[#f5f0e7]/15 pt-12">
+          <h2 className="font-display text-[clamp(2.2rem,4vw,3.5rem)] leading-[.9] tracking-[-.06em]">Who Revenue Architecture is for</h2>
+          <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2">
+            <div className="border-t border-[#f5f0e7]/20 pt-6">
+              <span className="font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#f5f0e7]/50">Strong fit</span>
+              <ul className="mt-6 space-y-4">
+                {strongFit.map((item) => (
+                  <li key={item} className="flex gap-3 text-[15px] leading-[1.5] text-[#f5f0e7]/60"><Check size={16} className="mt-0.5 shrink-0 text-[#e96a3a]" />{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="border-t border-[#f5f0e7]/20 pt-6">
+              <span className="font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#f5f0e7]/50">Not fit</span>
+              <ul className="mt-6 space-y-4">
+                {notFit.map((item) => (
+                  <li key={item} className="flex gap-3 text-[15px] leading-[1.5] text-[#f5f0e7]/60"><Minus size={16} className="mt-0.5 shrink-0 text-[#f5f0e7]/30" />{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="mt-28 border-t border-[#f5f0e7]/15 pt-12">
+          <p className="font-display text-[clamp(2rem,4vw,3.5rem)] leading-[1.05] tracking-[-.05em]">The revenue problem starts with the diagnosis.</p>
+          <div className="mt-8 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-colors hover:bg-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">START WITH THE DIAGNOSIS <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" /></a>
+          </div>
+          <p className="mt-5 font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45">
+            Already diagnosed the problem? Email <a href="mailto:paul@nasiba.co" className="border-b border-[#f5f0e7]/20 pb-0.5 transition-colors hover:text-[#e96a3a] hover:border-[#e96a3a]">paul@nasiba.co</a>
+          </p>
+        </div>
+
+        <SiteFooter variant="dark" />
+      </div>
+    </main>
+  );
+}
+
+/* ─── /architecture — Legacy redirect ─── */
+
+function ArchitectureRedirect() {
+  useEffect(() => {
+    window.location.replace('/revenue-architecture');
+  }, []);
+  return (
+    <main className="page-grain min-h-[100dvh] bg-[#202536] text-[#f5f0e7]">
+      <div className="flex min-h-[100dvh] items-center justify-center">
+        <p className="font-mono-ui text-[11px] uppercase tracking-[.14em] text-[#f5f0e7]/50">Redirecting to Revenue Architecture...</p>
+      </div>
+    </main>
+  );
+}
+
 /* ─── /diagnosis page — holds the removed lenses + detailed FAQ ─── */
 
 function DiagnosisPage() {
@@ -773,9 +1144,9 @@ function DiagnosisPage() {
   const navigate = (id: string) => {
     if (id === 'about-nav') { setLocation('/about'); return; }
     if (id === 'cases-nav') { setLocation('/cases'); return; }
-    if (id === 'engagement') { window.setTimeout(() => scrollToSection('engagement'), 50); return; }
+    if (id === 'revenue-architecture') { setLocation('/revenue-architecture'); return; }
+    if (id === 'diagnosis') return;
     setLocation('/');
-    window.setTimeout(() => scrollToSection(id), 50);
   };
 
   return (
@@ -841,9 +1212,9 @@ function About() {
   const navigate = (id: string) => {
     if (id === 'about-nav') return;
     if (id === 'cases-nav') { setLocation('/cases'); return; }
-    if (id === 'engagement') { setLocation('/'); window.setTimeout(() => scrollToSection('engagement'), 50); return; }
+    if (id === 'revenue-architecture') { setLocation('/revenue-architecture'); return; }
+    if (id === 'diagnosis') { setLocation('/diagnosis'); return; }
     setLocation('/');
-    window.setTimeout(() => scrollToSection(id), 50);
   };
 
   return (
@@ -942,9 +1313,9 @@ function CasesIndex() {
   const navigate = (id: string) => {
     if (id === 'about-nav') { setLocation('/about'); return; }
     if (id === 'cases-nav') return;
-    if (id === 'engagement') { setLocation('/'); window.setTimeout(() => scrollToSection('engagement'), 50); return; }
+    if (id === 'revenue-architecture') { setLocation('/revenue-architecture'); return; }
+    if (id === 'diagnosis') { setLocation('/diagnosis'); return; }
     setLocation('/');
-    window.setTimeout(() => scrollToSection(id), 50);
   };
 
   return (
@@ -1003,9 +1374,9 @@ function CaseDetail({ slug }: { slug: string }) {
   const navigate = (id: string) => {
     if (id === 'about-nav') { setLocation('/about'); return; }
     if (id === 'cases-nav') { setLocation('/cases'); return; }
-    if (id === 'engagement') { setLocation('/'); window.setTimeout(() => scrollToSection('engagement'), 50); return; }
+    if (id === 'revenue-architecture') { setLocation('/revenue-architecture'); return; }
+    if (id === 'diagnosis') { setLocation('/diagnosis'); return; }
     setLocation('/');
-    window.setTimeout(() => scrollToSection(id), 50);
   };
 
   if (!data) return <NotFound />;
@@ -1078,9 +1449,9 @@ function PrivacyPage() {
   const navigate = (id: string) => {
     if (id === 'about-nav') { setLocation('/about'); return; }
     if (id === 'cases-nav') { setLocation('/cases'); return; }
-    if (id === 'engagement') { setLocation('/'); window.setTimeout(() => scrollToSection('engagement'), 50); return; }
+    if (id === 'revenue-architecture') { setLocation('/revenue-architecture'); return; }
+    if (id === 'diagnosis') { setLocation('/diagnosis'); return; }
     setLocation('/');
-    window.setTimeout(() => scrollToSection(id), 50);
   };
 
   return (
@@ -1111,9 +1482,9 @@ function TermsPage() {
   const navigate = (id: string) => {
     if (id === 'about-nav') { setLocation('/about'); return; }
     if (id === 'cases-nav') { setLocation('/cases'); return; }
-    if (id === 'engagement') { setLocation('/'); window.setTimeout(() => scrollToSection('engagement'), 50); return; }
+    if (id === 'revenue-architecture') { setLocation('/revenue-architecture'); return; }
+    if (id === 'diagnosis') { setLocation('/diagnosis'); return; }
     setLocation('/');
-    window.setTimeout(() => scrollToSection(id), 50);
   };
 
   return (
@@ -1152,6 +1523,9 @@ export function Router() {
           {(params) => <CaseDetail slug={params.slug} />}
         </Route>
         <Route path="/diagnosis" component={DiagnosisPage} />
+        <Route path="/start" component={StartPage} />
+        <Route path="/revenue-architecture" component={RevenueArchitecturePage} />
+        <Route path="/architecture" component={ArchitectureRedirect} />
         <Route path="/privacy" component={PrivacyPage} />
         <Route path="/terms" component={TermsPage} />
         <Route component={NotFound} />

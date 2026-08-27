@@ -10,6 +10,7 @@ export interface RouteConfig {
   path: string;
   title: string;
   description: string;
+  canonical?: string;
 }
 
 export const routes: RouteConfig[] = [
@@ -47,6 +48,23 @@ export const routes: RouteConfig[] = [
     path: '/diagnosis',
     title: 'Revenue Leak Diagnosis \u2014 Nasiba',
     description: 'A focused async commercial diagnosis of where the path from interest to payment is breaking. Diagnostic lenses, deliverables, and engagement details.',
+  },
+  {
+    path: '/start',
+    title: 'Start a Revenue Leak Diagnosis \u2014 Nasiba',
+    description: 'Start a $1,000 asynchronous Revenue Leak Diagnosis for your SaaS. Share your product and primary monetization issue to begin.',
+  },
+  {
+    path: '/revenue-architecture',
+    title: 'Revenue Architecture \u2014 Nasiba',
+    description: 'A focused two-week engagement to rebuild SaaS positioning, economic framing, offers, buying events, pricing and upgrade logic around the path to revenue.',
+    canonical: 'https://www.nasiba.co/revenue-architecture',
+  },
+  {
+    path: '/architecture',
+    title: 'Revenue Architecture \u2014 Nasiba',
+    description: 'A focused two-week engagement to rebuild SaaS positioning, economic framing, offers, buying events, pricing and upgrade logic around the path to revenue.',
+    canonical: 'https://www.nasiba.co/revenue-architecture',
   },
   {
     path: '/privacy',
@@ -94,10 +112,16 @@ export function renderPage(route: RouteConfig, template: string): string {
   );
 
   // Add canonical URL before </head>
+  const canonicalUrl = route.canonical || `https://www.nasiba.co${route.path}`;
   if (!html.includes('rel="canonical"')) {
     html = html.replace(
       '</head>',
-      `    <link rel="canonical" href="https://www.nasiba.co${route.path}" />\n  </head>`,
+      `    <link rel="canonical" href="${escapeHtml(canonicalUrl)}" />\n  </head>`,
+    );
+  } else {
+    html = html.replace(
+      /<link rel="canonical" href=".*?"/,
+      `<link rel="canonical" href="${escapeHtml(canonicalUrl)}"`,
     );
   }
 
@@ -114,10 +138,16 @@ export function renderPage(route: RouteConfig, template: string): string {
   );
 
   // Add OG URL
+  const ogUrl = route.canonical || `https://www.nasiba.co${route.path}`;
   if (!html.includes('og:url')) {
     html = html.replace(
       /<meta property="og:type" content=".*?"/,
-      `<meta property="og:type" content="website" />\n    <meta property="og:url" content="https://www.nasiba.co${route.path}"`,
+      `<meta property="og:type" content="website" />\n    <meta property="og:url" content="${escapeHtml(ogUrl)}"`,
+    );
+  } else {
+    html = html.replace(
+      /<meta property="og:url" content=".*?"/,
+      `<meta property="og:url" content="${escapeHtml(ogUrl)}"`,
     );
   }
 

@@ -2,5 +2,8 @@
   "buildCommand": "pnpm --filter @workspace/revenue-architecture run build",
   "outputDirectory": "artifacts/revenue-architecture/dist",
   "installCommand": "pnpm install",
-  "framework": null
+  "framework": null,
+  "redirects": [
+    { "source": "/architecture", "destination": "/revenue-architecture", "permanent": true }
+  ]
 }
