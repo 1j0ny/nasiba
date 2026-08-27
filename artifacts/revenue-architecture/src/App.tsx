@@ -792,7 +792,7 @@ function StartPage() {
     const website = String(fd.get('website') ?? '').trim();
     const email = String(fd.get('email') ?? '').trim();
     const primaryIssue = String(fd.get('primaryIssue') ?? '').trim();
-    const company_fax = String(fd.get('company_fax') ?? '');
+    const botcheck = String(fd.get('botcheck') ?? '');
 
     const errors: Record<string, string> = {};
     if (!name) errors.name = 'Name is required';
@@ -808,14 +808,23 @@ function StartPage() {
 
     setSubmitting(true);
     try {
-      const res = await fetch('/api/submit', {
+      const fd = new FormData();
+      fd.append('access_key', import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '');
+      fd.append('name', name);
+      fd.append('website', website);
+      fd.append('email', email);
+      fd.append('primaryIssue', primaryIssue);
+      fd.append('subject', `New Revenue Leak Diagnosis — ${website}`);
+      fd.append('replyto', email);
+      fd.append('botcheck', botcheck);
+
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, website, email, primaryIssue, company_fax }),
+        body: fd,
       });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || 'Submission failed');
+      const data = await res.json().catch(() => ({}));
+      if (!data.success) {
+        throw new Error(data.message || 'Submission failed');
       }
       setSubmitted(true);
     } catch (err) {
@@ -942,11 +951,8 @@ function StartPage() {
               {fieldErrors.primaryIssue && <p className="mt-2 font-mono-ui text-[10px] uppercase tracking-[.1em] text-[#e96a3a]">{fieldErrors.primaryIssue}</p>}
             </div>
 
-            {/* Honeypot — hidden from humans, visible to bots */}
-            <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0, overflow: 'hidden' }}>
-              <label htmlFor="start-company-fax">Company fax</label>
-              <input id="start-company-fax" name="company_fax" type="text" tabIndex={-1} autoComplete="off" />
-            </div>
+            {/* Honeypot — Web3Forms botcheck */}
+            <input type="checkbox" name="botcheck" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
 
             {/* Submit */}
             <div className="pt-2">

@@ -10,11 +10,9 @@
   },
   "private": true,
   "dependencies": {
-    "@replit/connectors-sdk": "^0.4.1",
-    "resend": "^6.22.1"
+    "@replit/connectors-sdk": "^0.4.1"
   },
   "devDependencies": {
-    "@vercel/node": "^7.0.0",
     "prettier": "^3.9.6",
     "typescript": "~5.9.3"
   }
