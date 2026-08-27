@@ -797,7 +797,10 @@ function StartPage() {
     const errors: Record<string, string> = {};
     if (!name) errors.name = 'Name is required';
     if (!website) errors.website = 'URL is required';
-    else { try { new URL(website); } catch { errors.website = 'Enter a valid URL'; } }
+    else {
+      const w = website.startsWith('http') ? website : `https://${website}`;
+      try { new URL(w); } catch { errors.website = 'Enter a valid URL or domain'; }
+    }
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = 'Valid email is required';
     if (!primaryIssue) errors.primaryIssue = 'Please select an option';
 
