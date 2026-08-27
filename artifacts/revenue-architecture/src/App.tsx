@@ -906,7 +906,7 @@ function StartPage() {
               <input
                 id="start-website"
                 name="website"
-                type="url"
+                type="text"
                 autoComplete="url"
                 required
                 className={`w-full border ${fieldErrors.website ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-transparent px-4 py-3.5 font-mono-ui text-[13px] text-[#f5f0e7] outline-none transition-colors placeholder:text-[#f5f0e7]/30 focus:border-[#e96a3a] sm:text-[14px]`}
