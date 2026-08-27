@@ -3,6 +3,11 @@
   "outputDirectory": "artifacts/revenue-architecture/dist",
   "installCommand": "pnpm install",
   "framework": null,
+  "functions": {
+    "api/submit.ts": {
+      "maxDuration": 10
+    }
+  },
   "redirects": [
     { "source": "/architecture", "destination": "/revenue-architecture", "permanent": true }
   ]
