@@ -809,7 +809,7 @@ function StartPage() {
     setSubmitting(true);
     try {
       const fd = new FormData();
-      fd.append('access_key', import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '');
+      fd.append('access_key', import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '18d32bf8-529c-48e6-bbcc-bf70f948700c');
       fd.append('name', name);
       fd.append('website', website);
       fd.append('email', email);
