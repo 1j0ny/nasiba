@@ -792,6 +792,7 @@ function StartPage() {
     const website = String(fd.get('website') ?? '').trim();
     const email = String(fd.get('email') ?? '').trim();
     const primaryIssue = String(fd.get('primaryIssue') ?? '').trim();
+    const company_fax = String(fd.get('company_fax') ?? '');
 
     const errors: Record<string, string> = {};
     if (!name) errors.name = 'Name is required';
@@ -810,7 +811,7 @@ function StartPage() {
       const res = await fetch('/api/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, website, email, primaryIssue }),
+        body: JSON.stringify({ name, website, email, primaryIssue, company_fax }),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
@@ -939,6 +940,12 @@ function StartPage() {
                 <option value="Other">Other</option>
               </select>
               {fieldErrors.primaryIssue && <p className="mt-2 font-mono-ui text-[10px] uppercase tracking-[.1em] text-[#e96a3a]">{fieldErrors.primaryIssue}</p>}
+            </div>
+
+            {/* Honeypot — hidden from humans, visible to bots */}
+            <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0, overflow: 'hidden' }}>
+              <label htmlFor="start-company-fax">Company fax</label>
+              <input id="start-company-fax" name="company_fax" type="text" tabIndex={-1} autoComplete="off" />
             </div>
 
             {/* Submit */}
