@@ -53,7 +53,7 @@ const casesData = [
     slug: 'confluencemeter',
     name: 'ConfluenceMeter',
     engagement: 'Positioning · Messaging · Hero Architecture',
-    diagnosticLeak: 'Mechanism before value',
+    diagnosticLeak: 'MECHANISM BEFORE VALUE',
     problem: 'The product explained monitoring functionality before making the trader outcome sufficiently obvious.',
     intervention: 'Repositioned the hero around faster identification of high-confluence setups, fewer charts, and decision filtering.',
     shortOutcome: 'The product moved from mechanism-led messaging toward a clearer outcome-led hero built around the trader\'s decision process.',
@@ -63,7 +63,7 @@ const casesData = [
     slug: 'convert-fast',
     name: 'Convert.FAST',
     engagement: 'Positioning · Hero Architecture',
-    diagnosticLeak: 'Capability hidden by category',
+    diagnosticLeak: 'CAPABILITY HIDDEN BY CATEGORY',
     problem: 'The product was more capable than the hero made it appear. The opportunity was to make the primary job-to-be-done explicit.',
     intervention: 'Moved from generic file conversion toward bulk processing, speed, explicit workflow and explicit output.',
     shortOutcome: 'The hero became more specific and aligned the product\'s strongest capability with a concrete user job.',
@@ -73,7 +73,7 @@ const casesData = [
     slug: 'creativelens',
     name: 'CreativeLens',
     engagement: 'Messaging · Economic Framing',
-    diagnosticLeak: 'Capability disconnected from economic decision',
+    diagnosticLeak: 'CAPABILITY → ECONOMIC DECISION GAP',
     problem: 'There was a gap between product capability and economic value. The product risked entering the mental category of "another AI creative analysis tool."',
     intervention: 'Shifted messaging from "AI analyzes creatives" toward understanding what deserves more budget, what needs more testing, and what should stop receiving spend.',
     shortOutcome: 'The messaging became more outcome-led and connected creative analysis more directly to the commercial decisions behind paid acquisition.',
@@ -613,7 +613,10 @@ function CasesTeaser() {
                   <h3 className="font-display text-[20px] font-semibold tracking-[-.03em] text-[#202536] group-hover:text-[#e15b2e] transition-colors duration-200">{c.name}</h3>
                   <p className="mt-2 text-[11px] font-medium uppercase tracking-[.08em] text-[#6c6b68]" style={{ fontFamily: 'var(--app-font-sans)' }}>{c.engagement}</p>
                   <p className="mt-3 text-[9px] font-semibold uppercase tracking-[.12em] text-[#e15b2e]/80" style={{ fontFamily: 'var(--app-font-sans)' }}>
-                    Diagnostic leak: {c.diagnosticLeak}
+                    DIAGNOSTIC LEAK
+                  </p>
+                  <p className="mt-1 text-[9px] font-semibold uppercase tracking-[.12em] text-[#202536]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>
+                    {c.diagnosticLeak}
                   </p>
                 </div>
 
@@ -1685,8 +1688,8 @@ const sampleOutputs = [
     number: '01',
     title: 'Revenue Leak',
     headline: 'Free solves the core job.',
-    explanation: 'The free plan already gives the user the outcome that brought them to the product. The paid tier increases capacity, but does not introduce a materially different economic outcome.',
-    consequence: 'Users may like the product and continue using it without developing a rational reason to upgrade.',
+    explanation: 'The free plan already gives the user the outcome that brought them to the product. Paid mostly increases capacity rather than creating a meaningfully more valuable commercial state.',
+    consequence: 'Users can like the product without developing a rational reason to upgrade.',
   },
   {
     number: '02',
@@ -1703,30 +1706,30 @@ const sampleOutputs = [
     number: '03',
     title: 'Economic Logic',
     headline: 'Paid needs to correspond to a more valuable state.',
-    explanation: 'The buyer should be able to connect the paid tier to a meaningful change in the economics or operational importance of the workflow.',
+    explanation: 'The paid tier should become rational when the workflow becomes more economically or operationally important.',
     signals: [
       'Recurring team use',
       'Workflow dependency',
       'Coordination across users',
       'Reduced manual workload',
       'Reliability requirements',
-      'Increased operational risk if the product disappears',
+      'Operational risk if the product disappears',
     ],
-    signalsNote: 'Illustrative examples of value signals — not a claim that all apply to every product.',
+    signalsNote: 'Illustrative signals — not measured facts, and not all will apply.',
   },
   {
     number: '04',
     title: 'Buying Event',
     headline: 'The buying event is operational dependency.',
-    explanation: 'The rational reason to pay appears when the product stops being an occasional utility and becomes part of a recurring workflow that the customer now depends on.',
+    explanation: 'The rational reason to pay appears when the product stops being an occasional utility and becomes part of a recurring workflow the customer depends on.',
     diagnosticQuestion: 'What observable event tells us the user has crossed from experimentation into dependency?',
     signals: [
-      'A second team member is invited',
-      'The workflow becomes recurring',
-      'Project or client volume crosses a threshold',
+      'Second team member invited',
+      'Workflow becomes recurring',
+      'Project/client volume crosses a threshold',
       'Integrations become necessary',
-      'Exports or reports become operational',
-      'The product becomes embedded in a client-facing process',
+      'Exports/reports become operational',
+      'Product becomes embedded in a client-facing process',
     ],
     signalsNote: 'Illustrative possibilities a diagnosis would test against product data — not measured facts.',
   },
@@ -1734,10 +1737,10 @@ const sampleOutputs = [
     number: '05',
     title: 'Offer / Upgrade Logic',
     headline: 'Move paid value closer to the buying event.',
-    explanation: 'Instead of making paid mostly “more free”, the commercial architecture should make the paid tier correspond to the point where the workflow becomes operationally important.',
+    explanation: 'Instead of making paid mostly “more free,” make the paid tier correspond to the point where the workflow becomes operationally important.',
     ladder: [
       { stage: 'FREE', body: 'Prove the workflow' },
-      { stage: 'PAID', body: 'Operate the workflow repeatedly, collaboratively, reliably' },
+      { stage: 'PAID', body: 'Operate the workflow repeatedly / collaboratively / reliably' },
       { stage: 'EXPANSION', body: 'Support increasing organizational dependency' },
     ],
   },
@@ -1752,7 +1755,7 @@ const samplePriorities = [
   {
     rank: 'PRIORITY 2',
     title: 'Rebuild the free → paid boundary around increasing customer value.',
-    why: 'The offer should reflect the transition identified above.',
+    why: 'The offer should reflect the commercial transition identified above.',
   },
   {
     rank: 'PRIORITY 3',
@@ -1929,9 +1932,9 @@ function SampleDiagnosisPage() {
             A simplified example of how Nasiba identifies the commercial break, explains why it exists, and maps what should change first.
           </p>
           <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[10px] font-semibold uppercase tracking-[.12em] text-[#f5f0e7]/55" style={{ fontFamily: 'var(--app-font-sans)' }}>
-            <span>Illustrative example</span>
-            <span>No client data</span>
-            <span>No measured results</span>
+            <span>ILLUSTRATIVE EXAMPLE</span>
+            <span>NO CLIENT DATA</span>
+            <span>NO MEASURED RESULTS</span>
           </div>
           <p className="mt-4 max-w-[620px] border-l-2 border-[#e96a3a] pl-4 text-[13px] leading-[1.5] text-[#f5f0e7]/60">
             This example is illustrative. It does not represent confidential client data or measured client results.
@@ -1957,7 +1960,7 @@ function SampleDiagnosisPage() {
               </div>
               <div className="border-t border-[#f5f0e7]/15 py-5">
                 <h3 className="text-[11px] font-semibold uppercase tracking-[.1em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>Observed problem</h3>
-                <p className="mt-3 max-w-[320px] text-[15px] leading-[1.55] text-[#f5f0e7]/68">Users adopt the product, but upgrades remain weak. There is demand. The product is useful. The transition from usage to payment is unclear.</p>
+                <p className="mt-3 max-w-[320px] text-[15px] leading-[1.55] text-[#f5f0e7]/68">Users adopt the product, but paid upgrades remain weak. There is usage and demand, but no strong commercial transition from free usage to payment.</p>
               </div>
             </div>
           </div>
