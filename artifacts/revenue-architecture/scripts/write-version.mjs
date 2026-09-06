@@ -21,7 +21,7 @@ const version = {
   site: 'nasiba',
   commit,
   builtAt: new Date().toISOString(),
-  version: 'production-polish-v1',
+  version: 'production-qa-v2',
 };
 
 const outPath = resolve(distDir, 'version.json');

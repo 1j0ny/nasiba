@@ -147,20 +147,20 @@
 
   /* CTA button: subtle lift */
   .hover-lift {
-    transition: transform .16s cubic-bezier(.22,.8,.26,1), box-shadow .16s ease, background-color .16s ease;
+    transition: transform .18s cubic-bezier(.22,.8,.26,1), box-shadow .18s ease, background-color .16s ease;
   }
   .hover-lift:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(233,106,58,0.18);
+    box-shadow: 0 4px 14px rgba(233,106,58,0.15);
   }
 
   /* Panel/card: gentle elevation */
   .hover-elevate {
-    transition: transform .2s cubic-bezier(.22,.8,.26,1), box-shadow .2s ease;
+    transition: transform .2s cubic-bezier(.22,.8,.26,1), box-shadow .2s ease, border-color .2s ease;
   }
   .hover-elevate:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 32px rgba(25,30,47,0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(25,30,47,0.06);
   }
 
   /* Case rows / list items: subtle background shift */
@@ -198,10 +198,30 @@
     outline: 2px solid #e96a3a;
     outline-offset: 2px;
   }
+
+  /* FAQ answer: always in DOM, CSS-controlled visibility */
+  .faq-answer {
+    overflow: hidden;
+    transition: max-height .28s cubic-bezier(.22,.8,.26,1), opacity .22s ease;
+  }
+  .faq-answer[data-state="open"] {
+    max-height: 600px;
+    opacity: 1;
+  }
+  .faq-answer[data-state="closed"] {
+    max-height: 0;
+    opacity: 0;
+  }
+
+  /* List: no default marker, custom via children */
+  .list-editorial {
+    list-style: none;
+    padding-left: 0;
+  }
 }
 
 @keyframes rise-in {
-  from { opacity: 0; transform: translateY(14px); }
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -213,6 +233,8 @@
     animation-delay: 0ms !important;
     transition-duration: .001ms !important;
   }
+  .hover-lift:hover { transform: none; box-shadow: none; }
+  .hover-elevate:hover { transform: none; box-shadow: none; }
 }
 
 /* ─── Selection styling ─── */

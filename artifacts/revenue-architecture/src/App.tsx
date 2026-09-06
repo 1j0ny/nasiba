@@ -254,17 +254,17 @@ function Header({ onNavigate, variant = 'dark' }: { onNavigate: (id: string) => 
         <a href="/" className={`group flex items-center gap-3 text-left focus-visible:outline-none focus-visible:ring-2 ${accentBorder}`} aria-label="NASIBA, back to top">
           <span className={`flex h-7 w-7 items-center justify-center border ${accentBorder} font-mono-ui text-[11px] font-bold ${accentText}`}>N</span>
           <span>
-            <span className={`block font-mono-ui text-[11px] font-bold uppercase tracking-[0.18em] transition-colors ${accentText}`}>NASIBA</span>
-            <span className={`mt-0.5 block font-mono-ui text-[8px] uppercase tracking-[0.12em] ${dark ? 'text-[#f5f0e7]/45' : 'text-[#202536]/45'}`}>Revenue architecture for SaaS</span>
+            <span className={`block font-mono-ui text-[12px] font-bold uppercase tracking-[0.16em] transition-colors ${accentText}`}>NASIBA</span>
+            <span className={`mt-0.5 block font-mono-ui text-[9px] uppercase tracking-[0.11em] ${dark ? 'text-[#f5f0e7]/50' : 'text-[#202536]/50'}`}>Revenue architecture for SaaS</span>
           </span>
         </a>
-        <nav className="hidden items-center gap-5 xl:gap-7 md:flex" aria-label="Primary navigation">
+        <nav className="hidden items-center gap-5 xl:gap-6 md:flex" aria-label="Primary navigation">
           {navItems.map((item) => (
-            <a key={item.id} href={item.href} onClick={(e) => { if (item.href.startsWith('/#')) { e.preventDefault(); scrollToSection(item.id); } }} className={`font-mono-ui text-[9px] uppercase tracking-[0.13em] ${textMuted} transition-colors ${dark ? 'hover:text-[#f5f0e7]' : 'hover:text-[#202536]'} focus-visible:outline-none focus-visible:ring-2 ${accentBorder} focus-visible:ring-offset-2 ${dark ? 'focus-visible:ring-offset-[#202536]' : 'focus-visible:ring-offset-[#f5f0e7]'}`}>
+            <a key={item.id} href={item.href} onClick={(e) => { if (item.href.startsWith('/#')) { e.preventDefault(); scrollToSection(item.id); } }} className={`font-mono-ui text-[10px] uppercase tracking-[0.11em] ${textMuted} transition-colors ${dark ? 'hover:text-[#f5f0e7]' : 'hover:text-[#202536]'} focus-visible:outline-none focus-visible:ring-2 ${accentBorder} focus-visible:ring-offset-2 ${dark ? 'focus-visible:ring-offset-[#202536]' : 'focus-visible:ring-offset-[#f5f0e7]'}`}>
               {item.label}
             </a>
           ))}
-          <a href="/start" className={`flex items-center gap-2 ${btnBg} px-4 py-2.5 radius-btn font-mono-ui text-[9px] font-bold uppercase tracking-[0.1em] ${btnText} transition-all duration-[160ms] ${hoverBg} hover-lift focus-visible:outline-none focus-visible:ring-2 ${dark ? 'focus-visible:ring-[#f5f0e7]' : 'focus-visible:ring-[#202536]'}`}>
+          <a href="/start" className={`flex items-center gap-2 ${btnBg} px-4 py-2.5 radius-btn font-mono-ui text-[10px] font-bold uppercase tracking-[0.1em] ${btnText} transition-all duration-[160ms] ${hoverBg} hover-lift focus-visible:outline-none focus-visible:ring-2 ${dark ? 'focus-visible:ring-[#f5f0e7]' : 'focus-visible:ring-[#202536]'}`}>
             START DIAGNOSIS <ArrowRight size={13} strokeWidth={2.5} />
           </a>
         </nav>
@@ -296,16 +296,16 @@ function Hero({ onNavigate }: { onNavigate: (id: string) => void }) {
   return (
     <section id="top" className="relative overflow-hidden bg-[#202536] text-[#f5f0e7]">
       <Header onNavigate={onNavigate} />
-      <div className="mx-auto grid min-h-[780px] max-w-[1400px] grid-cols-1 items-end gap-16 px-5 pb-20 pt-40 sm:px-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,.92fr)] lg:gap-20 lg:px-12 lg:pb-28 lg:pt-48">
+      <div className="mx-auto grid min-h-[620px] max-w-[1400px] grid-cols-1 items-end gap-12 px-5 pb-16 pt-36 sm:px-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,.92fr)] lg:gap-16 lg:px-12 lg:pb-20 lg:pt-40">
         <div className="reveal max-w-[790px]">
-          <div className="mb-6 flex items-center gap-3 font-mono-ui text-[10px] font-bold uppercase tracking-[0.2em] text-[#e96a3a]">
+          <div className="mb-5 flex items-center gap-3 font-mono-ui text-[10px] font-bold uppercase tracking-[0.2em] text-[#e96a3a]">
             <span className="h-px w-8 bg-current" />
             <span>Commercial diagnosis</span>
           </div>
-          <h1 className="font-display text-[clamp(4.5rem,10vw,9rem)] leading-[.87] tracking-[-0.07em] text-[#f5f0e7]">
+          <h1 className="font-display text-[clamp(4rem,8.5vw,7.8rem)] leading-[.88] tracking-[-0.07em] text-[#f5f0e7]">
             Find where your SaaS is <span className="text-[#e96a3a]">losing revenue.</span>
           </h1>
-          <p className="mt-9 max-w-[650px] text-balance text-[18px] leading-[1.55] text-[#f5f0e7]/68 sm:text-[21px]">
+          <p className="mt-7 max-w-[600px] text-balance text-[17px] leading-[1.55] text-[#f5f0e7]/72 sm:text-[19px]">
             An asynchronous diagnosis of the commercial gaps between product interest and payment — from positioning and economic value to buying events, upgrade logic and messaging.
           </p>
           <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
@@ -313,23 +313,23 @@ function Hero({ onNavigate }: { onNavigate: (id: string) => void }) {
               START THE REVENUE LEAK DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" />
             </a>
           </div>
-          <div className="mt-7 font-mono-ui text-[11px] font-bold uppercase tracking-[.16em] text-[#f5f0e7]/78">$1,000 · 3–4 DAYS · ASYNCHRONOUS</div>
-          <p className="mt-5 max-w-[520px] text-[14px] leading-[1.5] text-[#f5f0e7]/48">For SaaS products that already have users, traffic or demand — but aren&apos;t converting enough of it into revenue.</p>
+          <div className="mt-6 font-mono-ui text-[11px] font-bold uppercase tracking-[.15em] text-[#f5f0e7]/82">$1,000 · 3–4 DAYS · ASYNCHRONOUS</div>
+          <p className="mt-4 max-w-[520px] text-[14px] leading-[1.5] text-[#f5f0e7]/55">For SaaS products that already have users, traffic or demand — but aren&apos;t converting enough of it into revenue.</p>
         </div>
-        <div className="reveal reveal-delay-2 relative min-h-[300px] lg:mb-4">
+        <div className="reveal reveal-delay-2 relative min-h-[260px] lg:mb-2">
           <div className="absolute bottom-0 left-0 right-0 border-t border-[#f5f0e7]/25 pt-4">
-            <div className="mb-8 flex items-center justify-between font-mono-ui text-[10px] uppercase tracking-[0.14em] text-[#f5f0e7]/50"><span>Where interest stops</span><span className="text-[#e96a3a]">→</span></div>
-            <div className="relative flex h-[150px] items-end justify-between gap-2">
+            <div className="mb-6 flex items-center justify-between font-mono-ui text-[10px] uppercase tracking-[0.14em] text-[#f5f0e7]/60"><span>Where interest stops</span><span className="text-[#e96a3a]">→</span></div>
+            <div className="relative flex h-[140px] items-end justify-between gap-2">
               {[82, 63, 49, 36, 25, 17].map((height, index) => (
                 <div key={height} className="relative flex h-full flex-1 items-end">
-                  <div className={`w-full ${index === 3 ? 'bg-[#e96a3a]' : 'bg-[#f5f0e7]/20'}`} style={{ height: `${height}%` }} />
+                  <div className={`w-full transition-all duration-300 ${index === 3 ? 'bg-[#e96a3a]' : 'bg-[#f5f0e7]/22'}`} style={{ height: `${height}%` }} />
                   {index === 3 && <span className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono-ui text-[9px] uppercase tracking-[.1em] text-[#e96a3a]">the leak</span>}
                 </div>
               ))}
             </div>
-            <div className="mt-4 flex justify-between font-mono-ui text-[9px] uppercase tracking-[.12em] text-[#f5f0e7]/40"><span>Demand</span><span>Payment</span></div>
+            <div className="mt-3 flex justify-between font-mono-ui text-[9px] uppercase tracking-[.12em] text-[#f5f0e7]/45"><span>Demand</span><span>Payment</span></div>
           </div>
-          <p className="absolute right-0 top-0 max-w-[190px] border-l border-[#e96a3a] pl-4 text-[14px] leading-[1.45] text-[#f5f0e7]/65">No more guessing which page, plan, or CTA to rewrite first.</p>
+          <p className="absolute right-0 top-0 max-w-[190px] border-l border-[#e96a3a] pl-4 text-[14px] leading-[1.45] text-[#f5f0e7]/70">No more guessing which page, plan, or CTA to rewrite first.</p>
         </div>
       </div>
     </section>
@@ -354,46 +354,32 @@ function RevenuePathMap() {
 
   return (
     <section id="path" className="bg-[#202536] text-[#f5f0e7]">
-      <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-12 lg:py-36">
+      <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
         <div className="max-w-[800px]">
           <p className="font-mono-ui text-[10px] font-bold uppercase tracking-[.18em] text-[#e96a3a]">The Revenue Path</p>
           <h2 className="mt-6 font-display text-[clamp(3rem,6vw,6rem)] leading-[.9] tracking-[-.07em]">Interest is not revenue.</h2>
-          <p className="mt-6 max-w-[600px] text-[17px] leading-[1.6] text-[#f5f0e7]/55">
+          <p className="mt-6 max-w-[600px] text-[17px] leading-[1.6] text-[#f5f0e7]/62">
             Most monetization problems aren&apos;t copy problems. Revenue moves through a sequence of commercial transitions. When one breaks, demand stops becoming payment.
           </p>
         </div>
 
-        {/* The broken path diagram — single canonical structure, CSS responsive */}
+        {/* The broken path diagram — single canonical DOM structure, CSS responsive */}
         <div className="mt-20 border-t border-[#f5f0e7]/15 pt-12">
           <div className="relative">
-            {/* Desktop: horizontal path */}
-            <div className="hidden lg:flex items-center justify-between">
+            {/* One canonical path: horizontal on lg+, vertical below */}
+            <div className="flex flex-col gap-0 lg:flex-row lg:items-center lg:justify-between">
               {steps.map((step, i) => (
-                <div key={step.name} className="flex items-center">
+                <div key={step.name} className="flex items-start gap-4 lg:flex-col lg:items-center lg:gap-0">
                   <div className="flex flex-col items-center">
-                    <div className={`flex h-12 w-12 items-center justify-center border radius-block font-mono-ui text-[9px] font-bold tracking-[.1em] ${step.active ? 'border-[#e96a3a] text-[#e96a3a]' : 'border-[#f5f0e7]/20 text-[#f5f0e7]/30'}`}>
-                      {step.active ? <Check size={16} /> : <span className="text-[#e96a3a]">✗</span>}
+                    <div className={`flex h-11 w-11 items-center justify-center border radius-block font-mono-ui text-[9px] font-bold tracking-[.1em] ${step.active ? 'border-[#e96a3a] text-[#e96a3a]' : 'border-[#f5f0e7]/20 text-[#f5f0e7]/30'}`}>
+                      {step.active ? <Check size={15} /> : <span className="text-[#e96a3a]">✗</span>}
                     </div>
-                    <span className={`mt-3 font-mono-ui text-[9px] uppercase tracking-[.12em] ${step.active ? 'text-[#f5f0e7]/70' : 'text-[#e96a3a]'}`}>{step.name}</span>
+                    {i < steps.length - 1 && <div className={`w-px h-7 lg:hidden ${step.active && steps[i + 1].active ? 'bg-[#f5f0e7]/25' : 'bg-[#e96a3a]/40'}`} />}
                   </div>
+                  <span className={`pt-2 lg:pt-3 font-mono-ui text-[10px] uppercase tracking-[.12em] ${step.active ? 'text-[#f5f0e7]/75' : 'text-[#e96a3a]'}`}>{step.name}</span>
                   {i < steps.length - 1 && (
-                    <div className={`mx-3 h-px w-16 ${step.active && steps[i + 1].active ? 'bg-[#f5f0e7]/25' : 'bg-[#e96a3a]/40 border-t border-dashed border-[#e96a3a]'}`} />
+                    <div className={`hidden lg:block mx-3 h-px w-14 ${step.active && steps[i + 1].active ? 'bg-[#f5f0e7]/25' : 'bg-[#e96a3a]/40 border-t border-dashed border-[#e96a3a]'}`} />
                   )}
-                </div>
-              ))}
-            </div>
-
-            {/* Mobile: vertical path */}
-            <div className="lg:hidden space-y-0">
-              {steps.map((step, i) => (
-                <div key={step.name} className="flex items-start gap-4">
-                  <div className="flex flex-col items-center">
-                    <div className={`flex h-10 w-10 items-center justify-center border radius-block font-mono-ui text-[9px] font-bold ${step.active ? 'border-[#e96a3a] text-[#e96a3a]' : 'border-[#f5f0e7]/20 text-[#f5f0e7]/30'}`}>
-                      {step.active ? <Check size={14} /> : <span className="text-[#e96a3a]">✗</span>}
-                    </div>
-                    {i < steps.length - 1 && <div className={`w-px h-8 ${step.active && steps[i + 1].active ? 'bg-[#f5f0e7]/25' : 'bg-[#e96a3a]/40'}`} />}
-                  </div>
-                  <span className={`pt-2.5 font-mono-ui text-[10px] uppercase tracking-[.12em] ${step.active ? 'text-[#f5f0e7]/70' : 'text-[#e96a3a]'}`}>{step.name}</span>
                 </div>
               ))}
             </div>
@@ -403,7 +389,7 @@ function RevenuePathMap() {
               {annotations.map((a) => (
                 <div key={a.position} className="border-l-2 border-[#e96a3a] pl-5 transition-colors duration-200 hover:bg-[#f5f0e7]/[.03] px-3 -mx-3 py-2 radius-block">
                   <p className="font-mono-ui text-[9px] uppercase tracking-[.14em] text-[#e96a3a]">{a.position}</p>
-                  <p className="mt-3 font-display text-[17px] leading-[1.4] tracking-[-.02em] text-[#f5f0e7]/60 italic">{a.text}</p>
+                  <p className="mt-3 font-display text-[17px] leading-[1.4] tracking-[-.02em] text-[#f5f0e7]/65">{a.text}</p>
                 </div>
               ))}
             </div>
@@ -418,9 +404,9 @@ function RevenuePathMap() {
 function RevenueLeakExamples() {
   return (
     <section className="bg-[#ddd8ce]">
-      <div className="mx-auto max-w-[1400px] px-5 py-28 sm:px-8 lg:px-12 lg:py-40">
+      <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
         <div className="max-w-[900px]">
-          <h2 className="font-display text-[clamp(2.8rem,5.5vw,5rem)] leading-[.9] tracking-[-.07em] text-[#202536]">
+          <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-[.9] tracking-[-.07em] text-[#202536]">
             What a revenue leak actually looks like.
           </h2>
         </div>
@@ -486,32 +472,32 @@ function RevenueLeakExamples() {
 function Diagnosis() {
   return (
     <section id="diagnosis" className="scroll-mt-10 bg-[#f5f0e7]">
-      <div className="mx-auto max-w-[1400px] px-5 py-28 sm:px-8 lg:px-12 lg:py-40">
-        <div className="grid grid-cols-1 gap-14 lg:grid-cols-[1.05fr_.95fr] lg:gap-24">
+      <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.05fr_.95fr] lg:gap-20">
           <div>
-            <h2 className="max-w-[760px] font-display text-[clamp(3.5rem,6vw,6.4rem)] leading-[.88] tracking-[-.08em] text-[#202536]">
+            <h2 className="max-w-[760px] font-display text-[clamp(3rem,5.5vw,5.5rem)] leading-[.88] tracking-[-.08em] text-[#202536]">
               One diagnosis.<br /><em className="text-[#e15b2e]">A clear commercial map.</em>
             </h2>
-            <p className="mt-9 max-w-[540px] text-[18px] leading-[1.5] text-[#55575c]">
+            <p className="mt-8 max-w-[540px] text-[17px] leading-[1.55] text-[#55575c]">
               A focused async commercial diagnosis of where the path from interest to payment is breaking — covering positioning, economic framing, offer and upgrade logic, buying events, pricing logic, and messaging implications.
             </p>
-            <div className="mt-10 grid grid-cols-1 gap-px border-y border-[#cfc7b7] bg-[#cfc7b7] md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {outputs.map(([number, title, body]) => (
-                <article key={number} className="min-h-[200px] bg-[#f5f0e7] p-5 sm:p-6 transition-colors duration-200 hover:bg-[#f5f0e7]/80">
+                <article key={number} className="border-t border-[#cfc7b7] pt-5 pb-4 transition-colors duration-200">
                   <span className="font-mono-ui text-[10px] text-[#e15b2e]">{number}</span>
-                  <h3 className="mt-8 font-display text-[26px] leading-[.95] tracking-[-.05em] text-[#202536]">{title}</h3>
-                  <p className="mt-3 text-[13px] leading-[1.5] text-[#55575c]">{body}</p>
+                  <h3 className="mt-6 font-display text-[24px] leading-[.95] tracking-[-.04em] text-[#202536]">{title}</h3>
+                  <p className="mt-3 text-[14px] leading-[1.55] text-[#55575c]">{body}</p>
                 </article>
               ))}
             </div>
           </div>
-          <div id="offer" className="bg-[#202536] p-7 text-[#f5f0e7] radius-panel sm:p-10 transition-shadow duration-200 hover:shadow-lg">
+          <div id="offer" className="bg-[#202536] p-8 text-[#f5f0e7] radius-panel sm:p-10 transition-shadow duration-200 hover:shadow-lg">
             <div className="flex items-start justify-between border-b border-[#f5f0e7]/20 pb-8">
               <span className="font-mono-ui text-[10px] uppercase tracking-[.14em] text-[#e96a3a]">The working room</span>
               <span className="font-display text-[52px] leading-none tracking-[-.06em]">$1,000</span>
             </div>
             <p className="mt-8 text-[17px] leading-[1.5] text-[#f5f0e7]/78">A fixed-scope inspection that identifies where revenue is leaking and gives you a clear commercial map for what to do next.</p>
-            <ul className="mt-8 space-y-4 text-[15px] leading-[1.45] text-[#f5f0e7]/70">
+            <ul className="mt-8 space-y-4 text-[15px] leading-[1.45] text-[#f5f0e7]/70 list-editorial">
               <li className="flex gap-3"><Check size={16} className="mt-0.5 shrink-0 text-[#e96a3a]" /> Positioning diagnosis</li>
               <li className="flex gap-3"><Check size={16} className="mt-0.5 shrink-0 text-[#e96a3a]" /> Economic framing analysis</li>
               <li className="flex gap-3"><Check size={16} className="mt-0.5 shrink-0 text-[#e96a3a]" /> Offer / upgrade architecture</li>
@@ -538,19 +524,19 @@ function Diagnosis() {
 function CasesTeaser() {
   return (
     <section id="client-work" className="scroll-mt-10 bg-[#f5f0e7]">
-      <div className="mx-auto max-w-[1400px] px-5 py-28 sm:px-8 lg:px-12 lg:py-36">
+      <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
         <div className="max-w-[700px]">
-          <h2 className="font-display text-[clamp(3rem,5.5vw,5rem)] leading-[.88] tracking-[-.07em] text-[#202536]">Client work.</h2>
-          <p className="mt-6 text-[17px] leading-[1.6] text-[#55575c]">Selected commercial work across SaaS products.</p>
+          <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-[.88] tracking-[-.07em] text-[#202536]">Client work.</h2>
+          <p className="mt-5 text-[17px] leading-[1.6] text-[#55575c]">Selected commercial work across SaaS products.</p>
         </div>
 
-        <div className="mt-16 space-y-0">
+        <div className="mt-12 space-y-0">
           {casesData.map((c) => (
             <div key={c.slug} className="border-t border-[#cfc7b7]">
-              <a href={`/cases/${c.slug}`} className="group block py-10 transition-all duration-200 hover:bg-[#f5f0e7]/60 hover:px-4 -mx-4 px-0 radius-block sm:py-12">
-                <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
+              <a href={`/cases/${c.slug}`} className="group block py-10 transition-all duration-[200ms] hover:bg-[#f5f0e7]/60 hover:px-4 -mx-4 px-0 radius-block sm:py-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e15b2e]">
+                <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
                   <div className="sm:w-[200px]">
-                    <h3 className="font-mono-ui text-[12px] font-bold uppercase tracking-[.14em] text-[#202536] group-hover:text-[#e15b2e]">{c.name}</h3>
+                    <h3 className="font-mono-ui text-[12px] font-bold uppercase tracking-[.14em] text-[#202536] group-hover:text-[#e15b2e] transition-colors duration-200">{c.name}</h3>
                     <p className="mt-2 font-mono-ui text-[9px] uppercase tracking-[.12em] text-[#6c6b68]">{c.engagement}</p>
                   </div>
                   <div className="flex-1 max-w-[600px]">
@@ -566,7 +552,7 @@ function CasesTeaser() {
                       </div>
                     </div>
                   </div>
-                  <span className="hidden sm:block font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#e15b2e] opacity-0 transition-opacity group-hover:opacity-100">VIEW CASE →</span>
+                  <span className="hidden sm:flex items-center font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#e15b2e] opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-1">VIEW CASE →</span>
                 </div>
               </a>
             </div>
@@ -585,8 +571,8 @@ function CasesTeaser() {
 function Engagement() {
   return (
     <section id="engagement" className="scroll-mt-10 bg-[#202536] text-[#f5f0e7]">
-      <div className="mx-auto max-w-[1400px] px-5 py-28 sm:px-8 lg:px-12 lg:py-40">
-        <div className="grid grid-cols-1 gap-14 lg:grid-cols-[.8fr_1.2fr] lg:gap-24">
+      <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
           <div>
             <p className="font-mono-ui text-[10px] font-bold uppercase tracking-[.18em] text-[#e96a3a]">The deeper engagement</p>
             <h2 className="mt-6 max-w-[500px] font-display text-[clamp(3rem,5.5vw,5.5rem)] leading-[.88] tracking-[-.07em]">Diagnose.<br /><em className="text-[#e96a3a]">Then rebuild.</em></h2>
@@ -597,8 +583,8 @@ function Engagement() {
               <div className="flex items-start gap-5">
                 <span className="font-mono-ui text-[10px] text-[#e96a3a]">01</span>
                 <div>
-                  <h3 className="font-display text-[40px] leading-none tracking-[-.05em]">DIAGNOSE</h3>
-                  <p className="mt-4 max-w-[540px] text-[16px] leading-[1.6] text-[#f5f0e7]/65">Find the leak, its root cause, and the priority map. This is enough when one commercial transition is unclear.</p>
+                  <h3 className="font-display text-[clamp(2rem,3.5vw,2.8rem)] leading-none tracking-[-.05em]">DIAGNOSE</h3>
+                  <p className="mt-4 max-w-[540px] text-[16px] leading-[1.6] text-[#f5f0e7]/68">Find the leak, its root cause, and the priority map. This is enough when one commercial transition is unclear.</p>
                 </div>
               </div>
             </div>
@@ -606,25 +592,25 @@ function Engagement() {
               <div className="flex items-start gap-5">
                 <span className="font-mono-ui text-[10px] text-[#e96a3a]">02</span>
                 <div>
-                  <h3 className="font-display text-[40px] leading-none tracking-[-.05em]">REBUILD</h3>
-                  <p className="mt-4 max-w-[540px] text-[16px] leading-[1.6] text-[#f5f0e7]/65">For products where the diagnosis reveals a broader problem in how positioning, economics, offers, buying events and upgrades work together.</p>
+                  <h3 className="font-display text-[clamp(2rem,3.5vw,2.8rem)] leading-none tracking-[-.05em]">REBUILD</h3>
+                  <p className="mt-4 max-w-[540px] text-[16px] leading-[1.6] text-[#f5f0e7]/68">For products where the diagnosis reveals a broader problem in how positioning, economics, offers, buying events and upgrades work together.</p>
                   <div className="mt-5 flex items-baseline gap-5 font-mono-ui text-[10px] uppercase tracking-[.13em] text-[#e96a3a]">
                     <span>$10,000</span>
                     <span>2 weeks · Asynchronous</span>
                   </div>
-                  <ul className="mt-6 grid max-w-[570px] grid-cols-1 gap-x-6 gap-y-3 border-t border-[#f5f0e7]/15 pt-5 font-mono-ui text-[10px] uppercase leading-[1.5] tracking-[.1em] text-[#f5f0e7]/55 sm:grid-cols-2">
-                    <li>— Positioning audit</li>
-                    <li>— Economic framing</li>
-                    <li>— Offer ladder restructuring</li>
-                    <li>— Buying-event design</li>
-                    <li>— Pricing &amp; upgrade logic</li>
-                    <li>— Homepage &amp; messaging implementation guidance</li>
+                  <ul className="mt-6 grid max-w-[570px] grid-cols-1 gap-x-6 gap-y-3 border-t border-[#f5f0e7]/15 pt-5 font-mono-ui text-[10px] uppercase leading-[1.5] tracking-[.1em] text-[#f5f0e7]/60 sm:grid-cols-2 list-editorial">
+                    <li className="flex items-start gap-2.5"><span className="text-[#e96a3a] mt-0.5 shrink-0">—</span> Positioning audit</li>
+                    <li className="flex items-start gap-2.5"><span className="text-[#e96a3a] mt-0.5 shrink-0">—</span> Economic framing</li>
+                    <li className="flex items-start gap-2.5"><span className="text-[#e96a3a] mt-0.5 shrink-0">—</span> Offer ladder restructuring</li>
+                    <li className="flex items-start gap-2.5"><span className="text-[#e96a3a] mt-0.5 shrink-0">—</span> Buying-event design</li>
+                    <li className="flex items-start gap-2.5"><span className="text-[#e96a3a] mt-0.5 shrink-0">—</span> Pricing &amp; upgrade logic</li>
+                    <li className="flex items-start gap-2.5"><span className="text-[#e96a3a] mt-0.5 shrink-0">—</span> Homepage &amp; messaging implementation guidance</li>
                   </ul>
                 </div>
               </div>
             </div>
-            <p className="mt-9 max-w-[580px] font-display text-[29px] leading-[1.05] tracking-[-.04em] text-[#f5f0e7]">The diagnosis identifies the leak. Revenue Architecture rebuilds the system around it.</p>
-            <p className="mt-5 max-w-[530px] text-[15px] leading-[1.55] text-[#f5f0e7]/58">Not every diagnosis requires deeper work. The second engagement exists when the commercial problem is architectural rather than isolated.</p>
+            <p className="mt-9 max-w-[580px] font-display text-[clamp(1.5rem,2.5vw,1.8rem)] leading-[1.08] tracking-[-.03em] text-[#f5f0e7]">The diagnosis identifies the leak. Revenue Architecture rebuilds the system around it.</p>
+            <p className="mt-5 max-w-[530px] text-[15px] leading-[1.55] text-[#f5f0e7]/62">Not every diagnosis requires deeper work. The second engagement exists when the commercial problem is architectural rather than isolated.</p>
           </div>
         </div>
       </div>
@@ -648,15 +634,15 @@ function WhoThisIsFor() {
   ];
   return (
     <section id="who-this-is-for" className="scroll-mt-10 bg-[#f5f0e7]">
-      <div className="mx-auto max-w-[1400px] px-5 py-28 sm:px-8 lg:px-12 lg:py-36">
-        <div className="grid grid-cols-1 gap-14 lg:grid-cols-[.8fr_1.2fr] lg:gap-24">
+      <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
           <div>
             <h2 className="max-w-[480px] font-display text-[clamp(3rem,5vw,5rem)] leading-[.9] tracking-[-.07em] text-[#202536]">Built for SaaS with demand — but unclear conversion.</h2>
           </div>
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
             <div className="border-t border-[#202536]/20 pt-6">
               <span className="font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#202536]/50">Good fit</span>
-              <ul className="mt-6 space-y-4">
+              <ul className="mt-6 space-y-4 list-editorial">
                 {goodFit.map((item) => (
                   <li key={item} className="flex gap-3 text-[15px] leading-[1.5] text-[#55575c]"><Check size={16} className="mt-0.5 shrink-0 text-[#e15b2e]" />{item}</li>
                 ))}
@@ -664,7 +650,7 @@ function WhoThisIsFor() {
             </div>
             <div className="border-t border-[#202536]/20 pt-6">
               <span className="font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#202536]/50">Not fit</span>
-              <ul className="mt-6 space-y-4">
+              <ul className="mt-6 space-y-4 list-editorial">
                 {notFit.map((item) => (
                   <li key={item} className="flex gap-3 text-[15px] leading-[1.5] text-[#55575c]"><Minus size={16} className="mt-0.5 shrink-0 text-[#202536]/30" />{item}</li>
                 ))}
@@ -677,23 +663,26 @@ function WhoThisIsFor() {
   );
 }
 
-/* FAQ — reduced to 5 genuine buying objections */
+/* FAQ — reduced to 5 genuine buying objections, answers always in DOM */
 function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   return (
     <section id="faq" className="scroll-mt-10 bg-[#ddd8ce]">
-      <div className="mx-auto max-w-[1100px] px-5 py-28 sm:px-8 lg:py-36">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-24">
-          <h2 className="font-display text-[clamp(3.3rem,5.5vw,5.6rem)] leading-[.9] tracking-[-.07em] text-[#202536]">The useful<br /><em className="text-[#e15b2e]">short version.</em></h2>
+      <div className="mx-auto max-w-[1100px] px-5 py-24 sm:px-8 lg:py-32">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[.7fr_1.3fr] lg:gap-20">
+          <h2 className="font-display text-[clamp(3rem,5vw,4.5rem)] leading-[.9] tracking-[-.07em] text-[#202536]">The useful<br />short version.</h2>
           <div className="border-t border-[#202536]/15">              {homepageFaqs.map(([question, answer], index) => {
               const isOpen = openIndex === index;
+              const answerId = `faq-answer-${index}`;
               return (
                 <div key={question} className="border-b border-[#202536]/15">
-                  <button type="button" onClick={() => setOpenIndex(isOpen ? null : index)} className="flex w-full items-center justify-between gap-6 py-6 text-left transition-colors duration-200 hover:bg-[#ddd8ce]/60 px-2 -mx-2 radius-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e15b2e]" aria-expanded={isOpen}>
-                    <span className="font-display text-[25px] leading-[1.1] tracking-[-.03em] text-[#202536]">{question}</span>
-                    <ChevronDown size={18} className={`shrink-0 text-[#e15b2e] transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                  <button type="button" onClick={() => setOpenIndex(isOpen ? null : index)} className="flex w-full items-center justify-between gap-5 py-5 text-left transition-colors duration-200 hover:bg-[#ddd8ce]/50 px-2 -mx-2 radius-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e15b2e]" aria-expanded={isOpen} aria-controls={answerId}>
+                    <span className="font-display text-[22px] leading-[1.1] tracking-[-.02em] text-[#202536]">{question}</span>
+                    <ChevronDown size={16} className={`shrink-0 text-[#e15b2e] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
                   </button>
-                  {isOpen && <div className="max-w-[620px] pb-7 pr-8 text-[15px] leading-[1.6] text-[#55575c]">{answer}</div>}
+                  <div id={answerId} role="region" className="faq-answer" data-state={isOpen ? 'open' : 'closed'} aria-labelledby={`faq-q-${index}`}>
+                    <div className="max-w-[620px] pb-6 pr-8 text-[15px] leading-[1.6] text-[#55575c]">{answer}</div>
+                  </div>
                 </div>
               );
             })}
@@ -708,10 +697,10 @@ function FAQ() {
 function FinalCTA({ onNavigate }: { onNavigate: (id: string) => void }) {
   return (
     <section className="bg-[#202536] text-[#f5f0e7]">
-      <div className="mx-auto max-w-[1400px] px-5 py-28 sm:px-8 lg:px-12 lg:py-40">
+      <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
         <div className="max-w-[1000px]">
-          <h2 className="font-display text-[clamp(4rem,9vw,9.2rem)] leading-[.84] tracking-[-.08em]">Your product may not need more traffic<span className="text-[#e96a3a]">.</span></h2>
-          <p className="mt-8 max-w-[590px] text-[18px] leading-[1.55] text-[#f5f0e7]/60">It may need a better path from the attention you already have to the revenue you want.</p>
+          <h2 className="font-display text-[clamp(3.5rem,8vw,8rem)] leading-[.86] tracking-[-.08em]">Your product may not need more traffic<span className="text-[#e96a3a]">.</span></h2>
+          <p className="mt-8 max-w-[590px] text-[18px] leading-[1.55] text-[#f5f0e7]/65">It may need a better path from the attention you already have to the revenue you want.</p>
           <div className="mt-12 flex flex-col items-start gap-7 sm:flex-row sm:items-center">
             <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">START THE DIAGNOSIS → <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" /></a>
             <a href="mailto:paul@nasiba.co" className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45 border-b border-[#f5f0e7]/20 pb-0.5 transition-colors hover:text-[#e96a3a] hover:border-[#e96a3a]">EMAIL PAUL</a>
@@ -886,14 +875,14 @@ function StartPage() {
           <form onSubmit={handleSubmit} noValidate className="mt-12 border-t border-[#f5f0e7]/20 pt-10 space-y-8">
             {/* Name */}
             <div>
-              <label htmlFor="start-name" className="block font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#f5f0e7]/60 mb-3">Name</label>
+              <label htmlFor="start-name" className="block font-mono-ui text-[11px] font-bold uppercase tracking-[.13em] text-[#f5f0e7]/65 mb-3">Name</label>
               <input
                 id="start-name"
                 name="name"
                 type="text"
                 autoComplete="name"
                 required
-                className={`w-full border ${fieldErrors.name ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-transparent px-4 py-3.5 radius-input font-mono-ui text-[13px] text-[#f5f0e7] outline-none transition-colors placeholder:text-[#f5f0e7]/30 focus:border-[#e96a3a] focus-visible:outline-2 focus-visible:outline-[#e96a3a] sm:text-[14px]`}
+                className={`w-full border ${fieldErrors.name ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-transparent px-4 py-3.5 radius-input font-mono-ui text-[14px] text-[#f5f0e7] outline-none transition-colors placeholder:text-[#f5f0e7]/30 focus:border-[#e96a3a] focus-visible:outline-2 focus-visible:outline-[#e96a3a]`}
                 placeholder="Your name"
               />
               {fieldErrors.name && <p className="mt-2 font-mono-ui text-[10px] uppercase tracking-[.1em] text-[#e96a3a]">{fieldErrors.name}</p>}
@@ -901,14 +890,14 @@ function StartPage() {
 
             {/* Website */}
             <div>
-              <label htmlFor="start-website" className="block font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#f5f0e7]/60 mb-3">Company / product URL</label>
+              <label htmlFor="start-website" className="block font-mono-ui text-[11px] font-bold uppercase tracking-[.13em] text-[#f5f0e7]/65 mb-3">Company / product URL</label>
               <input
                 id="start-website"
                 name="website"
                 type="text"
                 autoComplete="url"
                 required
-                className={`w-full border ${fieldErrors.website ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-transparent px-4 py-3.5 radius-input font-mono-ui text-[13px] text-[#f5f0e7] outline-none transition-colors placeholder:text-[#f5f0e7]/30 focus:border-[#e96a3a] focus-visible:outline-2 focus-visible:outline-[#e96a3a] sm:text-[14px]`}
+                className={`w-full border ${fieldErrors.website ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-transparent px-4 py-3.5 radius-input font-mono-ui text-[14px] text-[#f5f0e7] outline-none transition-colors placeholder:text-[#f5f0e7]/30 focus:border-[#e96a3a] focus-visible:outline-2 focus-visible:outline-[#e96a3a]`}
                 placeholder="https://"
               />
               {fieldErrors.website && <p className="mt-2 font-mono-ui text-[10px] uppercase tracking-[.1em] text-[#e96a3a]">{fieldErrors.website}</p>}
@@ -916,14 +905,14 @@ function StartPage() {
 
             {/* Email */}
             <div>
-              <label htmlFor="start-email" className="block font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#f5f0e7]/60 mb-3">Work email</label>
+              <label htmlFor="start-email" className="block font-mono-ui text-[11px] font-bold uppercase tracking-[.13em] text-[#f5f0e7]/65 mb-3">Work email</label>
               <input
                 id="start-email"
                 name="email"
                 type="email"
                 autoComplete="email"
                 required
-                className={`w-full border ${fieldErrors.email ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-transparent px-4 py-3.5 radius-input font-mono-ui text-[13px] text-[#f5f0e7] outline-none transition-colors placeholder:text-[#f5f0e7]/30 focus:border-[#e96a3a] focus-visible:outline-2 focus-visible:outline-[#e96a3a] sm:text-[14px]`}
+                className={`w-full border ${fieldErrors.email ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-transparent px-4 py-3.5 radius-input font-mono-ui text-[14px] text-[#f5f0e7] outline-none transition-colors placeholder:text-[#f5f0e7]/30 focus:border-[#e96a3a] focus-visible:outline-2 focus-visible:outline-[#e96a3a]`}
                 placeholder="you@company.com"
               />
               {fieldErrors.email && <p className="mt-2 font-mono-ui text-[10px] uppercase tracking-[.1em] text-[#e96a3a]">{fieldErrors.email}</p>}
@@ -931,12 +920,12 @@ function StartPage() {
 
             {/* Primary Issue */}
             <div>
-              <label htmlFor="start-issue" className="block font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#f5f0e7]/60 mb-3">Where does the problem seem to be?</label>
+              <label htmlFor="start-issue" className="block font-mono-ui text-[11px] font-bold uppercase tracking-[.13em] text-[#f5f0e7]/65 mb-3">Where does the problem seem to be?</label>
               <select
                 id="start-issue"
                 name="primaryIssue"
                 required
-                className={`w-full border ${fieldErrors.primaryIssue ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-[#202536] px-4 py-3.5 radius-input font-mono-ui text-[13px] text-[#f5f0e7] outline-none transition-colors focus:border-[#e96a3a] focus-visible:outline-2 focus-visible:outline-[#e96a3a] sm:text-[14px]`}
+                className={`w-full border ${fieldErrors.primaryIssue ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-[#202536] px-4 py-3.5 radius-input font-mono-ui text-[14px] text-[#f5f0e7] outline-none transition-colors focus:border-[#e96a3a] focus-visible:outline-2 focus-visible:outline-[#e96a3a]`}
                 defaultValue=""
               >
                 <option value="" disabled>Select an issue</option>
@@ -1060,21 +1049,21 @@ function RevenueArchitecturePage() {
         </div>
 
         {/* What it covers */}
-        <div className="mt-28">
+        <div className="mt-24">
           <p className="font-mono-ui text-[10px] font-bold uppercase tracking-[.18em] text-[#e96a3a]">What the engagement covers</p>
-          <div className="mt-12 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {covers.map(([title, body]) => (
-              <article key={title} className="border-t border-[#f5f0e7]/20 py-6">
-                <h3 className="font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#e96a3a]">{title}</h3>
-                <p className="mt-4 max-w-[340px] text-[15px] leading-[1.55] text-[#f5f0e7]/58">{body}</p>
+              <article key={title} className="border-t border-[#f5f0e7]/15 py-5">
+                <h3 className="font-mono-ui text-[10px] font-bold uppercase tracking-[.13em] text-[#e96a3a]">{title}</h3>
+                <p className="mt-3 max-w-[340px] text-[15px] leading-[1.55] text-[#f5f0e7]/62">{body}</p>
               </article>
             ))}
           </div>
         </div>
 
         {/* Relationship */}
-        <div className="mt-28 border-t border-[#f5f0e7]/15 pt-12">
-          <div className="grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-24">
+        <div className="mt-24 border-t border-[#f5f0e7]/15 pt-10">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
             <div>
               <div className="border-t border-[#f5f0e7]/20 py-8">
                 <span className="font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#e96a3a]">01</span>
@@ -1094,11 +1083,11 @@ function RevenueArchitecturePage() {
               </div>
             </div>
           </div>
-          <p className="mt-8 font-display text-[22px] leading-[1.2] tracking-[-.03em] text-[#f5f0e7]/70">Two steps, only when the problem calls for both.</p>
+          <p className="mt-8 font-display text-[20px] leading-[1.2] tracking-[-.03em] text-[#f5f0e7]/75">Two steps, only when the problem calls for both.</p>
         </div>
 
         {/* Who it is for */}
-        <div className="mt-28 border-t border-[#f5f0e7]/15 pt-12">
+        <div className="mt-24 border-t border-[#f5f0e7]/15 pt-10">
           <h2 className="font-display text-[clamp(2.2rem,4vw,3.5rem)] leading-[.9] tracking-[-.06em]">Who Revenue Architecture is for</h2>
           <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2">
             <div className="border-t border-[#f5f0e7]/20 pt-6">
@@ -1121,8 +1110,8 @@ function RevenueArchitecturePage() {
         </div>
 
         {/* CTA */}
-        <div className="mt-28 border-t border-[#f5f0e7]/15 pt-12">
-          <p className="font-display text-[clamp(2rem,4vw,3.5rem)] leading-[1.05] tracking-[-.05em]">The revenue problem starts with the diagnosis.</p>
+        <div className="mt-24 border-t border-[#f5f0e7]/15 pt-10">
+          <p className="font-display text-[clamp(1.8rem,3.5vw,2.8rem)] leading-[1.08] tracking-[-.04em]">The revenue problem starts with the diagnosis.</p>
           <div className="mt-8 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
             <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">START WITH THE DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" /></a>
           </div>
@@ -1192,42 +1181,45 @@ function DiagnosisPage() {
         </div>
 
         {/* Diagnostic Lenses */}
-        <div className="mt-32">
+        <div className="mt-28">
           <p className="font-mono-ui text-[10px] font-bold uppercase tracking-[.18em] text-[#e96a3a]">Diagnostic method</p>
-          <h2 className="mt-6 max-w-[460px] font-display text-[clamp(2.5rem,4.5vw,4rem)] leading-[.9] tracking-[-.07em]">Six ways to find a leak.</h2>
-          <p className="mt-8 max-w-[420px] text-[15px] leading-[1.6] text-[#f5f0e7]/58">Not a scorecard. A way to inspect the whole commercial chain before choosing a fix.</p>
-          <div className="mt-16 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          <h2 className="mt-5 max-w-[460px] font-display text-[clamp(2.2rem,4vw,3.5rem)] leading-[.9] tracking-[-.07em]">Six ways to find a leak.</h2>
+          <p className="mt-7 max-w-[420px] text-[15px] leading-[1.6] text-[#f5f0e7]/62">Not a scorecard. A way to inspect the whole commercial chain before choosing a fix.</p>
+          <div className="mt-14 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {diagnosticLenses.map(([number, title, body]) => (
-              <article key={number} className="border-t border-[#f5f0e7]/20 py-6">
+              <article key={number} className="border-t border-[#f5f0e7]/15 py-5">
                 <div className="flex justify-between font-mono-ui text-[10px] text-[#e96a3a]"><span>{number}</span><span>+</span></div>
-                <h3 className="mt-9 font-display text-[31px] tracking-[-.04em]">{title}</h3>
-                <p className="mt-3 max-w-[310px] text-[14px] leading-[1.55] text-[#f5f0e7]/58">{body}</p>
+                <h3 className="mt-8 font-display text-[28px] tracking-[-.04em]">{title}</h3>
+                <p className="mt-3 max-w-[310px] text-[14px] leading-[1.55] text-[#f5f0e7]/62">{body}</p>
               </article>
             ))}
           </div>
         </div>
 
         {/* Detailed FAQ */}
-        <div className="mt-32 border-t border-[#f5f0e7]/15 pt-16">
+        <div className="mt-28 border-t border-[#f5f0e7]/15 pt-14">
           <h2 className="font-display text-[clamp(2.5rem,4.5vw,4rem)] leading-[.9] tracking-[-.07em]">Questions</h2>
           <div className="mt-12 space-y-0">
             {diagnosisFaqs.map(([question, answer], index) => {
               const isOpen = openFaq === index;
+              const answerId = `diag-faq-answer-${index}`;
               return (
                 <div key={question} className="border-b border-[#f5f0e7]/15">
-                  <button type="button" onClick={() => setOpenFaq(isOpen ? null : index)} className="flex w-full items-center justify-between gap-6 py-6 text-left transition-colors duration-200 hover:bg-[#202536]/60 px-3 -mx-3 radius-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e96a3a]" aria-expanded={isOpen}>
-                    <span className="font-display text-[22px] leading-[1.1] tracking-[-.03em] text-[#f5f0e7]">{question}</span>
+                  <button type="button" onClick={() => setOpenFaq(isOpen ? null : index)} className="flex w-full items-center justify-between gap-5 py-5 text-left transition-colors duration-200 hover:bg-[#202536]/50 px-3 -mx-3 radius-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e96a3a]" aria-expanded={isOpen} aria-controls={answerId}>
+                    <span className="font-display text-[20px] leading-[1.1] tracking-[-.02em] text-[#f5f0e7]">{question}</span>
                     <ChevronDown size={16} className={`shrink-0 text-[#e96a3a] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
                   </button>
-                  {isOpen && <div className="max-w-[620px] pb-6 pr-8 text-[15px] leading-[1.6] text-[#f5f0e7]/58">{answer}</div>}
+                  <div id={answerId} role="region" className="faq-answer" data-state={isOpen ? 'open' : 'closed'}>
+                    <div className="max-w-[620px] pb-6 pr-8 text-[15px] leading-[1.6] text-[#f5f0e7]/62">{answer}</div>
+                  </div>
                 </div>
               );
             })}          </div>
         </div>
 
         {/* CTA */}
-        <div className="mt-28 border-t border-[#f5f0e7]/15 pt-12">
-          <p className="font-display text-[clamp(2rem,4vw,3.5rem)] leading-[1.05] tracking-[-.05em]">Ready to find the leak?</p>
+        <div className="mt-24 border-t border-[#f5f0e7]/15 pt-10">
+          <p className="font-display text-[clamp(1.8rem,3.5vw,2.8rem)] leading-[1.08] tracking-[-.04em]">Ready to find the leak?</p>
           <div className="mt-8 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
             <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">START THE DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" /></a>
             <a href="mailto:paul@nasiba.co" className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45 border-b border-[#f5f0e7]/20 pb-0.5 transition-colors duration-200 hover:text-[#e96a3a] hover:border-[#e96a3a]">EMAIL PAUL</a>
@@ -1274,22 +1266,22 @@ function About() {
         </div>
 
         {/* Why Nasiba exists */}
-        <div className="mt-32 max-w-[800px]">
-          <h2 className="font-display text-[clamp(2.5rem,4.5vw,4rem)] leading-[.92] tracking-[-.06em] text-[#f5f0e7]">
+        <div className="mt-28 max-w-[800px]">
+          <h2 className="font-display text-[clamp(2.2rem,4vw,3.5rem)] leading-[.92] tracking-[-.06em] text-[#f5f0e7]">
             Revenue problems are often diagnosed at the wrong level.
           </h2>
-          <p className="mt-8 text-[17px] leading-[1.6] text-[#f5f0e7]/55">
+          <p className="mt-7 text-[17px] leading-[1.65] text-[#f5f0e7]/62">
             Nasiba exists to examine the commercial path as a system — not as a collection of isolated conversion problems. Most SaaS teams are trained to optimize individual components. But revenue depends on a sequence of commercial transitions. Nasiba exists to identify where that sequence breaks.
           </p>
         </div>
 
         {/* Senior Work Stays Senior */}
-        <div className="mt-32 grid grid-cols-1 gap-14 lg:grid-cols-[1fr_1fr] lg:gap-24">
+        <div className="mt-28 grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <div>
-            <h2 className="font-display text-[clamp(2rem,3.5vw,3rem)] leading-[1.05] tracking-[-.05em] text-[#f5f0e7]/85">
+            <h2 className="font-display text-[clamp(1.8rem,3vw,2.5rem)] leading-[1.05] tracking-[-.05em] text-[#f5f0e7]/85">
               Senior work stays senior.
             </h2>
-            <p className="mt-6 max-w-[480px] text-[17px] leading-[1.6] text-[#f5f0e7]/55">
+            <p className="mt-6 max-w-[480px] text-[16px] leading-[1.6] text-[#f5f0e7]/60">
               The person diagnosing the commercial problem stays close to the strategic work. No account layer, no retainer structure, and no handoff to a generic delivery team.
             </p>
           </div>
@@ -1312,7 +1304,7 @@ function About() {
         </div>
 
         {/* Paul */}
-        <div className="mt-32 border-t border-[#f5f0e7]/15 pt-12">
+        <div className="mt-28 border-t border-[#f5f0e7]/15 pt-12">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[280px_1fr] lg:gap-24">
             <div>
               <div className="flex h-14 w-14 items-center justify-center border border-[#e96a3a] font-mono-ui text-[16px] font-bold text-[#e96a3a]">P</div>
