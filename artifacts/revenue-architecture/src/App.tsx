@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   ArrowDownRight,
@@ -146,6 +146,34 @@ const diagnosisFaqs = [
 function scrollToSection(id: string, onDone?: () => void) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   onDone?.();
+}
+
+/* ─── IntersectionObserver-based scroll reveal hook ─── */
+function useInView(threshold = 0.15) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) { setVisible(true); return; }
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setVisible(true); obs.disconnect(); }
+    }, { threshold });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return { ref, visible };
+}
+
+/* Reveal wrapper: wraps children with scroll-triggered fade-up */
+function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+  const { ref, visible } = useInView();
+  return (
+    <div ref={ref} className={`${visible ? 'sr-only-init sr-visible' : 'sr-only-init'} ${className}`} style={{ transitionDelay: delay ? `${delay}s` : undefined }}>
+      {children}
+    </div>
+  );
 }
 
 function Eyebrow({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
@@ -298,54 +326,54 @@ function Hero({ onNavigate }: { onNavigate: (id: string) => void }) {
     <section id="top" className="relative overflow-hidden bg-[#202536] text-[#f5f0e7]">
       <Header onNavigate={onNavigate} />
       <div className="mx-auto grid min-h-[560px] max-w-[1180px] grid-cols-1 items-end gap-10 px-5 pb-16 pt-36 sm:px-8 lg:grid-cols-[55%_45%] lg:gap-12 lg:px-12 lg:pb-20 lg:pt-40">
-        {/* LEFT: Hero copy — anchored to left column */}
-        <div className="reveal">
-          <div className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>
+        {/* LEFT: Hero copy — anchored to left column, staged entrance */}
+        <div>
+          <div className="hero-eyebrow mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>
             <span className="h-px w-8 bg-current" />
             <span>Commercial diagnosis</span>
           </div>
           <h1 className="font-display text-[clamp(3rem,7vw,6.2rem)] leading-[.88] tracking-[-0.07em] text-[#f5f0e7]">
-            Find where your SaaS is <span className="text-[#e96a3a]">losing revenue.</span>
+            <span className="hero-headline inline">Find where your SaaS is </span><span className="hero-headline-orange inline text-[#e96a3a]">losing revenue.</span>
           </h1>
-          <p className="mt-7 max-w-[520px] text-balance text-[17px] leading-[1.55] text-[#f5f0e7]/72 sm:text-[18px]">
+          <p className="hero-body mt-7 max-w-[520px] text-balance text-[17px] leading-[1.55] text-[#f5f0e7]/72 sm:text-[18px]">
             An asynchronous diagnosis of the commercial gaps between product interest and payment — from positioning and economic value to buying events, upgrade logic and messaging.
           </p>
-          <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
+          <div className="hero-cta mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
             <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn text-[11px] font-bold uppercase tracking-[0.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}>
-              START THE REVENUE LEAK DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" />
+              START THE REVENUE LEAK DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1.5" />
             </a>
           </div>
-          <div className="mt-6 text-[12px] font-semibold uppercase tracking-[.12em] text-[#f5f0e7]/82" style={{ fontFamily: 'var(--app-font-sans)' }}>$1,000 · 3–4 DAYS · ASYNCHRONOUS</div>
-          <p className="mt-4 max-w-[480px] text-[14px] leading-[1.5] text-[#f5f0e7]/55">For SaaS products that already have users, traffic or demand — but aren&apos;t converting enough of it into revenue.</p>
+          <div className="hero-meta mt-6 text-[12px] font-semibold uppercase tracking-[.12em] text-[#f5f0e7]/82" style={{ fontFamily: 'var(--app-font-sans)' }}>$1,000 · 3–4 DAYS · ASYNCHRONOUS</div>
+          <p className="hero-sub mt-4 max-w-[480px] text-[14px] leading-[1.5] text-[#f5f0e7]/55">For SaaS products that already have users, traffic or demand — but aren&apos;t converting enough of it into revenue.</p>
         </div>
 
-        {/* RIGHT: Diagnostic composition — one coherent diagram */}
-        <div className="reveal reveal-delay-2 flex flex-col justify-end lg:pb-2">
+        {/* RIGHT: Diagnostic composition — one coherent diagram, staged animation */}
+        <div className="flex flex-col justify-end lg:pb-2">
           <div className="border-t border-[#f5f0e7]/25 pt-5">
             {/* Top annotation: WHERE INTEREST STOPS */}
-            <div className="mb-5 flex items-center justify-between">
+            <div className="hero-graph-annotation mb-5 flex items-center justify-between">
               <span className="text-[11px] font-medium uppercase tracking-[.1em] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>Where interest stops</span>
               <span className="text-[#e96a3a] text-[16px]">→</span>
             </div>
 
             {/* Middle: THE LEAK marker + note — integrated as one unit */}
             <div className="mb-6 flex items-start gap-5">
-              <div className="flex flex-col items-center">
+              <div className="hero-graph-leak flex flex-col items-center">
                 <span className="text-[10px] font-bold uppercase tracking-[.12em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>the leak</span>
                 <div className="mt-2 w-px h-5 bg-[#e96a3a]" />
               </div>
-              <p className="max-w-[180px] text-[13px] leading-[1.45] text-[#f5f0e7]/65">No more guessing which page, plan, or CTA to rewrite first.</p>
+              <p className="hero-graph-note max-w-[180px] text-[13px] leading-[1.45] text-[#f5f0e7]/65">No more guessing which page, plan, or CTA to rewrite first.</p>
             </div>
 
-            {/* Bottom: bar path from DEMAND to PAYMENT */}
-            <div className="flex h-[120px] items-end justify-between gap-2">
+            {/* Bottom: bar path from DEMAND to PAYMENT — bars animate sequentially */}
+            <div className="hero-graph-bars flex h-[120px] items-end justify-between gap-2" style={{ transformOrigin: 'bottom' }}>
               {[82, 63, 49, 36, 25, 17].map((height, index) => (
-                <div key={height} className="relative flex h-full flex-1 items-end">
-                  <div className={`w-full transition-all duration-300 ${index === 3 ? 'bg-[#e96a3a]' : 'bg-[#f5f0e7]/22'}`} style={{ height: `${height}%` }} />
+                <div key={height} className="relative flex h-full flex-1 items-end" style={{ animationDelay: `${.95 + index * .08}s` }}>
+                  <div className={`w-full ${index === 3 ? 'bg-[#e96a3a]' : 'bg-[#f5f0e7]/22'}`} style={{ height: `${height}%`, transformOrigin: 'bottom' }} />
                 </div>
               ))}
             </div>
-            <div className="mt-3 flex justify-between">
+            <div className="hero-graph-labels mt-3 flex justify-between">
               <span className="text-[10px] font-medium uppercase tracking-[.1em] text-[#f5f0e7]/45" style={{ fontFamily: 'var(--app-font-sans)' }}>Demand</span>
               <span className="text-[10px] font-medium uppercase tracking-[.1em] text-[#f5f0e7]/45" style={{ fontFamily: 'var(--app-font-sans)' }}>Payment</span>
             </div>
@@ -370,21 +398,23 @@ function RevenuePathMap() {
   return (
     <section id="path" className="bg-[#202536] text-[#f5f0e7]">
       <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-        <div className="max-w-[800px]">
-          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>The Revenue Path</p>
-          <h2 className="mt-6 font-display text-[clamp(2.8rem,5.5vw,5.5rem)] leading-[.9] tracking-[-.07em]">Interest is not revenue.</h2>
-          <p className="mt-6 max-w-[600px] text-[17px] leading-[1.6] text-[#f5f0e7]/70">
-            Most monetization problems aren&apos;t copy problems. Revenue moves through a sequence of commercial transitions. When one breaks, demand stops becoming payment.
-          </p>
-        </div>
+        <Reveal>
+          <div className="max-w-[800px]">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>The Revenue Path</p>
+            <h2 className="mt-6 font-display text-[clamp(2.8rem,5.5vw,5.5rem)] leading-[.9] tracking-[-.07em]">Interest is not revenue.</h2>
+            <p className="mt-6 max-w-[600px] text-[17px] leading-[1.6] text-[#f5f0e7]/70">
+              Most monetization problems aren&apos;t copy problems. Revenue moves through a sequence of commercial transitions. When one breaks, demand stops becoming payment.
+            </p>
+          </div>
+        </Reveal>
 
-        {/* Path diagram with inline anchored annotations */}
+        {/* Path diagram with inline anchored annotations + drawing animation */}
         <div className="mt-16 border-t border-[#f5f0e7]/15 pt-14">
           <div className="relative">
-            {/* Continuous horizontal line */}
-            <div className="hidden lg:block absolute top-[15px] left-0 right-0 h-px bg-[#f5f0e7]/20" />
-            {/* Break at Buying Event */}
-            <div className="hidden lg:block absolute top-[15px] left-[48%] w-[8%] h-px" style={{ backgroundImage: 'repeating-linear-gradient(to right, #e96a3a 0px, #e96a3a 4px, transparent 4px, transparent 10px)' }} />
+            {/* Continuous horizontal line — draws left to right */}
+            <div className="path-line hidden lg:block absolute top-[15px] left-0 right-0 h-px bg-[#f5f0e7]/20" />
+            {/* Break at Buying Event — draws after main line */}
+            <div className="path-break hidden lg:block absolute top-[15px] left-[48%] w-[8%] h-px" style={{ backgroundImage: 'repeating-linear-gradient(to right, #e96a3a 0px, #e96a3a 4px, transparent 4px, transparent 10px)' }} />
 
             {/* Stages + inline annotations grid */}
             <div className="grid grid-cols-1 lg:grid-cols-6 lg:gap-4">
@@ -394,16 +424,16 @@ function RevenuePathMap() {
                 return (
                   <div key={step.name} className="flex flex-col">
                     {/* Stage anchor */}
-                    <div className="flex flex-col items-center lg:items-center">
+                    <div className="path-stage flex flex-col items-center lg:items-center">
                       <div className={`relative flex h-[30px] w-[30px] items-center justify-center ${isBreak ? 'border-2 border-[#e96a3a] border-dashed' : 'border border-[#e96a3a]/70'} radius-block bg-[#202536] z-10`}>
                         {isBreak && <span className="text-[#e96a3a] text-[11px] font-bold">✗</span>}
                         {!isBreak && <div className="h-2 w-2 rounded-full bg-[#e96a3a]" />}
                       </div>
                       <span className={`mt-3 text-[10px] font-medium uppercase tracking-[.08em] text-center ${isBreak ? 'text-[#e96a3a] font-semibold' : 'text-[#f5f0e7]/65'}`} style={{ fontFamily: 'var(--app-font-sans)' }}>{step.name}</span>
                     </div>
-                    {/* Inline annotation — anchored below its stage */}
+                    {/* Inline annotation — anchored below its stage, staggered */}
                     {hasAnnotation && (
-                      <div className="mt-4 border-l-2 border-[#e96a3a] pl-4 pr-2">
+                      <div className="path-annotation mt-4 border-l-2 border-[#e96a3a] pl-4 pr-2">
                         <p className="font-display text-[15px] leading-[1.4] tracking-[-.02em] text-[#f5f0e7]/70">{step.annotation}</p>
                       </div>
                     )}
@@ -423,66 +453,74 @@ function RevenueLeakExamples() {
   return (
     <section className="bg-[#ddd8ce]">
       <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-        <div className="max-w-[900px]">
-          <h2 className="font-display text-[clamp(2.2rem,4.5vw,4rem)] leading-[.9] tracking-[-.07em] text-[#202536]">
-            What a revenue leak actually looks like.
-          </h2>
-        </div>
+        <Reveal>
+          <div className="max-w-[900px]">
+            <h2 className="font-display text-[clamp(2.2rem,4.5vw,4rem)] leading-[.9] tracking-[-.07em] text-[#202536]">
+              What a revenue leak actually looks like.
+            </h2>
+          </div>
+        </Reveal>
 
         {/* Example 1 — marker + dominant center-left observation */}
-        <div className="mt-16 border-t border-[#202536]/15 pt-12 pb-12">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[100px_1fr_300px] lg:gap-8">
-            <div>
-              <span className="font-mono-ui text-[11px] text-[#e15b2e]">01</span>
-              <p className="mt-3 text-[10px] font-medium uppercase tracking-[.1em] text-[#e15b2e]" style={{ fontFamily: 'var(--app-font-sans)' }}>Buying Event</p>
-            </div>
-            <div>
-              <h3 className="font-display text-[26px] leading-[1.1] tracking-[-.03em] text-[#202536]">FREE SOLVES THE CORE JOB.</h3>
-              <p className="mt-4 text-[16px] leading-[1.55] text-[#44464c]">The paid plan adds more usage, but no materially different outcome.</p>
-            </div>
-            <div className="border-l-2 border-[#e15b2e] pl-6">
-              <p className="text-[10px] font-medium uppercase tracking-[.1em] text-[#e15b2e]" style={{ fontFamily: 'var(--app-font-sans)' }}>Commercial consequence</p>
-              <p className="mt-3 text-[15px] leading-[1.5] text-[#44464c]">The user likes the product but has no economic reason to upgrade.</p>
+        <Reveal delay={.1}>
+          <div className="mt-16 border-t border-[#202536]/15 pt-12 pb-12">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-[100px_1fr_300px] lg:gap-8">
+              <div>
+                <span className="font-mono-ui text-[11px] text-[#e15b2e]">01</span>
+                <p className="mt-3 text-[10px] font-medium uppercase tracking-[.1em] text-[#e15b2e]" style={{ fontFamily: 'var(--app-font-sans)' }}>Buying Event</p>
+              </div>
+              <div>
+                <h3 className="font-display text-[26px] leading-[1.1] tracking-[-.03em] text-[#202536]">FREE SOLVES THE CORE JOB.</h3>
+                <p className="mt-4 text-[16px] leading-[1.55] text-[#44464c]">The paid plan adds more usage, but no materially different outcome.</p>
+              </div>
+              <div className="border-l-2 border-[#e15b2e] pl-6">
+                <p className="text-[10px] font-medium uppercase tracking-[.1em] text-[#e15b2e]" style={{ fontFamily: 'var(--app-font-sans)' }}>Commercial consequence</p>
+                <p className="mt-3 text-[15px] leading-[1.5] text-[#44464c]">The user likes the product but has no economic reason to upgrade.</p>
+              </div>
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* Example 2 — marker + observation left, consequence right */}
-        <div className="border-t border-[#202536]/15 py-12">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[100px_1fr_300px] lg:gap-8">
-            <div>
-              <span className="font-mono-ui text-[11px] text-[#e15b2e]">02</span>
-              <p className="mt-3 text-[10px] font-medium uppercase tracking-[.1em] text-[#e15b2e]" style={{ fontFamily: 'var(--app-font-sans)' }}>Economic Value</p>
-            </div>
-            <div>
-              <h3 className="font-display text-[26px] leading-[1.1] tracking-[-.03em] text-[#202536]">THE ENTERPRISE VALUE IS REAL.</h3>
-              <p className="mt-4 text-[16px] leading-[1.55] text-[#44464c]">The homepage still sells the product as a developer utility.</p>
-            </div>
-            <div className="border-l-2 border-[#e15b2e] pl-6">
-              <p className="text-[10px] font-medium uppercase tracking-[.1em] text-[#e15b2e]" style={{ fontFamily: 'var(--app-font-sans)' }}>Commercial consequence</p>
-              <p className="mt-3 text-[15px] leading-[1.5] text-[#44464c]">High-value buyers compare it against cheap tools instead of infrastructure or headcount.</p>
+        <Reveal delay={.15}>
+          <div className="border-t border-[#202536]/15 py-12">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-[100px_1fr_300px] lg:gap-8">
+              <div>
+                <span className="font-mono-ui text-[11px] text-[#e15b2e]">02</span>
+                <p className="mt-3 text-[10px] font-medium uppercase tracking-[.1em] text-[#e15b2e]" style={{ fontFamily: 'var(--app-font-sans)' }}>Economic Value</p>
+              </div>
+              <div>
+                <h3 className="font-display text-[26px] leading-[1.1] tracking-[-.03em] text-[#202536]">THE ENTERPRISE VALUE IS REAL.</h3>
+                <p className="mt-4 text-[16px] leading-[1.55] text-[#44464c]">The homepage still sells the product as a developer utility.</p>
+              </div>
+              <div className="border-l-2 border-[#e15b2e] pl-6">
+                <p className="text-[10px] font-medium uppercase tracking-[.1em] text-[#e15b2e]" style={{ fontFamily: 'var(--app-font-sans)' }}>Commercial consequence</p>
+                <p className="mt-3 text-[15px] leading-[1.5] text-[#44464c]">High-value buyers compare it against cheap tools instead of infrastructure or headcount.</p>
+              </div>
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* Example 3 — marker + wider observation, softer consequence */}
-        <div className="border-t border-[#202536]/15 pt-12">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[100px_1fr_300px] lg:gap-8">
-            <div>
-              <span className="font-mono-ui text-[11px] text-[#e15b2e]">03</span>
-              <p className="mt-3 text-[10px] font-medium uppercase tracking-[.1em] text-[#e15b2e]" style={{ fontFamily: 'var(--app-font-sans)' }}>Expansion</p>
-            </div>
-            <div>
-              <h3 className="font-display text-[26px] leading-[1.1] tracking-[-.03em] text-[#202536]">THE BUYING SIGNAL ALREADY EXISTS.</h3>
-              <p className="mt-4 text-[16px] leading-[1.55] text-[#44464c]">The customer becomes operationally overwhelmed, but the product never surfaces the next offer.</p>
-              <p className="mt-5 font-display text-[17px] leading-[1.4] tracking-[-.02em] text-[#202536]/50 italic">Expansion only happens after the customer asks.</p>
-            </div>
-            <div className="border-l-2 border-[#e15b2e]/40 pl-6">
-              <p className="text-[10px] font-medium uppercase tracking-[.1em] text-[#e15b2e]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>Commercial consequence</p>
-              <p className="mt-3 text-[15px] leading-[1.5] text-[#44464c]/70">Growth stalls silently. No expansion path is surfaced.</p>
+        <Reveal delay={.2}>
+          <div className="border-t border-[#202536]/15 pt-12">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-[100px_1fr_300px] lg:gap-8">
+              <div>
+                <span className="font-mono-ui text-[11px] text-[#e15b2e]">03</span>
+                <p className="mt-3 text-[10px] font-medium uppercase tracking-[.1em] text-[#e15b2e]" style={{ fontFamily: 'var(--app-font-sans)' }}>Expansion</p>
+              </div>
+              <div>
+                <h3 className="font-display text-[26px] leading-[1.1] tracking-[-.03em] text-[#202536]">THE BUYING SIGNAL ALREADY EXISTS.</h3>
+                <p className="mt-4 text-[16px] leading-[1.55] text-[#44464c]">The customer becomes operationally overwhelmed, but the product never surfaces the next offer.</p>
+                <p className="mt-5 font-display text-[17px] leading-[1.4] tracking-[-.02em] text-[#202536]/50 italic">Expansion only happens after the customer asks.</p>
+              </div>
+              <div className="border-l-2 border-[#e15b2e]/40 pl-6">
+                <p className="text-[10px] font-medium uppercase tracking-[.1em] text-[#e15b2e]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>Commercial consequence</p>
+                <p className="mt-3 text-[15px] leading-[1.5] text-[#44464c]/70">Growth stalls silently. No expansion path is surfaced.</p>
+              </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -495,23 +533,28 @@ function Diagnosis() {
       <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[5fr_7fr] lg:gap-12">
           <div>
-            <h2 className="max-w-[760px] font-display text-[clamp(2.8rem,5vw,5rem)] leading-[.88] tracking-[-.08em] text-[#202536]">
-              One diagnosis.<br /><em className="text-[#e15b2e]">A clear commercial map.</em>
-            </h2>
-            <p className="mt-8 max-w-[540px] text-[17px] leading-[1.55] text-[#44464c]">
-              A focused async commercial diagnosis of where the path from interest to payment is breaking — covering positioning, economic framing, offer and upgrade logic, buying events, pricing logic, and messaging implications.
-            </p>
+            <Reveal>
+              <h2 className="max-w-[760px] font-display text-[clamp(2.8rem,5vw,5rem)] leading-[.88] tracking-[-.08em] text-[#202536]">
+                One diagnosis.<br /><em className="text-[#e15b2e]">A clear commercial map.</em>
+              </h2>
+              <p className="mt-8 max-w-[540px] text-[17px] leading-[1.55] text-[#44464c]">
+                A focused async commercial diagnosis of where the path from interest to payment is breaking — covering positioning, economic framing, offer and upgrade logic, buying events, pricing logic, and messaging implications.
+              </p>
+            </Reveal>
             <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {outputs.map(([number, title, body]) => (
-                <article key={number} className="border-t border-[#cfc7b7] pt-5 pb-4 transition-colors duration-200">
-                  <span className="font-mono-ui text-[10px] text-[#e15b2e]">{number}</span>
-                  <h3 className="mt-5 font-display text-[22px] leading-[.95] tracking-[-.04em] text-[#202536]">{title}</h3>
-                  <p className="mt-3 text-[15px] leading-[1.55] text-[#44464c]">{body}</p>
-                </article>
+              {outputs.map(([number, title, body], idx) => (
+                <Reveal key={number} delay={.1 + idx * .06}>
+                  <article className="border-t border-[#cfc7b7] pt-5 pb-4 transition-colors duration-200">
+                    <span className="font-mono-ui text-[10px] text-[#e15b2e]">{number}</span>
+                    <h3 className="mt-5 font-display text-[22px] leading-[.95] tracking-[-.04em] text-[#202536]">{title}</h3>
+                    <p className="mt-3 text-[15px] leading-[1.55] text-[#44464c]">{body}</p>
+                  </article>
+                </Reveal>
               ))}
             </div>
           </div>
-          <div id="offer" className="bg-[#202536] p-8 text-[#f5f0e7] radius-panel sm:p-10 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5">
+          <Reveal delay={.2}>
+          <div id="offer" className="bg-[#202536] p-8 text-[#f5f0e7] radius-panel sm:p-10 transition-all duration-200 hover:shadow-lg hover-proximity">
             <div className="flex items-start justify-between border-b border-[#f5f0e7]/20 pb-8">
               <span className="text-[11px] font-medium uppercase tracking-[.12em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>The working room</span>
               <span className="font-display text-[52px] leading-none tracking-[-.06em]">$1,000</span>
@@ -534,6 +577,7 @@ function Diagnosis() {
             </a>
             <p className="mt-8 border-t border-[#f5f0e7]/15 pt-5 text-[11px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/45" style={{ fontFamily: 'var(--app-font-sans)' }}>No retainer. No recurring commitment. No ongoing consulting.</p>
           </div>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -545,16 +589,19 @@ function CasesTeaser() {
   return (
     <section id="client-work" className="scroll-mt-10 bg-[#f5f0e7]">
       <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 lg:px-12 lg:py-24">
-        <div className="max-w-[700px]">
-          <h2 className="font-display text-[clamp(2.5rem,5vw,4.2rem)] leading-[.88] tracking-[-.07em] text-[#202536]">Client work.</h2>
-          <p className="mt-5 text-[17px] leading-[1.6] text-[#44464c]">Selected commercial work across SaaS products.</p>
-        </div>
+        <Reveal>
+          <div className="max-w-[700px]">
+            <h2 className="font-display text-[clamp(2.5rem,5vw,4.2rem)] leading-[.88] tracking-[-.07em] text-[#202536]">Client work.</h2>
+            <p className="mt-5 text-[17px] leading-[1.6] text-[#44464c]">Selected commercial work across SaaS products.</p>
+          </div>
+        </Reveal>
 
         {/* Consistent 3-zone grid: product / old→new transition / view */}
         <div className="mt-10 space-y-0">
-          {casesData.map((c) => (
-            <div key={c.slug} className="border-t border-[#cfc7b7]">
-              <a href={`/cases/${c.slug}`} className="group grid grid-cols-1 gap-4 py-8 transition-all duration-[200ms] hover:bg-[#f5f0e7]/50 hover:translate-y-[-2px] sm:grid-cols-[200px_1fr_auto] sm:gap-8 sm:items-center sm:py-9 px-0 radius-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e15b2e]">
+          {casesData.map((c, idx) => (
+            <Reveal key={c.slug} delay={.1 + idx * .08}>
+            <div className="border-t border-[#cfc7b7]">
+              <a href={`/cases/${c.slug}`} className="group grid grid-cols-1 gap-4 py-8 transition-all duration-[200ms] hover:bg-[#f5f0e7]/50 hover:translate-y-[-1px] sm:grid-cols-[200px_1fr_auto] sm:gap-8 sm:items-center sm:py-9 px-0 radius-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e15b2e]">
                 {/* Zone 1: Product name + engagement */}
                 <div>
                   <h3 className="font-display text-[20px] font-semibold tracking-[-.03em] text-[#202536] group-hover:text-[#e15b2e] transition-colors duration-200">{c.name}</h3>
@@ -563,12 +610,12 @@ function CasesTeaser() {
 
                 {/* Zone 2: Old frame → New frame transition */}
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
-                  <div className="flex-1">
+                  <div className="flex-1 transition-all duration-200 group-hover:opacity-60">
                     <p className="text-[10px] font-medium uppercase tracking-[.1em] text-[#6c6b68]" style={{ fontFamily: 'var(--app-font-sans)' }}>{c.shift.label}</p>
                     <p className="mt-1.5 font-display text-[15px] leading-[1.4] tracking-[-.01em] text-[#202536]/40 line-through decoration-[#e15b2e]/20">{c.shift.from}</p>
                   </div>
-                  <span className="hidden sm:block font-display text-[18px] text-[#e15b2e] transition-transform duration-200 group-hover:translate-x-1">→</span>
-                  <div className="flex-1">
+                  <span className="hidden sm:block font-display text-[18px] text-[#e15b2e] transition-transform duration-200 group-hover:translate-x-1.5">→</span>
+                  <div className="flex-1 transition-all duration-200 group-hover:opacity-100">
                     <p className="font-display text-[16px] leading-[1.35] tracking-[-.02em] text-[#202536] font-medium">{c.shift.to}</p>
                     {c.shift.supporting && <p className="mt-1 text-[10px] font-medium uppercase tracking-[.08em] text-[#6c6b68]" style={{ fontFamily: 'var(--app-font-sans)' }}>{c.shift.supporting}</p>}
                   </div>
@@ -578,12 +625,15 @@ function CasesTeaser() {
                 <span className="hidden sm:flex items-center text-[10px] font-semibold uppercase tracking-[.1em] text-[#e15b2e] opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-1" style={{ fontFamily: 'var(--app-font-sans)' }}>VIEW CASE →</span>
               </a>
             </div>
+            </Reveal>
           ))}
         </div>
 
-        <div className="mt-8">
-          <a href="/cases" className="inline-flex items-center gap-3 border-b-2 border-[#e15b2e] pb-1.5 text-[12px] font-semibold uppercase tracking-[.1em] text-[#e15b2e] transition-colors duration-200 hover:text-[#c94a22]" style={{ fontFamily: 'var(--app-font-sans)' }}>VIEW ALL CASES →</a>
-        </div>
+        <Reveal delay={.3}>
+          <div className="mt-8">
+            <a href="/cases" className="inline-flex items-center gap-3 border-b-2 border-[#e15b2e] pb-1.5 text-[12px] font-semibold uppercase tracking-[.1em] text-[#e15b2e] transition-colors duration-200 hover:text-[#c94a22]" style={{ fontFamily: 'var(--app-font-sans)' }}>VIEW ALL CASES →</a>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -596,11 +646,14 @@ function Engagement() {
       <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[5fr_7fr] lg:gap-12">
           <div className="lg:flex lg:flex-col lg:justify-center">
-            <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>The deeper engagement</p>
-            <h2 className="mt-6 max-w-[480px] font-display text-[clamp(2.6rem,4.5vw,4.5rem)] leading-[.88] tracking-[-.07em]">Diagnose.<br /><em className="text-[#e96a3a]">Then rebuild.</em></h2>
-            <p className="mt-8 max-w-[360px] text-[16px] leading-[1.6] text-[#f5f0e7]/70">Two steps, only when the problem calls for both.</p>
+            <Reveal>
+              <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>The deeper engagement</p>
+              <h2 className="mt-6 max-w-[480px] font-display text-[clamp(2.6rem,4.5vw,4.5rem)] leading-[.88] tracking-[-.07em]">Diagnose.<br /><em className="text-[#e96a3a]">Then rebuild.</em></h2>
+              <p className="mt-8 max-w-[360px] text-[16px] leading-[1.6] text-[#f5f0e7]/70">Two steps, only when the problem calls for both.</p>
+            </Reveal>
           </div>
           <div>
+            <Reveal delay={.15}>
             <div className="border-t border-[#f5f0e7]/20 py-8">
               <div className="flex items-start gap-5">
                 <span className="font-mono-ui text-[10px] text-[#e96a3a]">01</span>
@@ -610,6 +663,8 @@ function Engagement() {
                 </div>
               </div>
             </div>
+            </Reveal>
+            <Reveal delay={.25}>
             <div className="border-y border-[#f5f0e7]/20 py-8">
               <div className="flex items-start gap-5">
                 <span className="font-mono-ui text-[10px] text-[#e96a3a]">02</span>
@@ -631,8 +686,11 @@ function Engagement() {
                 </div>
               </div>
             </div>
+            </Reveal>
+            <Reveal delay={.3}>
             <p className="mt-9 max-w-[580px] font-display text-[clamp(1.4rem,2.3vw,1.7rem)] leading-[1.08] tracking-[-.03em] text-[#f5f0e7]">The diagnosis identifies the leak. Revenue Architecture rebuilds the system around it.</p>
             <p className="mt-5 max-w-[530px] text-[15px] leading-[1.55] text-[#f5f0e7]/68">Not every diagnosis requires deeper work. The second engagement exists when the commercial problem is architectural rather than isolated.</p>
+            </Reveal>
           </div>
         </div>
       </div>
@@ -659,9 +717,12 @@ function WhoThisIsFor() {
       <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[5fr_7fr] lg:gap-12">
           <div>
-            <h2 className="font-display text-[clamp(2.2rem,4vw,3.6rem)] leading-[.9] tracking-[-.07em] text-[#202536]">Built for SaaS with demand — but unclear conversion.</h2>
+            <Reveal>
+              <h2 className="font-display text-[clamp(2.2rem,4vw,3.6rem)] leading-[.9] tracking-[-.07em] text-[#202536]">Built for SaaS with demand — but unclear conversion.</h2>
+            </Reveal>
           </div>
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
+            <Reveal delay={.1}>
             <div className="border-t border-[#202536]/20 pt-6">
               <span className="text-[11px] font-semibold uppercase tracking-[.12em] text-[#202536]/55" style={{ fontFamily: 'var(--app-font-sans)' }}>Good fit</span>
               <ul className="mt-6 space-y-4 list-editorial">
@@ -670,6 +731,8 @@ function WhoThisIsFor() {
                 ))}
               </ul>
             </div>
+            </Reveal>
+            <Reveal delay={.18}>
             <div className="border-t border-[#202536]/20 pt-6">
               <span className="text-[11px] font-semibold uppercase tracking-[.12em] text-[#202536]/55" style={{ fontFamily: 'var(--app-font-sans)' }}>Not fit</span>
               <ul className="mt-6 space-y-4 list-editorial">
@@ -678,6 +741,7 @@ function WhoThisIsFor() {
                 ))}
               </ul>
             </div>
+            </Reveal>
           </div>
         </div>
       </div>
@@ -721,12 +785,16 @@ function FinalCTA({ onNavigate }: { onNavigate: (id: string) => void }) {
     <section className="bg-[#202536] text-[#f5f0e7]">
       <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <div className="max-w-[1000px]">
-          <h2 className="font-display text-[clamp(3rem,7.2vw,7rem)] leading-[.86] tracking-[-.08em]">Your product may not need more traffic<span className="text-[#e96a3a]">.</span></h2>
-          <p className="mt-8 max-w-[590px] text-[18px] leading-[1.55] text-[#f5f0e7]/68">It may need a better path from the attention you already have to the revenue you want.</p>
-          <div className="mt-12 flex flex-col items-start gap-7 sm:flex-row sm:items-center">
-            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn text-[11px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}>START THE DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" /></a>
-            <a href="mailto:paul@nasiba.co" className="text-[11px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/50 border-b border-[#f5f0e7]/20 pb-0.5 transition-colors hover:text-[#e96a3a] hover:border-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>EMAIL PAUL</a>
-          </div>
+          <Reveal>
+            <h2 className="font-display text-[clamp(3rem,7.2vw,7rem)] leading-[.86] tracking-[-.08em]">Your product may not need more traffic<span className="text-[#e96a3a]">.</span></h2>
+            <p className="mt-8 max-w-[590px] text-[18px] leading-[1.55] text-[#f5f0e7]/68">It may need a better path from the attention you already have to the revenue you want.</p>
+          </Reveal>
+          <Reveal delay={.15}>
+            <div className="mt-12 flex flex-col items-start gap-7 sm:flex-row sm:items-center">
+              <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn text-[11px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}>START THE DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1.5" /></a>
+              <a href="mailto:paul@nasiba.co" className="text-[11px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/50 border-b border-[#f5f0e7]/20 pb-0.5 transition-colors hover:text-[#e96a3a] hover:border-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>EMAIL PAUL</a>
+            </div>
+          </Reveal>
         </div>
         <SiteFooter variant="dark" />
       </div>
