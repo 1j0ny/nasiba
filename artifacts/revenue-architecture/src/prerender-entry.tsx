@@ -50,6 +50,11 @@ export const routes: RouteConfig[] = [
     description: 'A focused async commercial diagnosis of where the path from interest to payment is breaking. Diagnostic lenses, deliverables, and engagement details.',
   },
   {
+    path: '/sample-diagnosis',
+    title: 'Sample Revenue Leak Diagnosis — Nasiba',
+    description: 'See an illustrative Revenue Leak Diagnosis showing how Nasiba identifies the commercial break, root cause, buying event, offer logic and priority map for a SaaS product.',
+  },
+  {
     path: '/start',
     title: 'Start a Revenue Leak Diagnosis \u2014 Nasiba',
     description: 'Start a $1,000 asynchronous Revenue Leak Diagnosis for your SaaS. Share your product and primary monetization issue to begin.',

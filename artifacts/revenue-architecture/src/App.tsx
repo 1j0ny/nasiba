@@ -1,4 +1,4 @@
-import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { Fragment, type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   ArrowDownRight,
@@ -53,6 +53,7 @@ const casesData = [
     slug: 'confluencemeter',
     name: 'ConfluenceMeter',
     engagement: 'Positioning · Messaging · Hero Architecture',
+    diagnosticLeak: 'Mechanism before value',
     problem: 'The product explained monitoring functionality before making the trader outcome sufficiently obvious.',
     intervention: 'Repositioned the hero around faster identification of high-confluence setups, fewer charts, and decision filtering.',
     shortOutcome: 'The product moved from mechanism-led messaging toward a clearer outcome-led hero built around the trader\'s decision process.',
@@ -62,6 +63,7 @@ const casesData = [
     slug: 'convert-fast',
     name: 'Convert.FAST',
     engagement: 'Positioning · Hero Architecture',
+    diagnosticLeak: 'Capability hidden by category',
     problem: 'The product was more capable than the hero made it appear. The opportunity was to make the primary job-to-be-done explicit.',
     intervention: 'Moved from generic file conversion toward bulk processing, speed, explicit workflow and explicit output.',
     shortOutcome: 'The hero became more specific and aligned the product\'s strongest capability with a concrete user job.',
@@ -71,6 +73,7 @@ const casesData = [
     slug: 'creativelens',
     name: 'CreativeLens',
     engagement: 'Messaging · Economic Framing',
+    diagnosticLeak: 'Capability disconnected from economic decision',
     problem: 'There was a gap between product capability and economic value. The product risked entering the mental category of "another AI creative analysis tool."',
     intervention: 'Shifted messaging from "AI analyzes creatives" toward understanding what deserves more budget, what needs more testing, and what should stop receiving spend.',
     shortOutcome: 'The messaging became more outcome-led and connected creative analysis more directly to the commercial decisions behind paid acquisition.',
@@ -344,7 +347,7 @@ function Hero({ onNavigate }: { onNavigate: (id: string) => void }) {
             </a>
           </div>
           <div className="hero-meta mt-6 text-[12px] font-semibold uppercase tracking-[.12em] text-[#f5f0e7]/82" style={{ fontFamily: 'var(--app-font-sans)' }}>$1,000 · 3–4 DAYS · ASYNCHRONOUS</div>
-          <p className="hero-sub mt-4 max-w-[480px] text-[14px] leading-[1.5] text-[#f5f0e7]/55">For SaaS products that already have users, traffic or demand — but aren&apos;t converting enough of it into revenue.</p>
+          <p className="hero-sub mt-4 max-w-[480px] text-[15px] font-medium leading-[1.5] text-[#f5f0e7]/85">For SaaS with users and demand — but weak paid conversion.</p>
         </div>
 
         {/* RIGHT: Diagnostic composition — one coherent diagram, staged animation */}
@@ -575,6 +578,9 @@ function Diagnosis() {
             <a href="/start" className="mt-8 flex w-full items-center justify-between bg-[#e96a3a] px-5 py-4 radius-btn text-[11px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}>
               START THE DIAGNOSIS <ArrowRight size={16} />
             </a>
+            <a href="/sample-diagnosis" className="mt-4 inline-flex items-center gap-2 border-b border-[#f5f0e7]/25 pb-0.5 text-[11px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/65 transition-colors duration-200 hover:text-[#e96a3a] hover:border-[#e96a3a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>
+              VIEW A SAMPLE DIAGNOSIS <ArrowRight size={12} />
+            </a>
             <p className="mt-8 border-t border-[#f5f0e7]/15 pt-5 text-[11px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/45" style={{ fontFamily: 'var(--app-font-sans)' }}>No retainer. No recurring commitment. No ongoing consulting.</p>
           </div>
           </Reveal>
@@ -606,6 +612,9 @@ function CasesTeaser() {
                 <div>
                   <h3 className="font-display text-[20px] font-semibold tracking-[-.03em] text-[#202536] group-hover:text-[#e15b2e] transition-colors duration-200">{c.name}</h3>
                   <p className="mt-2 text-[11px] font-medium uppercase tracking-[.08em] text-[#6c6b68]" style={{ fontFamily: 'var(--app-font-sans)' }}>{c.engagement}</p>
+                  <p className="mt-3 text-[9px] font-semibold uppercase tracking-[.12em] text-[#e15b2e]/80" style={{ fontFamily: 'var(--app-font-sans)' }}>
+                    Diagnostic leak: {c.diagnosticLeak}
+                  </p>
                 </div>
 
                 {/* Zone 2: Old frame → New frame transition */}
@@ -1268,6 +1277,9 @@ function DiagnosisPage() {
             <span>ASYNCHRONOUS</span>
             <span>FIXED SCOPE</span>
           </div>
+          <a href="/sample-diagnosis" className="mt-6 inline-flex items-center gap-2 border-b border-[#f5f0e7]/25 pb-0.5 text-[11px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/65 transition-colors duration-200 hover:text-[#e96a3a] hover:border-[#e96a3a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>
+            VIEW A SAMPLE DIAGNOSIS <ArrowRight size={12} />
+          </a>
         </div>
 
         {/* Diagnostic Lenses */}
@@ -1657,6 +1669,416 @@ function TermsPage() {
   );
 }
 
+/* ─── /sample-diagnosis — Illustrative output of the diagnosis ─── */
+
+const sampleLeakStages = [
+  { name: 'INTEREST', state: 'intact' },
+  { name: 'UNDERSTANDING', state: 'intact' },
+  { name: 'ECONOMIC VALUE', state: 'intact' },
+  { name: 'BUYING EVENT', state: 'break' },
+  { name: 'PAYMENT', state: 'intact' },
+  { name: 'EXPANSION', state: 'intact' },
+];
+
+const sampleOutputs = [
+  {
+    number: '01',
+    title: 'Revenue Leak',
+    headline: 'Free solves the core job.',
+    explanation: 'The free plan already gives the user the outcome that brought them to the product. The paid tier increases capacity, but does not introduce a materially different economic outcome.',
+    consequence: 'Users may like the product and continue using it without developing a rational reason to upgrade.',
+  },
+  {
+    number: '02',
+    title: 'Root Cause',
+    headline: 'Packaging is organized around usage, not increasing value.',
+    explanation: 'The commercial boundary is defined by how much the user can do rather than by when the product becomes more economically important.',
+    upgradeAsks: {
+      current: '“Do you need more?”',
+      shouldAsk: '“Has this become important enough to pay for?”',
+    },
+    consequence: 'Usage growth does not automatically create willingness to pay.',
+  },
+  {
+    number: '03',
+    title: 'Economic Logic',
+    headline: 'Paid needs to correspond to a more valuable state.',
+    explanation: 'The buyer should be able to connect the paid tier to a meaningful change in the economics or operational importance of the workflow.',
+    signals: [
+      'Recurring team use',
+      'Workflow dependency',
+      'Coordination across users',
+      'Reduced manual workload',
+      'Reliability requirements',
+      'Increased operational risk if the product disappears',
+    ],
+    signalsNote: 'Illustrative examples of value signals — not a claim that all apply to every product.',
+  },
+  {
+    number: '04',
+    title: 'Buying Event',
+    headline: 'The buying event is operational dependency.',
+    explanation: 'The rational reason to pay appears when the product stops being an occasional utility and becomes part of a recurring workflow that the customer now depends on.',
+    diagnosticQuestion: 'What observable event tells us the user has crossed from experimentation into dependency?',
+    signals: [
+      'A second team member is invited',
+      'The workflow becomes recurring',
+      'Project or client volume crosses a threshold',
+      'Integrations become necessary',
+      'Exports or reports become operational',
+      'The product becomes embedded in a client-facing process',
+    ],
+    signalsNote: 'Illustrative possibilities a diagnosis would test against product data — not measured facts.',
+  },
+  {
+    number: '05',
+    title: 'Offer / Upgrade Logic',
+    headline: 'Move paid value closer to the buying event.',
+    explanation: 'Instead of making paid mostly “more free”, the commercial architecture should make the paid tier correspond to the point where the workflow becomes operationally important.',
+    ladder: [
+      { stage: 'FREE', body: 'Prove the workflow' },
+      { stage: 'PAID', body: 'Operate the workflow repeatedly, collaboratively, reliably' },
+      { stage: 'EXPANSION', body: 'Support increasing organizational dependency' },
+    ],
+  },
+];
+
+const samplePriorities = [
+  {
+    rank: 'PRIORITY 1',
+    title: 'Define the observable buying event.',
+    why: 'Without it, packaging and upgrade prompts have no reliable commercial anchor.',
+  },
+  {
+    rank: 'PRIORITY 2',
+    title: 'Rebuild the free → paid boundary around increasing customer value.',
+    why: 'The offer should reflect the transition identified above.',
+  },
+  {
+    rank: 'PRIORITY 3',
+    title: 'Rewrite upgrade and homepage framing around the economic transition.',
+    why: 'Messaging should express the commercial architecture rather than compensate for an unclear one.',
+  },
+];
+
+function SampleLeakMap() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [drawn, setDrawn] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) { setDrawn(true); return; }
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setDrawn(true); obs.disconnect(); }
+    }, { threshold: 0.3 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="border-t border-[#f5f0e7]/15 pt-10">
+      <div className="flex items-center justify-between">
+        <p className="text-[11px] font-semibold uppercase tracking-[.12em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>The sample leak map</p>
+        <p className="text-[10px] font-medium uppercase tracking-[.1em] text-[#f5f0e7]/45" style={{ fontFamily: 'var(--app-font-sans)' }}>Structural map — not measured data</p>
+      </div>
+
+      {/* Desktop: horizontal path, mirrors the homepage Revenue Path language */}
+      <div className="mt-12 hidden lg:block">
+        <div className="relative">
+          <div
+            className="absolute left-0 right-0 top-[15px] h-px bg-[#f5f0e7]/20 origin-left"
+            style={{ transform: drawn ? 'scaleX(1)' : 'scaleX(0)', transition: 'transform .9s cubic-bezier(.22,1,.36,1) .2s' }}
+          />
+          <div
+            className="absolute top-[15px] left-[48%] h-px w-[8%]"
+            style={{
+              backgroundImage: 'repeating-linear-gradient(to right, #e96a3a 0px, #e96a3a 4px, transparent 4px, transparent 10px)',
+              transformOrigin: 'left center',
+              transform: drawn ? 'scaleX(1)' : 'scaleX(0)',
+              transition: 'transform .4s cubic-bezier(.22,1,.36,1) .9s',
+              opacity: drawn ? 1 : 0,
+            }}
+          />
+          <div className="grid grid-cols-6 gap-4">
+            {sampleLeakStages.map((stage, i) => (
+              <div key={stage.name} className="flex flex-col items-center">
+                <div
+                  className={`relative z-10 flex h-[30px] w-[30px] items-center justify-center radius-block bg-[#202536] ${stage.state === 'break' ? 'border-2 border-dashed border-[#e96a3a]' : 'border border-[#e96a3a]/70'}`}
+                  style={{
+                    opacity: drawn ? 1 : 0,
+                    transform: drawn ? 'translateY(0)' : 'translateY(6px)',
+                    transition: `opacity .35s cubic-bezier(.22,1,.36,1) ${.35 + i * .15}s, transform .35s cubic-bezier(.22,1,.36,1) ${.35 + i * .15}s`,
+                  }}
+                >
+                  {stage.state === 'break'
+                    ? <span className="text-[11px] font-bold text-[#e96a3a]">✗</span>
+                    : <div className="h-2 w-2 rounded-full bg-[#e96a3a]" />}
+                </div>
+                <span
+                  className={`mt-3 text-center text-[10px] uppercase tracking-[.08em] ${stage.state === 'break' ? 'font-semibold text-[#e96a3a]' : 'font-medium text-[#f5f0e7]/65'}`}
+                  style={{
+                    fontFamily: 'var(--app-font-sans)',
+                    opacity: drawn ? 1 : 0,
+                    transition: `opacity .35s ease ${.45 + i * .15}s`,
+                  }}
+                >
+                  {stage.name}
+                </span>
+                {stage.state === 'break' && (
+                  <span
+                    className="mt-2 text-[9px] font-bold uppercase tracking-[.12em] text-[#e96a3a]"
+                    style={{
+                      fontFamily: 'var(--app-font-sans)',
+                      opacity: drawn ? 1 : 0,
+                      transition: `opacity .35s ease 1.25s`,
+                    }}
+                  >
+                    Primary break
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+          {/* Textual annotation of the break — meaning is never carried by color alone */}
+          <div
+            className="mt-8 border-l-2 border-[#e96a3a] pl-4"
+            style={{
+              opacity: drawn ? 1 : 0,
+              transform: drawn ? 'translateY(0)' : 'translateY(6px)',
+              transition: 'opacity .4s ease 1.3s, transform .4s cubic-bezier(.22,1,.36,1) 1.3s',
+            }}
+          >
+            <p className="font-display text-[15px] leading-[1.4] tracking-[-.02em] text-[#f5f0e7]/70">“The buyer never reaches a rational reason to pay — paid only offers more of what free already solved.”</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile: simplified stacked map */}
+      <div className="mt-10 lg:hidden">
+        <ol className="space-y-0">
+          {sampleLeakStages.map((stage, i) => (
+            <li key={stage.name} className="relative flex gap-4 pb-6 last:pb-0">
+              {i < sampleLeakStages.length - 1 && (
+                <span
+                  aria-hidden="true"
+                  className={`absolute left-[14px] top-[30px] h-[calc(100%-30px)] w-px ${stage.state === 'break' ? 'bg-[#e96a3a]' : 'bg-[#f5f0e7]/20'}`}
+                />
+              )}
+              <div className={`relative z-10 flex h-[30px] w-[30px] shrink-0 items-center justify-center radius-block bg-[#202536] ${stage.state === 'break' ? 'border-2 border-dashed border-[#e96a3a]' : 'border border-[#e96a3a]/70'}`}>
+                {stage.state === 'break'
+                  ? <span className="text-[11px] font-bold text-[#e96a3a]">✗</span>
+                  : <div className="h-2 w-2 rounded-full bg-[#e96a3a]" />}
+              </div>
+              <div className="pt-1">
+                <p className={`text-[11px] font-medium uppercase tracking-[.08em] ${stage.state === 'break' ? 'font-semibold text-[#e96a3a]' : 'text-[#f5f0e7]/65'}`} style={{ fontFamily: 'var(--app-font-sans)' }}>{stage.name}</p>
+                {stage.state === 'break' && (
+                  <p className="mt-1.5 text-[9px] font-bold uppercase tracking-[.12em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>Primary break</p>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+        <div className="mt-6 border-l-2 border-[#e96a3a] pl-4">
+          <p className="font-display text-[15px] leading-[1.4] tracking-[-.02em] text-[#f5f0e7]/70">“The buyer never reaches a rational reason to pay — paid only offers more of what free already solved.”</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SampleDiagnosisPage() {
+  const [, setLocation] = useLocation();
+
+  useEffect(() => {
+    document.title = 'Sample Revenue Leak Diagnosis — Nasiba';
+    const description = document.querySelector('meta[name="description"]') ?? document.createElement('meta');
+    description.setAttribute('name', 'description');
+    description.setAttribute('content', 'See an illustrative Revenue Leak Diagnosis showing how Nasiba identifies the commercial break, root cause, buying event, offer logic and priority map for a SaaS product.');
+    document.head.appendChild(description);
+    const ogTitle = document.querySelector('meta[property="og:title"]') ?? document.createElement('meta');
+    ogTitle.setAttribute('property', 'og:title');
+    ogTitle.setAttribute('content', 'Sample Revenue Leak Diagnosis — Nasiba');
+    document.head.appendChild(ogTitle);
+    const ogDescription = document.querySelector('meta[property="og:description"]') ?? document.createElement('meta');
+    ogDescription.setAttribute('property', 'og:description');
+    ogDescription.setAttribute('content', 'See an illustrative Revenue Leak Diagnosis showing how Nasiba identifies the commercial break, root cause, buying event, offer logic and priority map for a SaaS product.');
+    document.head.appendChild(ogDescription);
+  }, []);
+
+  const navigate = (id: string) => {
+    if (id === 'about-nav') { setLocation('/about'); return; }
+    if (id === 'cases-nav') { setLocation('/cases'); return; }
+    if (id === 'revenue-architecture') { setLocation('/revenue-architecture'); return; }
+    if (id === 'diagnosis') { setLocation('/diagnosis'); return; }
+    setLocation('/');
+  };
+
+  return (
+    <main className="page-grain min-h-[100dvh] bg-[#202536] text-[#f5f0e7]">
+      <Header onNavigate={navigate} />
+      <div className="mx-auto max-w-[1180px] px-5 pb-20 pt-40 sm:px-8 lg:px-12 lg:pb-28">
+
+        {/* Compact hero */}
+        <div className="border-t border-[#f5f0e7]/20 pt-6">
+          <p className="text-[11px] font-semibold uppercase tracking-[.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>Sample Revenue Leak Diagnosis</p>
+          <h1 className="mt-5 font-display text-[clamp(2.4rem,5vw,4.5rem)] leading-[.9] tracking-[-.06em] text-[#f5f0e7]">
+            See what the diagnosis actually produces.
+          </h1>
+          <p className="mt-6 max-w-[620px] text-[17px] leading-[1.55] text-[#f5f0e7]/70">
+            A simplified example of how Nasiba identifies the commercial break, explains why it exists, and maps what should change first.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[10px] font-semibold uppercase tracking-[.12em] text-[#f5f0e7]/55" style={{ fontFamily: 'var(--app-font-sans)' }}>
+            <span>Illustrative example</span>
+            <span>No client data</span>
+            <span>No measured results</span>
+          </div>
+          <p className="mt-4 max-w-[620px] border-l-2 border-[#e96a3a] pl-4 text-[13px] leading-[1.5] text-[#f5f0e7]/60">
+            This example is illustrative. It does not represent confidential client data or measured client results.
+          </p>
+        </div>
+
+        {/* Scenario — the fictional product the diagnosis runs on */}
+        <Reveal>
+          <div className="mt-20">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>The scenario</p>
+            <h2 className="mt-5 max-w-[560px] font-display text-[clamp(1.9rem,3.5vw,3rem)] leading-[.92] tracking-[-.05em]">A B2B SaaS workflow tool.</h2>
+            <p className="mt-4 max-w-[560px] text-[14px] leading-[1.5] text-[#f5f0e7]/55" style={{ fontFamily: 'var(--app-font-sans)' }}>
+              A fictional product used throughout this example. Any resemblance to a specific company is coincidental.
+            </p>
+            <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-3">
+              <div className="border-t border-[#f5f0e7]/15 py-5">
+                <h3 className="text-[11px] font-semibold uppercase tracking-[.1em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>Product type</h3>
+                <p className="mt-3 max-w-[320px] text-[15px] leading-[1.55] text-[#f5f0e7]/68">A B2B SaaS workflow tool.</p>
+              </div>
+              <div className="border-t border-[#f5f0e7]/15 py-5">
+                <h3 className="text-[11px] font-semibold uppercase tracking-[.1em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>Current commercial model</h3>
+                <p className="mt-3 max-w-[320px] text-[15px] leading-[1.55] text-[#f5f0e7]/68"><span className="text-[#f5f0e7]/85">Free plan:</span> solves the core individual workflow. <span className="text-[#f5f0e7]/85">Paid plan:</span> mostly increases usage limits and adds minor convenience features.</p>
+              </div>
+              <div className="border-t border-[#f5f0e7]/15 py-5">
+                <h3 className="text-[11px] font-semibold uppercase tracking-[.1em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>Observed problem</h3>
+                <p className="mt-3 max-w-[320px] text-[15px] leading-[1.55] text-[#f5f0e7]/68">Users adopt the product, but upgrades remain weak. There is demand. The product is useful. The transition from usage to payment is unclear.</p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Leak map — one strong visual artifact */}
+        <div className="mt-20">
+          <SampleLeakMap />
+        </div>
+
+        {/* Six diagnostic outputs — same structure as the actual deliverable */}
+        <div className="mt-24">
+          <Reveal>
+            <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>The diagnosis</p>
+            <h2 className="mt-5 max-w-[640px] font-display text-[clamp(2rem,4vw,3.4rem)] leading-[.9] tracking-[-.06em]">The six outputs, as a client would receive them.</h2>
+          </Reveal>
+
+          <div className="mt-14 border-t border-[#f5f0e7]/15">
+            {sampleOutputs.map((section, idx) => (
+              <Reveal key={section.number} delay={.05 + idx * .05}>
+                <article className="grid grid-cols-1 gap-6 border-b border-[#f5f0e7]/15 py-10 sm:grid-cols-[140px_1fr] sm:gap-10">
+                  <div>
+                    <span className="font-mono-ui text-[10px] text-[#e96a3a]">{section.number}</span>
+                    <h3 className="mt-3 text-[11px] font-semibold uppercase tracking-[.1em] text-[#f5f0e7]/75" style={{ fontFamily: 'var(--app-font-sans)' }}>{section.title}</h3>
+                  </div>
+                  <div className="max-w-[720px]">
+                    <p className="font-display text-[clamp(1.6rem,2.8vw,2.2rem)] leading-[1.05] tracking-[-.04em] text-[#f5f0e7]">{section.headline}</p>
+                    <p className="mt-4 text-[16px] leading-[1.6] text-[#f5f0e7]/70">{section.explanation}</p>
+
+                    {section.upgradeAsks && (
+                      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <div className="border border-[#f5f0e7]/15 radius-block px-4 py-3.5">
+                          <p className="text-[9px] font-semibold uppercase tracking-[.12em] text-[#f5f0e7]/45" style={{ fontFamily: 'var(--app-font-sans)' }}>The upgrade currently asks</p>
+                          <p className="mt-2 font-display text-[16px] leading-[1.35] tracking-[-.02em] text-[#f5f0e7]/60">{section.upgradeAsks.current}</p>
+                        </div>
+                        <div className="border border-[#e96a3a]/40 radius-block px-4 py-3.5">
+                          <p className="text-[9px] font-semibold uppercase tracking-[.12em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>It should ask</p>
+                          <p className="mt-2 font-display text-[16px] leading-[1.35] tracking-[-.02em] text-[#f5f0e7]">{section.upgradeAsks.shouldAsk}</p>
+                        </div>
+                      </div>
+                    )}
+
+                    {section.signals && (
+                      <div className="mt-6">
+                        <p className="text-[10px] font-semibold uppercase tracking-[.12em] text-[#f5f0e7]/50" style={{ fontFamily: 'var(--app-font-sans)' }}>{section.number === '03' ? 'Possible value signals' : 'Possible signals'}</p>
+                        <ul className="mt-3 grid max-w-[560px] grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-2">
+                          {section.signals.map((signal) => (
+                            <li key={signal} className="flex items-start gap-2.5 text-[14px] leading-[1.5] text-[#f5f0e7]/65"><span className="mt-2 h-px w-3 shrink-0 bg-[#e96a3a]" />{signal}</li>
+                          ))}
+                        </ul>
+                        {section.signalsNote && (
+                          <p className="mt-3 text-[12px] italic leading-[1.5] text-[#f5f0e7]/45">{section.signalsNote}</p>
+                        )}
+                      </div>
+                    )}
+
+                    {section.diagnosticQuestion && (
+                      <p className="mt-6 border-l-2 border-[#e96a3a] pl-4 font-display text-[16px] italic leading-[1.45] tracking-[-.02em] text-[#f5f0e7]/75">{section.diagnosticQuestion}</p>
+                    )}
+
+                    {section.ladder && (
+                      <div className="mt-6 max-w-[480px]">
+                        {section.ladder.map((step, i) => (
+                          <Fragment key={step.stage}>
+                            {i > 0 && <div className="flex justify-center py-2 text-[#e96a3a]" aria-hidden="true">↓</div>}
+                            <div className="border border-[#f5f0e7]/15 radius-block px-5 py-4">
+                              <p className="text-[10px] font-bold uppercase tracking-[.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>{step.stage}</p>
+                              <p className="mt-1.5 font-display text-[16px] leading-[1.35] tracking-[-.02em] text-[#f5f0e7]/85">{step.body}</p>
+                            </div>
+                          </Fragment>
+                        ))}
+                      </div>
+                    )}
+
+                    <div className="mt-6 border-l-2 border-[#e96a3a] pl-4">
+                      <p className="text-[10px] font-medium uppercase tracking-[.1em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>Commercial consequence</p>
+                      <p className="mt-2 text-[15px] leading-[1.5] text-[#f5f0e7]/65">{section.consequence}</p>
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        {/* Priority map — ranked rows */}
+        <div className="mt-24">
+          <Reveal>
+            <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>06 · Priority Map</p>
+            <h2 className="mt-5 max-w-[640px] font-display text-[clamp(2rem,4vw,3.4rem)] leading-[.9] tracking-[-.06em]">What should change first.</h2>
+          </Reveal>
+          <div className="mt-12 border-t border-[#f5f0e7]/15">
+            {samplePriorities.map((priority, idx) => (
+              <Reveal key={priority.rank} delay={.08 + idx * .08}>
+                <div className="grid grid-cols-1 gap-3 border-b border-[#f5f0e7]/15 py-7 sm:grid-cols-[130px_1fr] sm:gap-8">
+                  <span className="text-[10px] font-bold uppercase tracking-[.12em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>{priority.rank}</span>
+                  <div className="max-w-[680px]">
+                    <p className="font-display text-[clamp(1.3rem,2.4vw,1.8rem)] leading-[1.15] tracking-[-.03em] text-[#f5f0e7]">{priority.title}</p>
+                    <p className="mt-2 text-[14px] leading-[1.5] text-[#f5f0e7]/60"><span className="font-semibold uppercase tracking-[.08em] text-[#f5f0e7]/45" style={{ fontFamily: 'var(--app-font-sans)' }}>Why {priority.rank === 'PRIORITY 1' ? 'first' : priority.rank === 'PRIORITY 2' ? 'second' : 'third'}:</span> {priority.why}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-24 border-t border-[#f5f0e7]/15 pt-10">
+          <p className="max-w-[640px] font-display text-[clamp(1.8rem,3.5vw,2.8rem)] leading-[1.08] tracking-[-.04em]">If your SaaS already has users and demand but too little of it becomes revenue, start with the diagnosis.</p>
+          <div className="mt-8 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn text-[11px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}>START THE DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" /></a>
+            <a href="/diagnosis" className="text-[11px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/50 border-b border-[#f5f0e7]/20 pb-0.5 transition-colors hover:text-[#e96a3a] hover:border-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>BACK TO REVENUE LEAK DIAGNOSIS</a>
+          </div>
+        </div>
+
+        <SiteFooter variant="dark" />
+      </div>
+    </main>
+  );
+}
+
 /* ─── Router ─── */
 
 export function Router() {
@@ -1670,6 +2092,7 @@ export function Router() {
           {(params) => <CaseDetail slug={params.slug} />}
         </Route>
         <Route path="/diagnosis" component={DiagnosisPage} />
+        <Route path="/sample-diagnosis" component={SampleDiagnosisPage} />
         <Route path="/start" component={StartPage} />
         <Route path="/revenue-architecture" component={RevenueArchitecturePage} />
         <Route path="/architecture" component={ArchitectureRedirect} />
