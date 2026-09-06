@@ -150,7 +150,7 @@ function scrollToSection(id: string, onDone?: () => void) {
 
 function Eyebrow({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
   return (
-    <div className={`mb-6 flex items-center gap-3 font-mono-ui text-[10px] font-bold uppercase tracking-[0.2em] ${dark ? 'text-[#e96a3a]' : 'text-[#e15b2e]'}`}>
+    <div className={`mb-6 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.14em] ${dark ? 'text-[#e96a3a]' : 'text-[#e15b2e]'}`} style={{ fontFamily: 'var(--app-font-sans)' }}>
       <span className="h-px w-8 bg-current" />
       <span>{children}</span>
     </div>
@@ -162,13 +162,14 @@ function Eyebrow({ children, dark = false }: { children: ReactNode; dark?: boole
 function SiteFooter({ variant = 'dark' }: { variant?: 'dark' | 'light' }) {
   const dark = variant === 'dark';
   const textMain = dark ? 'text-[#f5f0e7]' : 'text-[#202536]';
-  const textMuted = dark ? 'text-[#f5f0e7]/38' : 'text-[#6c6b68]';
+  const textMuted = dark ? 'text-[#f5f0e7]/55' : 'text-[#6c6b68]';
+  const textMutedStrong = dark ? 'text-[#f5f0e7]/70' : 'text-[#55575c]';
   const border = dark ? 'border-[#f5f0e7]/20' : 'border-[#cfc7b7]';
   const accentBorder = dark ? 'border-[#e96a3a]' : 'border-[#e15b2e]';
   const linkHover = dark ? 'hover:text-[#e96a3a] hover:border-[#e96a3a]' : 'hover:text-[#e15b2e] hover:border-[#e15b2e]';
 
   return (
-    <footer className={`mt-24 border-t ${border} pt-10`}>
+    <footer className={`mt-20 border-t ${border} pt-10`}>
       <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
         {/* Brand */}
         <div>
@@ -176,13 +177,13 @@ function SiteFooter({ variant = 'dark' }: { variant?: 'dark' | 'light' }) {
             <span className={`flex h-7 w-7 items-center justify-center border ${accentBorder} font-mono-ui text-[11px] font-bold ${dark ? 'text-[#e96a3a]' : 'text-[#e15b2e]'}`}>N</span>
             <span className={`font-mono-ui text-[11px] font-bold uppercase tracking-[.16em] ${textMain}`}>NASIBA</span>
           </div>
-          <p className={`mt-4 font-mono-ui text-[9px] uppercase tracking-[.13em] ${textMuted}`}>Revenue Architecture for SaaS.</p>
+          <p className={`mt-4 text-[12px] tracking-[.03em] ${textMutedStrong}`} style={{ fontFamily: 'var(--app-font-sans)' }}>Revenue Architecture for SaaS.</p>
         </div>
 
         {/* Navigation */}
         <div>
-          <p className={`font-mono-ui text-[9px] font-bold uppercase tracking-[.14em] ${textMuted} mb-4`}>Navigation</p>
-          <ul className="space-y-2">
+          <p className={`text-[11px] font-semibold uppercase tracking-[.1em] ${textMuted} mb-4`} style={{ fontFamily: 'var(--app-font-sans)' }}>Navigation</p>
+          <ul className="space-y-2.5">
             {[
               { label: 'Diagnosis', href: '/diagnosis' },
               { label: 'Revenue Architecture', href: '/revenue-architecture' },
@@ -190,7 +191,7 @@ function SiteFooter({ variant = 'dark' }: { variant?: 'dark' | 'light' }) {
               { label: 'About', href: '/about' },
             ].map((link) => (
               <li key={link.label}>
-                <a href={link.href} className={`font-mono-ui text-[10px] uppercase tracking-[.12em] ${textMuted} border-b border-transparent pb-0.5 transition-colors ${linkHover}`}>{link.label}</a>
+                <a href={link.href} className={`text-[12px] tracking-[.03em] ${textMutedStrong} border-b border-transparent pb-0.5 transition-colors ${linkHover}`} style={{ fontFamily: 'var(--app-font-sans)' }}>{link.label}</a>
               </li>
             ))}
           </ul>
@@ -198,30 +199,30 @@ function SiteFooter({ variant = 'dark' }: { variant?: 'dark' | 'light' }) {
 
         {/* Contact */}
         <div>
-          <p className={`font-mono-ui text-[9px] font-bold uppercase tracking-[.14em] ${textMuted} mb-4`}>Contact</p>
-          <a href="mailto:paul@nasiba.co" className={`font-mono-ui text-[10px] uppercase tracking-[.12em] ${textMuted} border-b border-transparent pb-0.5 transition-colors ${linkHover}`}>paul@nasiba.co</a>
+          <p className={`text-[11px] font-semibold uppercase tracking-[.1em] ${textMuted} mb-4`} style={{ fontFamily: 'var(--app-font-sans)' }}>Contact</p>
+          <a href="mailto:paul@nasiba.co" className={`text-[12px] tracking-[.03em] ${textMutedStrong} border-b border-transparent pb-0.5 transition-colors ${linkHover}`} style={{ fontFamily: 'var(--app-font-sans)' }}>paul@nasiba.co</a>
         </div>
 
         {/* Founder */}
         <div>
-          <p className={`font-mono-ui text-[9px] font-bold uppercase tracking-[.14em] ${textMuted} mb-4`}>Founder</p>
-          <p className={`font-mono-ui text-[10px] uppercase tracking-[.12em] ${textMuted}`}>Paul — Founder &amp; Principal</p>
+          <p className={`text-[11px] font-semibold uppercase tracking-[.1em] ${textMuted} mb-4`} style={{ fontFamily: 'var(--app-font-sans)' }}>Founder</p>
+          <p className={`text-[12px] tracking-[.03em] ${textMutedStrong}`} style={{ fontFamily: 'var(--app-font-sans)' }}>Paul — Founder &amp; Principal</p>
           <div className="mt-3 space-y-2">
             <p>
-              <a href="https://www.linkedin.com/in/paul-coll/" target="_blank" rel="noopener noreferrer" className={`font-mono-ui text-[10px] uppercase tracking-[.12em] ${textMuted} border-b border-transparent pb-0.5 transition-colors ${linkHover}`}>LinkedIn →</a>
+              <a href="https://www.linkedin.com/in/paul-coll/" target="_blank" rel="noopener noreferrer" className={`text-[12px] tracking-[.03em] ${textMutedStrong} border-b border-transparent pb-0.5 transition-colors ${linkHover}`} style={{ fontFamily: 'var(--app-font-sans)' }}>LinkedIn →</a>
             </p>
             <p>
-              <a href="https://x.com/1Paul_coll" target="_blank" rel="noopener noreferrer" className={`font-mono-ui text-[10px] uppercase tracking-[.12em] ${textMuted} border-b border-transparent pb-0.5 transition-colors ${linkHover}`}>X / Twitter →</a>
+              <a href="https://x.com/1Paul_coll" target="_blank" rel="noopener noreferrer" className={`text-[12px] tracking-[.03em] ${textMutedStrong} border-b border-transparent pb-0.5 transition-colors ${linkHover}`} style={{ fontFamily: 'var(--app-font-sans)' }}>X / Twitter →</a>
             </p>
           </div>
         </div>
       </div>
 
       <div className={`mt-10 flex flex-col justify-between gap-4 border-t ${border} pt-6 sm:flex-row sm:items-center`}>
-        <div className={`font-mono-ui text-[9px] uppercase tracking-[.13em] ${textMuted}`}>&copy; {new Date().getFullYear()} Nasiba</div>
+        <div className={`text-[11px] tracking-[.06em] ${textMuted}`} style={{ fontFamily: 'var(--app-font-sans)' }}>&copy; {new Date().getFullYear()} Nasiba</div>
         <div className="flex gap-5">
-          <a href="/privacy" className={`font-mono-ui text-[9px] uppercase tracking-[.13em] ${textMuted} border-b border-transparent pb-0.5 transition-colors duration-200 ${linkHover}`}>Privacy</a>
-          <a href="/terms" className={`font-mono-ui text-[9px] uppercase tracking-[.13em] ${textMuted} border-b border-transparent pb-0.5 transition-colors duration-200 ${linkHover}`}>Terms</a>
+          <a href="/privacy" className={`text-[11px] tracking-[.06em] ${textMuted} border-b border-transparent pb-0.5 transition-colors duration-200 ${linkHover}`} style={{ fontFamily: 'var(--app-font-sans)' }}>Privacy</a>
+          <a href="/terms" className={`text-[11px] tracking-[.06em] ${textMuted} border-b border-transparent pb-0.5 transition-colors duration-200 ${linkHover}`} style={{ fontFamily: 'var(--app-font-sans)' }}>Terms</a>
         </div>
       </div>
     </footer>
@@ -250,22 +251,22 @@ function Header({ onNavigate, variant = 'dark' }: { onNavigate: (id: string) => 
 
   return (
     <header className={`absolute left-0 right-0 top-0 z-40 px-5 py-5 ${textMain} sm:px-8 lg:px-12`}>
-      <div className={`mx-auto flex max-w-[1400px] items-center justify-between border-b ${border} pb-5`}>
+      <div className={`mx-auto flex max-w-[1180px] items-center justify-between border-b ${border} pb-5`}>
         <a href="/" className={`group flex items-center gap-3 text-left focus-visible:outline-none focus-visible:ring-2 ${accentBorder}`} aria-label="NASIBA, back to top">
           <span className={`flex h-7 w-7 items-center justify-center border ${accentBorder} font-mono-ui text-[11px] font-bold ${accentText}`}>N</span>
           <span>
             <span className={`block font-mono-ui text-[12px] font-bold uppercase tracking-[0.16em] transition-colors ${accentText}`}>NASIBA</span>
-            <span className={`mt-0.5 block font-mono-ui text-[9px] uppercase tracking-[0.11em] ${dark ? 'text-[#f5f0e7]/50' : 'text-[#202536]/50'}`}>Revenue architecture for SaaS</span>
+            <span className={`mt-0.5 block text-[10px] tracking-[0.04em] ${dark ? 'text-[#f5f0e7]/60' : 'text-[#202536]/60'}`} style={{ fontFamily: 'var(--app-font-sans)' }}>Revenue architecture for SaaS</span>
           </span>
         </a>
-        <nav className="hidden items-center gap-5 xl:gap-6 md:flex" aria-label="Primary navigation">
+        <nav className="hidden items-center gap-6 xl:gap-8 md:flex" aria-label="Primary navigation">
           {navItems.map((item) => (
-            <a key={item.id} href={item.href} onClick={(e) => { if (item.href.startsWith('/#')) { e.preventDefault(); scrollToSection(item.id); } }} className={`font-mono-ui text-[10px] uppercase tracking-[0.11em] ${textMuted} transition-colors ${dark ? 'hover:text-[#f5f0e7]' : 'hover:text-[#202536]'} focus-visible:outline-none focus-visible:ring-2 ${accentBorder} focus-visible:ring-offset-2 ${dark ? 'focus-visible:ring-offset-[#202536]' : 'focus-visible:ring-offset-[#f5f0e7]'}`}>
+            <a key={item.id} href={item.href} onClick={(e) => { if (item.href.startsWith('/#')) { e.preventDefault(); scrollToSection(item.id); } }} className={`text-[12px] font-medium uppercase tracking-[0.08em] ${textMuted} transition-colors ${dark ? 'hover:text-[#f5f0e7]' : 'hover:text-[#202536]'} focus-visible:outline-none focus-visible:ring-2 ${accentBorder} focus-visible:ring-offset-2 ${dark ? 'focus-visible:ring-offset-[#202536]' : 'focus-visible:ring-offset-[#f5f0e7]'}`} style={{ fontFamily: 'var(--app-font-sans)' }}>
               {item.label}
             </a>
           ))}
-          <a href="/start" className={`flex items-center gap-2 ${btnBg} px-4 py-2.5 radius-btn font-mono-ui text-[10px] font-bold uppercase tracking-[0.1em] ${btnText} transition-all duration-[160ms] ${hoverBg} hover-lift focus-visible:outline-none focus-visible:ring-2 ${dark ? 'focus-visible:ring-[#f5f0e7]' : 'focus-visible:ring-[#202536]'}`}>
-            START DIAGNOSIS <ArrowRight size={13} strokeWidth={2.5} />
+          <a href="/start" className={`flex items-center gap-2 ${btnBg} px-5 py-2.5 radius-btn text-[11px] font-bold uppercase tracking-[0.1em] ${btnText} transition-all duration-[160ms] ${hoverBg} hover-lift focus-visible:outline-none focus-visible:ring-2 ${dark ? 'focus-visible:ring-[#f5f0e7]' : 'focus-visible:ring-[#202536]'}`} style={{ fontFamily: 'var(--app-font-sans)' }}>
+            START DIAGNOSIS <ArrowRight size={14} strokeWidth={2.5} />
           </a>
         </nav>
         <button type="button" className={`inline-flex h-10 w-10 items-center justify-center border ${dark ? 'border-[#f5f0e7]/25' : 'border-[#202536]/25'} ${textMain} md:hidden`} onClick={() => setOpen((current) => !current)} aria-expanded={open} aria-controls="mobile-navigation">
@@ -276,12 +277,12 @@ function Header({ onNavigate, variant = 'dark' }: { onNavigate: (id: string) => 
       {open && (
         <nav id="mobile-navigation" className={`${border} border-b ${bg} px-2 py-4 md:hidden`} aria-label="Mobile navigation">
           {navItems.map((item) => (
-            <a key={item.id} href={item.href} onClick={(e) => { if (item.href.startsWith('/#')) { e.preventDefault(); scrollToSection(item.id); } }} className={`flex w-full items-center justify-between border-b ${dark ? 'border-[#f5f0e7]/10' : 'border-[#cfc7b7]'} px-3 py-4 text-left font-mono-ui text-[10px] uppercase tracking-[0.16em] ${dark ? 'text-[#f5f0e7]/75' : 'text-[#202536]/75'} last:border-0 focus-visible:outline-none focus-visible:ring-2 ${accentBorder}`}>
+            <a key={item.id} href={item.href} onClick={(e) => { if (item.href.startsWith('/#')) { e.preventDefault(); scrollToSection(item.id); } }} className={`flex w-full items-center justify-between border-b ${dark ? 'border-[#f5f0e7]/10' : 'border-[#cfc7b7]'} px-3 py-4 text-left text-[12px] font-medium uppercase tracking-[0.08em] ${dark ? 'text-[#f5f0e7]/75' : 'text-[#202536]/75'} last:border-0 focus-visible:outline-none focus-visible:ring-2 ${accentBorder}`} style={{ fontFamily: 'var(--app-font-sans)' }}>
               {item.label}
               <ArrowDownRight size={14} className={accentText} />
             </a>
           ))}
-          <a href="/start" className={`mt-3 flex w-full items-center justify-between ${btnBg} px-3 py-4 radius-btn font-mono-ui text-[10px] font-bold uppercase tracking-[0.12em] ${btnText} transition-all duration-[160ms]`}>
+          <a href="/start" className={`mt-3 flex w-full items-center justify-between ${btnBg} px-3 py-4 radius-btn text-[11px] font-bold uppercase tracking-[0.1em] ${btnText} transition-all duration-[160ms]`} style={{ fontFamily: 'var(--app-font-sans)' }}>
             START DIAGNOSIS <ArrowRight size={14} />
           </a>
         </nav>
@@ -296,102 +297,119 @@ function Hero({ onNavigate }: { onNavigate: (id: string) => void }) {
   return (
     <section id="top" className="relative overflow-hidden bg-[#202536] text-[#f5f0e7]">
       <Header onNavigate={onNavigate} />
-      <div className="mx-auto grid min-h-[620px] max-w-[1400px] grid-cols-1 items-end gap-12 px-5 pb-16 pt-36 sm:px-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,.92fr)] lg:gap-16 lg:px-12 lg:pb-20 lg:pt-40">
-        <div className="reveal max-w-[790px]">
-          <div className="mb-5 flex items-center gap-3 font-mono-ui text-[10px] font-bold uppercase tracking-[0.2em] text-[#e96a3a]">
+      <div className="mx-auto grid min-h-[560px] max-w-[1180px] grid-cols-1 items-end gap-10 px-5 pb-16 pt-36 sm:px-8 lg:grid-cols-[55%_45%] lg:gap-12 lg:px-12 lg:pb-20 lg:pt-40">
+        {/* LEFT: Hero copy — anchored to left column */}
+        <div className="reveal">
+          <div className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>
             <span className="h-px w-8 bg-current" />
             <span>Commercial diagnosis</span>
           </div>
-          <h1 className="font-display text-[clamp(4rem,8.5vw,7.8rem)] leading-[.88] tracking-[-0.07em] text-[#f5f0e7]">
+          <h1 className="font-display text-[clamp(3rem,7vw,6.2rem)] leading-[.88] tracking-[-0.07em] text-[#f5f0e7]">
             Find where your SaaS is <span className="text-[#e96a3a]">losing revenue.</span>
           </h1>
-          <p className="mt-7 max-w-[600px] text-balance text-[17px] leading-[1.55] text-[#f5f0e7]/72 sm:text-[19px]">
+          <p className="mt-7 max-w-[520px] text-balance text-[17px] leading-[1.55] text-[#f5f0e7]/72 sm:text-[18px]">
             An asynchronous diagnosis of the commercial gaps between product interest and payment — from positioning and economic value to buying events, upgrade logic and messaging.
           </p>
           <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
-            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn font-mono-ui text-[10px] font-bold uppercase tracking-[0.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">
+            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn text-[11px] font-bold uppercase tracking-[0.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}>
               START THE REVENUE LEAK DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" />
             </a>
           </div>
-          <div className="mt-6 font-mono-ui text-[11px] font-bold uppercase tracking-[.15em] text-[#f5f0e7]/82">$1,000 · 3–4 DAYS · ASYNCHRONOUS</div>
-          <p className="mt-4 max-w-[520px] text-[14px] leading-[1.5] text-[#f5f0e7]/55">For SaaS products that already have users, traffic or demand — but aren&apos;t converting enough of it into revenue.</p>
+          <div className="mt-6 text-[12px] font-semibold uppercase tracking-[.12em] text-[#f5f0e7]/82" style={{ fontFamily: 'var(--app-font-sans)' }}>$1,000 · 3–4 DAYS · ASYNCHRONOUS</div>
+          <p className="mt-4 max-w-[480px] text-[14px] leading-[1.5] text-[#f5f0e7]/55">For SaaS products that already have users, traffic or demand — but aren&apos;t converting enough of it into revenue.</p>
         </div>
-        <div className="reveal reveal-delay-2 relative min-h-[260px] lg:mb-2">
-          <div className="absolute bottom-0 left-0 right-0 border-t border-[#f5f0e7]/25 pt-4">
-            <div className="mb-6 flex items-center justify-between font-mono-ui text-[10px] uppercase tracking-[0.14em] text-[#f5f0e7]/60"><span>Where interest stops</span><span className="text-[#e96a3a]">→</span></div>
-            <div className="relative flex h-[140px] items-end justify-between gap-2">
+
+        {/* RIGHT: Diagnostic composition — one coherent diagram */}
+        <div className="reveal reveal-delay-2 flex flex-col justify-end lg:pb-2">
+          <div className="border-t border-[#f5f0e7]/25 pt-5">
+            {/* Top annotation: WHERE INTEREST STOPS */}
+            <div className="mb-5 flex items-center justify-between">
+              <span className="text-[11px] font-medium uppercase tracking-[.1em] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>Where interest stops</span>
+              <span className="text-[#e96a3a] text-[16px]">→</span>
+            </div>
+
+            {/* Middle: THE LEAK marker + note — integrated as one unit */}
+            <div className="mb-6 flex items-start gap-5">
+              <div className="flex flex-col items-center">
+                <span className="text-[10px] font-bold uppercase tracking-[.12em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>the leak</span>
+                <div className="mt-2 w-px h-5 bg-[#e96a3a]" />
+              </div>
+              <p className="max-w-[180px] text-[13px] leading-[1.45] text-[#f5f0e7]/65">No more guessing which page, plan, or CTA to rewrite first.</p>
+            </div>
+
+            {/* Bottom: bar path from DEMAND to PAYMENT */}
+            <div className="flex h-[120px] items-end justify-between gap-2">
               {[82, 63, 49, 36, 25, 17].map((height, index) => (
                 <div key={height} className="relative flex h-full flex-1 items-end">
                   <div className={`w-full transition-all duration-300 ${index === 3 ? 'bg-[#e96a3a]' : 'bg-[#f5f0e7]/22'}`} style={{ height: `${height}%` }} />
-                  {index === 3 && <span className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono-ui text-[9px] uppercase tracking-[.1em] text-[#e96a3a]">the leak</span>}
                 </div>
               ))}
             </div>
-            <div className="mt-3 flex justify-between font-mono-ui text-[9px] uppercase tracking-[.12em] text-[#f5f0e7]/45"><span>Demand</span><span>Payment</span></div>
+            <div className="mt-3 flex justify-between">
+              <span className="text-[10px] font-medium uppercase tracking-[.1em] text-[#f5f0e7]/45" style={{ fontFamily: 'var(--app-font-sans)' }}>Demand</span>
+              <span className="text-[10px] font-medium uppercase tracking-[.1em] text-[#f5f0e7]/45" style={{ fontFamily: 'var(--app-font-sans)' }}>Payment</span>
+            </div>
           </div>
-          <p className="absolute right-0 top-0 max-w-[190px] border-l border-[#e96a3a] pl-4 text-[14px] leading-[1.45] text-[#f5f0e7]/70">No more guessing which page, plan, or CTA to rewrite first.</p>
         </div>
       </div>
     </section>
   );
 }
 
-/* Revenue Path — with thesis idea integrated, single canonical DOM structure */
+/* Revenue Path — continuous diagnostic map, anchored annotations */
 function RevenuePathMap() {
   const steps = [
     { name: 'INTEREST', active: true },
     { name: 'UNDERSTANDING', active: true },
-    { name: 'ECONOMIC VALUE', active: true },
-    { name: 'BUYING EVENT', active: false },
-    { name: 'PAYMENT', active: true },
+    { name: 'ECONOMIC VALUE', active: true, annotation: '"Buyer understands the product but cannot justify the price."' },
+    { name: 'BUYING EVENT', active: false, annotation: '"Free solves the core job. Paid only adds usage."' },
+    { name: 'PAYMENT', active: true, annotation: '"Enterprise value exists, but the product is still framed as a utility."' },
     { name: 'EXPANSION', active: true },
-  ];
-  const annotations = [
-    { position: 'ECONOMIC VALUE', text: '"Buyer understands the product but cannot justify the price."', side: 'bottom' as const },
-    { position: 'BUYING EVENT', text: '"Free solves the core job. Paid only adds usage."', side: 'top' as const },
-    { position: 'PAYMENT', text: '"Enterprise value exists, but the product is still framed as a utility."', side: 'bottom' as const },
   ];
 
   return (
     <section id="path" className="bg-[#202536] text-[#f5f0e7]">
-      <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+      <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <div className="max-w-[800px]">
-          <p className="font-mono-ui text-[10px] font-bold uppercase tracking-[.18em] text-[#e96a3a]">The Revenue Path</p>
-          <h2 className="mt-6 font-display text-[clamp(3rem,6vw,6rem)] leading-[.9] tracking-[-.07em]">Interest is not revenue.</h2>
-          <p className="mt-6 max-w-[600px] text-[17px] leading-[1.6] text-[#f5f0e7]/62">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>The Revenue Path</p>
+          <h2 className="mt-6 font-display text-[clamp(2.8rem,5.5vw,5.5rem)] leading-[.9] tracking-[-.07em]">Interest is not revenue.</h2>
+          <p className="mt-6 max-w-[600px] text-[17px] leading-[1.6] text-[#f5f0e7]/70">
             Most monetization problems aren&apos;t copy problems. Revenue moves through a sequence of commercial transitions. When one breaks, demand stops becoming payment.
           </p>
         </div>
 
-        {/* The broken path diagram — single canonical DOM structure, CSS responsive */}
-        <div className="mt-20 border-t border-[#f5f0e7]/15 pt-12">
+        {/* Path diagram with inline anchored annotations */}
+        <div className="mt-16 border-t border-[#f5f0e7]/15 pt-14">
           <div className="relative">
-            {/* One canonical path: horizontal on lg+, vertical below */}
-            <div className="flex flex-col gap-0 lg:flex-row lg:items-center lg:justify-between">
-              {steps.map((step, i) => (
-                <div key={step.name} className="flex items-start gap-4 lg:flex-col lg:items-center lg:gap-0">
-                  <div className="flex flex-col items-center">
-                    <div className={`flex h-11 w-11 items-center justify-center border radius-block font-mono-ui text-[9px] font-bold tracking-[.1em] ${step.active ? 'border-[#e96a3a] text-[#e96a3a]' : 'border-[#f5f0e7]/20 text-[#f5f0e7]/30'}`}>
-                      {step.active ? <Check size={15} /> : <span className="text-[#e96a3a]">✗</span>}
-                    </div>
-                    {i < steps.length - 1 && <div className={`w-px h-7 lg:hidden ${step.active && steps[i + 1].active ? 'bg-[#f5f0e7]/25' : 'bg-[#e96a3a]/40'}`} />}
-                  </div>
-                  <span className={`pt-2 lg:pt-3 font-mono-ui text-[10px] uppercase tracking-[.12em] ${step.active ? 'text-[#f5f0e7]/75' : 'text-[#e96a3a]'}`}>{step.name}</span>
-                  {i < steps.length - 1 && (
-                    <div className={`hidden lg:block mx-3 h-px w-14 ${step.active && steps[i + 1].active ? 'bg-[#f5f0e7]/25' : 'bg-[#e96a3a]/40 border-t border-dashed border-[#e96a3a]'}`} />
-                  )}
-                </div>
-              ))}
-            </div>
+            {/* Continuous horizontal line */}
+            <div className="hidden lg:block absolute top-[15px] left-0 right-0 h-px bg-[#f5f0e7]/20" />
+            {/* Break at Buying Event */}
+            <div className="hidden lg:block absolute top-[15px] left-[48%] w-[8%] h-px" style={{ backgroundImage: 'repeating-linear-gradient(to right, #e96a3a 0px, #e96a3a 4px, transparent 4px, transparent 10px)' }} />
 
-            {/* Annotations */}
-            <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-3">
-              {annotations.map((a) => (
-                <div key={a.position} className="border-l-2 border-[#e96a3a] pl-5 transition-colors duration-200 hover:bg-[#f5f0e7]/[.03] px-3 -mx-3 py-2 radius-block">
-                  <p className="font-mono-ui text-[9px] uppercase tracking-[.14em] text-[#e96a3a]">{a.position}</p>
-                  <p className="mt-3 font-display text-[17px] leading-[1.4] tracking-[-.02em] text-[#f5f0e7]/65">{a.text}</p>
-                </div>
-              ))}
+            {/* Stages + inline annotations grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-6 lg:gap-4">
+              {steps.map((step) => {
+                const isBreak = !step.active;
+                const hasAnnotation = !!step.annotation;
+                return (
+                  <div key={step.name} className="flex flex-col">
+                    {/* Stage anchor */}
+                    <div className="flex flex-col items-center lg:items-center">
+                      <div className={`relative flex h-[30px] w-[30px] items-center justify-center ${isBreak ? 'border-2 border-[#e96a3a] border-dashed' : 'border border-[#e96a3a]/70'} radius-block bg-[#202536] z-10`}>
+                        {isBreak && <span className="text-[#e96a3a] text-[11px] font-bold">✗</span>}
+                        {!isBreak && <div className="h-2 w-2 rounded-full bg-[#e96a3a]" />}
+                      </div>
+                      <span className={`mt-3 text-[10px] font-medium uppercase tracking-[.08em] text-center ${isBreak ? 'text-[#e96a3a] font-semibold' : 'text-[#f5f0e7]/65'}`} style={{ fontFamily: 'var(--app-font-sans)' }}>{step.name}</span>
+                    </div>
+                    {/* Inline annotation — anchored below its stage */}
+                    {hasAnnotation && (
+                      <div className="mt-4 border-l-2 border-[#e96a3a] pl-4 pr-2">
+                        <p className="font-display text-[15px] leading-[1.4] tracking-[-.02em] text-[#f5f0e7]/70">{step.annotation}</p>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -400,66 +418,68 @@ function RevenuePathMap() {
   );
 }
 
-/* Leak examples — varied visual treatment, not uniform feature cards */
+/* Leak examples — controlled asymmetry within shared grid */
 function RevenueLeakExamples() {
   return (
     <section className="bg-[#ddd8ce]">
-      <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+      <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <div className="max-w-[900px]">
-          <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-[.9] tracking-[-.07em] text-[#202536]">
+          <h2 className="font-display text-[clamp(2.2rem,4.5vw,4rem)] leading-[.9] tracking-[-.07em] text-[#202536]">
             What a revenue leak actually looks like.
           </h2>
         </div>
 
-        {/* Example 1 — wide annotation style */}
-        <div className="mt-20 border-t border-[#202536]/15 pt-12 pb-12">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[120px_1fr] lg:gap-16">
+        {/* Example 1 — marker + dominant center-left observation */}
+        <div className="mt-16 border-t border-[#202536]/15 pt-12 pb-12">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[100px_1fr_300px] lg:gap-8">
             <div>
               <span className="font-mono-ui text-[11px] text-[#e15b2e]">01</span>
-              <p className="mt-3 font-mono-ui text-[9px] uppercase tracking-[.14em] text-[#e15b2e]">Path marker: Buying Event</p>
+              <p className="mt-3 text-[10px] font-medium uppercase tracking-[.1em] text-[#e15b2e]" style={{ fontFamily: 'var(--app-font-sans)' }}>Buying Event</p>
             </div>
-            <div className="max-w-[680px]">
-              <h3 className="font-display text-[28px] leading-[1.1] tracking-[-.03em] text-[#202536]">FREE SOLVES THE CORE JOB.</h3>
-              <p className="mt-4 text-[17px] leading-[1.55] text-[#55575c]">The paid plan adds more usage, but no materially different outcome.</p>
-              <div className="mt-6 border-l-2 border-[#e15b2e] pl-5">
-                <p className="font-mono-ui text-[9px] uppercase tracking-[.14em] text-[#e15b2e]">Commercial consequence</p>
-                <p className="mt-3 text-[15px] leading-[1.5] text-[#55575c]">The user likes the product but has no economic reason to upgrade.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Example 2 — right-aligned annotation */}
-        <div className="border-t border-[#202536]/15 py-12">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_320px] lg:gap-16">
             <div>
-              <div className="flex items-center gap-4 mb-4">
-                <span className="font-mono-ui text-[11px] text-[#e15b2e]">02</span>
-                <span className="font-mono-ui text-[9px] uppercase tracking-[.14em] text-[#e15b2e]">Path marker: Economic Value</span>
-              </div>
-              <h3 className="font-display text-[28px] leading-[1.1] tracking-[-.03em] text-[#202536]">THE ENTERPRISE VALUE IS REAL.</h3>
-              <p className="mt-4 max-w-[520px] text-[17px] leading-[1.55] text-[#55575c]">The homepage still sells the product as a developer utility.</p>
+              <h3 className="font-display text-[26px] leading-[1.1] tracking-[-.03em] text-[#202536]">FREE SOLVES THE CORE JOB.</h3>
+              <p className="mt-4 text-[16px] leading-[1.55] text-[#44464c]">The paid plan adds more usage, but no materially different outcome.</p>
             </div>
-            <div className="flex items-start border-l-2 border-[#e15b2e] pl-5 lg:mt-8">
-              <div>
-                <p className="font-mono-ui text-[9px] uppercase tracking-[.14em] text-[#e15b2e]">Commercial consequence</p>
-                <p className="mt-3 text-[15px] leading-[1.5] text-[#55575c]">High-value buyers compare it against cheap tools instead of infrastructure or headcount.</p>
-              </div>
+            <div className="border-l-2 border-[#e15b2e] pl-6">
+              <p className="text-[10px] font-medium uppercase tracking-[.1em] text-[#e15b2e]" style={{ fontFamily: 'var(--app-font-sans)' }}>Commercial consequence</p>
+              <p className="mt-3 text-[15px] leading-[1.5] text-[#44464c]">The user likes the product but has no economic reason to upgrade.</p>
             </div>
           </div>
         </div>
 
-        {/* Example 3 — marginal note style */}
+        {/* Example 2 — marker + observation left, consequence right */}
+        <div className="border-t border-[#202536]/15 py-12">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[100px_1fr_300px] lg:gap-8">
+            <div>
+              <span className="font-mono-ui text-[11px] text-[#e15b2e]">02</span>
+              <p className="mt-3 text-[10px] font-medium uppercase tracking-[.1em] text-[#e15b2e]" style={{ fontFamily: 'var(--app-font-sans)' }}>Economic Value</p>
+            </div>
+            <div>
+              <h3 className="font-display text-[26px] leading-[1.1] tracking-[-.03em] text-[#202536]">THE ENTERPRISE VALUE IS REAL.</h3>
+              <p className="mt-4 text-[16px] leading-[1.55] text-[#44464c]">The homepage still sells the product as a developer utility.</p>
+            </div>
+            <div className="border-l-2 border-[#e15b2e] pl-6">
+              <p className="text-[10px] font-medium uppercase tracking-[.1em] text-[#e15b2e]" style={{ fontFamily: 'var(--app-font-sans)' }}>Commercial consequence</p>
+              <p className="mt-3 text-[15px] leading-[1.5] text-[#44464c]">High-value buyers compare it against cheap tools instead of infrastructure or headcount.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Example 3 — marker + wider observation, softer consequence */}
         <div className="border-t border-[#202536]/15 pt-12">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[120px_1fr] lg:gap-16">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[100px_1fr_300px] lg:gap-8">
             <div>
               <span className="font-mono-ui text-[11px] text-[#e15b2e]">03</span>
-              <p className="mt-3 font-mono-ui text-[9px] uppercase tracking-[.14em] text-[#e15b2e]">Path marker: Expansion</p>
+              <p className="mt-3 text-[10px] font-medium uppercase tracking-[.1em] text-[#e15b2e]" style={{ fontFamily: 'var(--app-font-sans)' }}>Expansion</p>
             </div>
-            <div className="max-w-[680px]">
-              <h3 className="font-display text-[28px] leading-[1.1] tracking-[-.03em] text-[#202536]">THE BUYING SIGNAL ALREADY EXISTS.</h3>
-              <p className="mt-4 text-[17px] leading-[1.55] text-[#55575c]">The customer becomes operationally overwhelmed, but the product never surfaces the next offer.</p>
-              <p className="mt-6 font-display text-[18px] leading-[1.4] tracking-[-.02em] text-[#202536]/45 italic">Expansion only happens after the customer asks.</p>
+            <div>
+              <h3 className="font-display text-[26px] leading-[1.1] tracking-[-.03em] text-[#202536]">THE BUYING SIGNAL ALREADY EXISTS.</h3>
+              <p className="mt-4 text-[16px] leading-[1.55] text-[#44464c]">The customer becomes operationally overwhelmed, but the product never surfaces the next offer.</p>
+              <p className="mt-5 font-display text-[17px] leading-[1.4] tracking-[-.02em] text-[#202536]/50 italic">Expansion only happens after the customer asks.</p>
+            </div>
+            <div className="border-l-2 border-[#e15b2e]/40 pl-6">
+              <p className="text-[10px] font-medium uppercase tracking-[.1em] text-[#e15b2e]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>Commercial consequence</p>
+              <p className="mt-3 text-[15px] leading-[1.5] text-[#44464c]/70">Growth stalls silently. No expansion path is surfaced.</p>
             </div>
           </div>
         </div>
@@ -472,47 +492,47 @@ function RevenueLeakExamples() {
 function Diagnosis() {
   return (
     <section id="diagnosis" className="scroll-mt-10 bg-[#f5f0e7]">
-      <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.05fr_.95fr] lg:gap-20">
+      <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[5fr_7fr] lg:gap-12">
           <div>
-            <h2 className="max-w-[760px] font-display text-[clamp(3rem,5.5vw,5.5rem)] leading-[.88] tracking-[-.08em] text-[#202536]">
+            <h2 className="max-w-[760px] font-display text-[clamp(2.8rem,5vw,5rem)] leading-[.88] tracking-[-.08em] text-[#202536]">
               One diagnosis.<br /><em className="text-[#e15b2e]">A clear commercial map.</em>
             </h2>
-            <p className="mt-8 max-w-[540px] text-[17px] leading-[1.55] text-[#55575c]">
+            <p className="mt-8 max-w-[540px] text-[17px] leading-[1.55] text-[#44464c]">
               A focused async commercial diagnosis of where the path from interest to payment is breaking — covering positioning, economic framing, offer and upgrade logic, buying events, pricing logic, and messaging implications.
             </p>
             <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {outputs.map(([number, title, body]) => (
                 <article key={number} className="border-t border-[#cfc7b7] pt-5 pb-4 transition-colors duration-200">
                   <span className="font-mono-ui text-[10px] text-[#e15b2e]">{number}</span>
-                  <h3 className="mt-6 font-display text-[24px] leading-[.95] tracking-[-.04em] text-[#202536]">{title}</h3>
-                  <p className="mt-3 text-[14px] leading-[1.55] text-[#55575c]">{body}</p>
+                  <h3 className="mt-5 font-display text-[22px] leading-[.95] tracking-[-.04em] text-[#202536]">{title}</h3>
+                  <p className="mt-3 text-[15px] leading-[1.55] text-[#44464c]">{body}</p>
                 </article>
               ))}
             </div>
           </div>
-          <div id="offer" className="bg-[#202536] p-8 text-[#f5f0e7] radius-panel sm:p-10 transition-shadow duration-200 hover:shadow-lg">
+          <div id="offer" className="bg-[#202536] p-8 text-[#f5f0e7] radius-panel sm:p-10 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5">
             <div className="flex items-start justify-between border-b border-[#f5f0e7]/20 pb-8">
-              <span className="font-mono-ui text-[10px] uppercase tracking-[.14em] text-[#e96a3a]">The working room</span>
+              <span className="text-[11px] font-medium uppercase tracking-[.12em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>The working room</span>
               <span className="font-display text-[52px] leading-none tracking-[-.06em]">$1,000</span>
             </div>
-            <p className="mt-8 text-[17px] leading-[1.5] text-[#f5f0e7]/78">A fixed-scope inspection that identifies where revenue is leaking and gives you a clear commercial map for what to do next.</p>
-            <ul className="mt-8 space-y-4 text-[15px] leading-[1.45] text-[#f5f0e7]/70 list-editorial">
+            <p className="mt-8 text-[17px] leading-[1.5] text-[#f5f0e7]/80">A fixed-scope inspection that identifies where revenue is leaking and gives you a clear commercial map for what to do next.</p>
+            <ul className="mt-8 space-y-4 text-[15px] leading-[1.45] text-[#f5f0e7]/75 list-editorial">
               <li className="flex gap-3"><Check size={16} className="mt-0.5 shrink-0 text-[#e96a3a]" /> Positioning diagnosis</li>
               <li className="flex gap-3"><Check size={16} className="mt-0.5 shrink-0 text-[#e96a3a]" /> Economic framing analysis</li>
               <li className="flex gap-3"><Check size={16} className="mt-0.5 shrink-0 text-[#e96a3a]" /> Offer / upgrade architecture</li>
               <li className="flex gap-3"><Check size={16} className="mt-0.5 shrink-0 text-[#e96a3a]" /> Buying-event analysis</li>
               <li className="flex gap-3"><Check size={16} className="mt-0.5 shrink-0 text-[#e96a3a]" /> Priority recommendations</li>
             </ul>
-            <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 font-mono-ui text-[10px] uppercase tracking-[.13em] text-[#f5f0e7]/55">
+            <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-[11px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>
               <span>3–4 DAYS</span>
               <span>ASYNCHRONOUS</span>
               <span>FIXED SCOPE</span>
             </div>
-            <a href="/start" className="mt-8 flex w-full items-center justify-between bg-[#e96a3a] px-5 py-4 radius-btn font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">
+            <a href="/start" className="mt-8 flex w-full items-center justify-between bg-[#e96a3a] px-5 py-4 radius-btn text-[11px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}>
               START THE DIAGNOSIS <ArrowRight size={16} />
             </a>
-            <p className="mt-8 border-t border-[#f5f0e7]/15 pt-5 font-mono-ui text-[9px] uppercase tracking-[.14em] text-[#f5f0e7]/40">No retainer. No recurring commitment. No ongoing consulting.</p>
+            <p className="mt-8 border-t border-[#f5f0e7]/15 pt-5 text-[11px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/45" style={{ fontFamily: 'var(--app-font-sans)' }}>No retainer. No recurring commitment. No ongoing consulting.</p>
           </div>
         </div>
       </div>
@@ -520,47 +540,49 @@ function Diagnosis() {
   );
 }
 
-/* Client Work — heading change, no agency framing */
+/* Client Work — consistent column grid, transformation as hero */
 function CasesTeaser() {
   return (
     <section id="client-work" className="scroll-mt-10 bg-[#f5f0e7]">
-      <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+      <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 lg:px-12 lg:py-24">
         <div className="max-w-[700px]">
-          <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-[.88] tracking-[-.07em] text-[#202536]">Client work.</h2>
-          <p className="mt-5 text-[17px] leading-[1.6] text-[#55575c]">Selected commercial work across SaaS products.</p>
+          <h2 className="font-display text-[clamp(2.5rem,5vw,4.2rem)] leading-[.88] tracking-[-.07em] text-[#202536]">Client work.</h2>
+          <p className="mt-5 text-[17px] leading-[1.6] text-[#44464c]">Selected commercial work across SaaS products.</p>
         </div>
 
-        <div className="mt-12 space-y-0">
+        {/* Consistent 3-zone grid: product / old→new transition / view */}
+        <div className="mt-10 space-y-0">
           {casesData.map((c) => (
             <div key={c.slug} className="border-t border-[#cfc7b7]">
-              <a href={`/cases/${c.slug}`} className="group block py-10 transition-all duration-[200ms] hover:bg-[#f5f0e7]/60 hover:px-4 -mx-4 px-0 radius-block sm:py-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e15b2e]">
-                <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
-                  <div className="sm:w-[200px]">
-                    <h3 className="font-mono-ui text-[12px] font-bold uppercase tracking-[.14em] text-[#202536] group-hover:text-[#e15b2e] transition-colors duration-200">{c.name}</h3>
-                    <p className="mt-2 font-mono-ui text-[9px] uppercase tracking-[.12em] text-[#6c6b68]">{c.engagement}</p>
-                  </div>
-                  <div className="flex-1 max-w-[600px]">
-                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
-                      <div className="flex-1">
-                        <p className="font-mono-ui text-[9px] uppercase tracking-[.12em] text-[#6c6b68]">{c.shift.label}</p>
-                        <p className="mt-2 font-display text-[15px] leading-[1.4] tracking-[-.01em] text-[#202536]/40 line-through">{c.shift.from}</p>
-                      </div>
-                      <span className="hidden sm:block font-mono-ui text-[14px] text-[#e15b2e]">→</span>
-                      <div className="flex-1">
-                        <p className="font-display text-[17px] leading-[1.35] tracking-[-.02em] text-[#202536]">{c.shift.to}</p>
-                        {c.shift.supporting && <p className="mt-1 font-mono-ui text-[10px] uppercase tracking-[.1em] text-[#6c6b68]">{c.shift.supporting}</p>}
-                      </div>
-                    </div>
-                  </div>
-                  <span className="hidden sm:flex items-center font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#e15b2e] opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-1">VIEW CASE →</span>
+              <a href={`/cases/${c.slug}`} className="group grid grid-cols-1 gap-4 py-8 transition-all duration-[200ms] hover:bg-[#f5f0e7]/50 hover:translate-y-[-2px] sm:grid-cols-[200px_1fr_auto] sm:gap-8 sm:items-center sm:py-9 px-0 radius-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e15b2e]">
+                {/* Zone 1: Product name + engagement */}
+                <div>
+                  <h3 className="font-display text-[20px] font-semibold tracking-[-.03em] text-[#202536] group-hover:text-[#e15b2e] transition-colors duration-200">{c.name}</h3>
+                  <p className="mt-2 text-[11px] font-medium uppercase tracking-[.08em] text-[#6c6b68]" style={{ fontFamily: 'var(--app-font-sans)' }}>{c.engagement}</p>
                 </div>
+
+                {/* Zone 2: Old frame → New frame transition */}
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+                  <div className="flex-1">
+                    <p className="text-[10px] font-medium uppercase tracking-[.1em] text-[#6c6b68]" style={{ fontFamily: 'var(--app-font-sans)' }}>{c.shift.label}</p>
+                    <p className="mt-1.5 font-display text-[15px] leading-[1.4] tracking-[-.01em] text-[#202536]/40 line-through decoration-[#e15b2e]/20">{c.shift.from}</p>
+                  </div>
+                  <span className="hidden sm:block font-display text-[18px] text-[#e15b2e] transition-transform duration-200 group-hover:translate-x-1">→</span>
+                  <div className="flex-1">
+                    <p className="font-display text-[16px] leading-[1.35] tracking-[-.02em] text-[#202536] font-medium">{c.shift.to}</p>
+                    {c.shift.supporting && <p className="mt-1 text-[10px] font-medium uppercase tracking-[.08em] text-[#6c6b68]" style={{ fontFamily: 'var(--app-font-sans)' }}>{c.shift.supporting}</p>}
+                  </div>
+                </div>
+
+                {/* Zone 3: View affordance */}
+                <span className="hidden sm:flex items-center text-[10px] font-semibold uppercase tracking-[.1em] text-[#e15b2e] opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-1" style={{ fontFamily: 'var(--app-font-sans)' }}>VIEW CASE →</span>
               </a>
             </div>
           ))}
         </div>
 
         <div className="mt-8">
-          <a href="/cases" className="inline-flex items-center gap-3 border-b border-[#e15b2e] pb-1 font-mono-ui text-[10px] font-bold uppercase tracking-[.12em] text-[#e15b2e] transition-colors duration-200 hover:text-[#c94a22]">VIEW ALL CASES →</a>
+          <a href="/cases" className="inline-flex items-center gap-3 border-b-2 border-[#e15b2e] pb-1.5 text-[12px] font-semibold uppercase tracking-[.1em] text-[#e15b2e] transition-colors duration-200 hover:text-[#c94a22]" style={{ fontFamily: 'var(--app-font-sans)' }}>VIEW ALL CASES →</a>
         </div>
       </div>
     </section>
@@ -571,12 +593,12 @@ function CasesTeaser() {
 function Engagement() {
   return (
     <section id="engagement" className="scroll-mt-10 bg-[#202536] text-[#f5f0e7]">
-      <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
-          <div>
-            <p className="font-mono-ui text-[10px] font-bold uppercase tracking-[.18em] text-[#e96a3a]">The deeper engagement</p>
-            <h2 className="mt-6 max-w-[500px] font-display text-[clamp(3rem,5.5vw,5.5rem)] leading-[.88] tracking-[-.07em]">Diagnose.<br /><em className="text-[#e96a3a]">Then rebuild.</em></h2>
-            <p className="mt-8 max-w-[350px] text-[16px] leading-[1.6] text-[#f5f0e7]/60">Two steps, only when the problem calls for both.</p>
+      <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[5fr_7fr] lg:gap-12">
+          <div className="lg:flex lg:flex-col lg:justify-center">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>The deeper engagement</p>
+            <h2 className="mt-6 max-w-[480px] font-display text-[clamp(2.6rem,4.5vw,4.5rem)] leading-[.88] tracking-[-.07em]">Diagnose.<br /><em className="text-[#e96a3a]">Then rebuild.</em></h2>
+            <p className="mt-8 max-w-[360px] text-[16px] leading-[1.6] text-[#f5f0e7]/70">Two steps, only when the problem calls for both.</p>
           </div>
           <div>
             <div className="border-t border-[#f5f0e7]/20 py-8">
@@ -584,7 +606,7 @@ function Engagement() {
                 <span className="font-mono-ui text-[10px] text-[#e96a3a]">01</span>
                 <div>
                   <h3 className="font-display text-[clamp(2rem,3.5vw,2.8rem)] leading-none tracking-[-.05em]">DIAGNOSE</h3>
-                  <p className="mt-4 max-w-[540px] text-[16px] leading-[1.6] text-[#f5f0e7]/68">Find the leak, its root cause, and the priority map. This is enough when one commercial transition is unclear.</p>
+                  <p className="mt-4 max-w-[540px] text-[16px] leading-[1.6] text-[#f5f0e7]/72">Find the leak, its root cause, and the priority map. This is enough when one commercial transition is unclear.</p>
                 </div>
               </div>
             </div>
@@ -593,12 +615,12 @@ function Engagement() {
                 <span className="font-mono-ui text-[10px] text-[#e96a3a]">02</span>
                 <div>
                   <h3 className="font-display text-[clamp(2rem,3.5vw,2.8rem)] leading-none tracking-[-.05em]">REBUILD</h3>
-                  <p className="mt-4 max-w-[540px] text-[16px] leading-[1.6] text-[#f5f0e7]/68">For products where the diagnosis reveals a broader problem in how positioning, economics, offers, buying events and upgrades work together.</p>
-                  <div className="mt-5 flex items-baseline gap-5 font-mono-ui text-[10px] uppercase tracking-[.13em] text-[#e96a3a]">
+                  <p className="mt-4 max-w-[540px] text-[16px] leading-[1.6] text-[#f5f0e7]/72">For products where the diagnosis reveals a broader problem in how positioning, economics, offers, buying events and upgrades work together.</p>
+                  <div className="mt-5 flex items-baseline gap-5 text-[11px] font-medium uppercase tracking-[.12em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>
                     <span>$10,000</span>
                     <span>2 weeks · Asynchronous</span>
                   </div>
-                  <ul className="mt-6 grid max-w-[570px] grid-cols-1 gap-x-6 gap-y-3 border-t border-[#f5f0e7]/15 pt-5 font-mono-ui text-[10px] uppercase leading-[1.5] tracking-[.1em] text-[#f5f0e7]/60 sm:grid-cols-2 list-editorial">
+                  <ul className="mt-6 grid max-w-[570px] grid-cols-1 gap-x-6 gap-y-3 border-t border-[#f5f0e7]/15 pt-5 text-[11px] font-medium uppercase leading-[1.5] tracking-[.08em] text-[#f5f0e7]/65 sm:grid-cols-2 list-editorial" style={{ fontFamily: 'var(--app-font-sans)' }}>
                     <li className="flex items-start gap-2.5"><span className="text-[#e96a3a] mt-0.5 shrink-0">—</span> Positioning audit</li>
                     <li className="flex items-start gap-2.5"><span className="text-[#e96a3a] mt-0.5 shrink-0">—</span> Economic framing</li>
                     <li className="flex items-start gap-2.5"><span className="text-[#e96a3a] mt-0.5 shrink-0">—</span> Offer ladder restructuring</li>
@@ -609,8 +631,8 @@ function Engagement() {
                 </div>
               </div>
             </div>
-            <p className="mt-9 max-w-[580px] font-display text-[clamp(1.5rem,2.5vw,1.8rem)] leading-[1.08] tracking-[-.03em] text-[#f5f0e7]">The diagnosis identifies the leak. Revenue Architecture rebuilds the system around it.</p>
-            <p className="mt-5 max-w-[530px] text-[15px] leading-[1.55] text-[#f5f0e7]/62">Not every diagnosis requires deeper work. The second engagement exists when the commercial problem is architectural rather than isolated.</p>
+            <p className="mt-9 max-w-[580px] font-display text-[clamp(1.4rem,2.3vw,1.7rem)] leading-[1.08] tracking-[-.03em] text-[#f5f0e7]">The diagnosis identifies the leak. Revenue Architecture rebuilds the system around it.</p>
+            <p className="mt-5 max-w-[530px] text-[15px] leading-[1.55] text-[#f5f0e7]/68">Not every diagnosis requires deeper work. The second engagement exists when the commercial problem is architectural rather than isolated.</p>
           </div>
         </div>
       </div>
@@ -634,25 +656,25 @@ function WhoThisIsFor() {
   ];
   return (
     <section id="who-this-is-for" className="scroll-mt-10 bg-[#f5f0e7]">
-      <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
+      <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[5fr_7fr] lg:gap-12">
           <div>
-            <h2 className="max-w-[480px] font-display text-[clamp(3rem,5vw,5rem)] leading-[.9] tracking-[-.07em] text-[#202536]">Built for SaaS with demand — but unclear conversion.</h2>
+            <h2 className="font-display text-[clamp(2.2rem,4vw,3.6rem)] leading-[.9] tracking-[-.07em] text-[#202536]">Built for SaaS with demand — but unclear conversion.</h2>
           </div>
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
             <div className="border-t border-[#202536]/20 pt-6">
-              <span className="font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#202536]/50">Good fit</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[.12em] text-[#202536]/55" style={{ fontFamily: 'var(--app-font-sans)' }}>Good fit</span>
               <ul className="mt-6 space-y-4 list-editorial">
                 {goodFit.map((item) => (
-                  <li key={item} className="flex gap-3 text-[15px] leading-[1.5] text-[#55575c]"><Check size={16} className="mt-0.5 shrink-0 text-[#e15b2e]" />{item}</li>
+                  <li key={item} className="flex gap-3 text-[15px] leading-[1.5] text-[#44464c]"><Check size={16} className="mt-0.5 shrink-0 text-[#e15b2e]" />{item}</li>
                 ))}
               </ul>
             </div>
             <div className="border-t border-[#202536]/20 pt-6">
-              <span className="font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#202536]/50">Not fit</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[.12em] text-[#202536]/55" style={{ fontFamily: 'var(--app-font-sans)' }}>Not fit</span>
               <ul className="mt-6 space-y-4 list-editorial">
                 {notFit.map((item) => (
-                  <li key={item} className="flex gap-3 text-[15px] leading-[1.5] text-[#55575c]"><Minus size={16} className="mt-0.5 shrink-0 text-[#202536]/30" />{item}</li>
+                  <li key={item} className="flex gap-3 text-[15px] leading-[1.5] text-[#44464c]"><Minus size={16} className="mt-0.5 shrink-0 text-[#202536]/30" />{item}</li>
                 ))}
               </ul>
             </div>
@@ -668,20 +690,20 @@ function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   return (
     <section id="faq" className="scroll-mt-10 bg-[#ddd8ce]">
-      <div className="mx-auto max-w-[1100px] px-5 py-24 sm:px-8 lg:py-32">
+      <div className="mx-auto max-w-[1100px] px-5 py-20 sm:px-8 lg:py-28">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[.7fr_1.3fr] lg:gap-20">
-          <h2 className="font-display text-[clamp(3rem,5vw,4.5rem)] leading-[.9] tracking-[-.07em] text-[#202536]">The useful<br />short version.</h2>
+          <h2 className="font-display text-[clamp(2.5rem,4.5vw,4rem)] leading-[.9] tracking-[-.07em] text-[#202536]">The useful<br />short version.</h2>
           <div className="border-t border-[#202536]/15">              {homepageFaqs.map(([question, answer], index) => {
               const isOpen = openIndex === index;
               const answerId = `faq-answer-${index}`;
               return (
                 <div key={question} className="border-b border-[#202536]/15">
-                  <button type="button" onClick={() => setOpenIndex(isOpen ? null : index)} className="flex w-full items-center justify-between gap-5 py-5 text-left transition-colors duration-200 hover:bg-[#ddd8ce]/50 px-2 -mx-2 radius-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e15b2e]" aria-expanded={isOpen} aria-controls={answerId}>
+                  <button type="button" onClick={() => setOpenIndex(isOpen ? null : index)} className="flex w-full items-center justify-between gap-5 py-6 text-left transition-colors duration-200 hover:bg-[#ddd8ce]/50 px-3 -mx-3 radius-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e15b2e]" aria-expanded={isOpen} aria-controls={answerId}>
                     <span className="font-display text-[22px] leading-[1.1] tracking-[-.02em] text-[#202536]">{question}</span>
-                    <ChevronDown size={16} className={`shrink-0 text-[#e15b2e] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+                    <ChevronDown size={18} className={`shrink-0 text-[#e15b2e] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
                   </button>
                   <div id={answerId} role="region" className="faq-answer" data-state={isOpen ? 'open' : 'closed'} aria-labelledby={`faq-q-${index}`}>
-                    <div className="max-w-[620px] pb-6 pr-8 text-[15px] leading-[1.6] text-[#55575c]">{answer}</div>
+                    <div className="max-w-[620px] pb-7 pr-8 text-[16px] leading-[1.6] text-[#44464c]">{answer}</div>
                   </div>
                 </div>
               );
@@ -693,17 +715,17 @@ function FAQ() {
   );
 }
 
-/* Final CTA — reduced price repetition */
+/* Final CTA — quieter than hero, reduced size */
 function FinalCTA({ onNavigate }: { onNavigate: (id: string) => void }) {
   return (
     <section className="bg-[#202536] text-[#f5f0e7]">
-      <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+      <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <div className="max-w-[1000px]">
-          <h2 className="font-display text-[clamp(3.5rem,8vw,8rem)] leading-[.86] tracking-[-.08em]">Your product may not need more traffic<span className="text-[#e96a3a]">.</span></h2>
-          <p className="mt-8 max-w-[590px] text-[18px] leading-[1.55] text-[#f5f0e7]/65">It may need a better path from the attention you already have to the revenue you want.</p>
+          <h2 className="font-display text-[clamp(3rem,7.2vw,7rem)] leading-[.86] tracking-[-.08em]">Your product may not need more traffic<span className="text-[#e96a3a]">.</span></h2>
+          <p className="mt-8 max-w-[590px] text-[18px] leading-[1.55] text-[#f5f0e7]/68">It may need a better path from the attention you already have to the revenue you want.</p>
           <div className="mt-12 flex flex-col items-start gap-7 sm:flex-row sm:items-center">
-            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">START THE DIAGNOSIS → <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" /></a>
-            <a href="mailto:paul@nasiba.co" className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45 border-b border-[#f5f0e7]/20 pb-0.5 transition-colors hover:text-[#e96a3a] hover:border-[#e96a3a]">EMAIL PAUL</a>
+            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn text-[11px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}>START THE DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" /></a>
+            <a href="mailto:paul@nasiba.co" className="text-[11px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/50 border-b border-[#f5f0e7]/20 pb-0.5 transition-colors hover:text-[#e96a3a] hover:border-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>EMAIL PAUL</a>
           </div>
         </div>
         <SiteFooter variant="dark" />
@@ -839,17 +861,17 @@ function StartPage() {
       <Header onNavigate={navigate} />
       <div className="mx-auto max-w-[640px] px-5 pb-20 pt-40 sm:px-8 lg:pb-28">
         <div className="border-t border-[#f5f0e7]/20 pt-6">
-          <div className="mb-6 flex items-center gap-3 font-mono-ui text-[10px] font-bold uppercase tracking-[0.2em] text-[#e96a3a]">
+          <div className="mb-6 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>
             <span className="h-px w-8 bg-current" />
             <span>REVENUE LEAK DIAGNOSIS</span>
           </div>
           <h1 className="font-display text-[clamp(2.8rem,6vw,5rem)] leading-[.88] tracking-[-.07em]">
             Start with the problem.
           </h1>
-          <p className="mt-6 max-w-[520px] text-[17px] leading-[1.55] text-[#f5f0e7]/65">
+          <p className="mt-6 max-w-[520px] text-[17px] leading-[1.55] text-[#f5f0e7]/70">
             Give us the minimum context needed to understand where monetization appears to be breaking. If it looks like a fit, you&apos;ll receive the next step by email.
           </p>
-          <div className="mt-6 flex items-baseline gap-4 font-mono-ui text-[10px] uppercase tracking-[.13em] text-[#f5f0e7]/55">
+          <div className="mt-6 flex items-baseline gap-4 text-[12px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>
             <span>$1,000</span>
             <span className="text-[#f5f0e7]/30">·</span>
             <span>3–4 days</span>
@@ -860,14 +882,14 @@ function StartPage() {
 
         {submitted ? (
           <div className="mt-16 border-t border-[#f5f0e7]/20 pt-12">
-            <div className="mb-6 flex items-center gap-3 font-mono-ui text-[10px] font-bold uppercase tracking-[0.2em] text-[#e96a3a]">
+            <div className="mb-6 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>
               <span className="h-px w-8 bg-current" />
               <span>SUBMITTED</span>
             </div>
             <h2 className="font-display text-[clamp(2.2rem,4vw,3.5rem)] leading-[.9] tracking-[-.06em]">
               REQUEST RECEIVED.
             </h2>
-            <p className="mt-6 max-w-[480px] text-[17px] leading-[1.55] text-[#f5f0e7]/65">
+            <p className="mt-6 max-w-[480px] text-[17px] leading-[1.55] text-[#f5f0e7]/70">
               If the diagnosis looks like a fit, Paul will reply by email with the next step and payment details.
             </p>
           </div>
@@ -875,7 +897,7 @@ function StartPage() {
           <form onSubmit={handleSubmit} noValidate className="mt-12 border-t border-[#f5f0e7]/20 pt-10 space-y-8">
             {/* Name */}
             <div>
-              <label htmlFor="start-name" className="block font-mono-ui text-[11px] font-bold uppercase tracking-[.13em] text-[#f5f0e7]/65 mb-3">Name</label>
+              <label htmlFor="start-name" className="block text-[12px] font-semibold uppercase tracking-[.1em] text-[#f5f0e7]/70 mb-3" style={{ fontFamily: 'var(--app-font-sans)' }}>Name</label>
               <input
                 id="start-name"
                 name="name"
@@ -890,7 +912,7 @@ function StartPage() {
 
             {/* Website */}
             <div>
-              <label htmlFor="start-website" className="block font-mono-ui text-[11px] font-bold uppercase tracking-[.13em] text-[#f5f0e7]/65 mb-3">Company / product URL</label>
+              <label htmlFor="start-website" className="block text-[12px] font-semibold uppercase tracking-[.1em] text-[#f5f0e7]/70 mb-3" style={{ fontFamily: 'var(--app-font-sans)' }}>Company / product URL</label>
               <input
                 id="start-website"
                 name="website"
@@ -905,7 +927,7 @@ function StartPage() {
 
             {/* Email */}
             <div>
-              <label htmlFor="start-email" className="block font-mono-ui text-[11px] font-bold uppercase tracking-[.13em] text-[#f5f0e7]/65 mb-3">Work email</label>
+              <label htmlFor="start-email" className="block text-[12px] font-semibold uppercase tracking-[.1em] text-[#f5f0e7]/70 mb-3" style={{ fontFamily: 'var(--app-font-sans)' }}>Work email</label>
               <input
                 id="start-email"
                 name="email"
@@ -920,7 +942,7 @@ function StartPage() {
 
             {/* Primary Issue */}
             <div>
-              <label htmlFor="start-issue" className="block font-mono-ui text-[11px] font-bold uppercase tracking-[.13em] text-[#f5f0e7]/65 mb-3">Where does the problem seem to be?</label>
+              <label htmlFor="start-issue" className="block text-[12px] font-semibold uppercase tracking-[.1em] text-[#f5f0e7]/70 mb-3" style={{ fontFamily: 'var(--app-font-sans)' }}>Where does the problem seem to be?</label>
               <select
                 id="start-issue"
                 name="primaryIssue"
@@ -950,7 +972,7 @@ function StartPage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="flex w-full items-center justify-between bg-[#e96a3a] px-5 py-4 radius-btn font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7] disabled:opacity-60 disabled:cursor-not-allowed"
+                className="flex w-full items-center justify-between bg-[#e96a3a] px-5 py-4 radius-btn text-[11px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7] disabled:opacity-60 disabled:cursor-not-allowed" style={{ fontFamily: 'var(--app-font-sans)' }}
               >
                 {submitting ? 'SENDING...' : 'SEND DIAGNOSIS REQUEST'} <ArrowRight size={16} />
               </button>
@@ -1025,21 +1047,21 @@ function RevenueArchitecturePage() {
   return (
     <main className="page-grain min-h-[100dvh] bg-[#202536] text-[#f5f0e7]">
       <Header onNavigate={navigate} />
-      <div className="mx-auto max-w-[1400px] px-5 pb-20 pt-40 sm:px-8 lg:px-12 lg:pb-28">
+      <div className="mx-auto max-w-[1180px] px-5 pb-20 pt-40 sm:px-8 lg:px-12 lg:pb-28">
 
         {/* Hero */}
         <div className="border-t border-[#f5f0e7]/20 pt-6">
-          <div className="mb-6 flex items-center gap-3 font-mono-ui text-[10px] font-bold uppercase tracking-[0.2em] text-[#e96a3a]">
+          <div className="mb-6 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>
             <span className="h-px w-8 bg-current" />
             <span>REVENUE ARCHITECTURE</span>
           </div>
           <h1 className="font-display text-[clamp(3rem,7vw,7rem)] leading-[.87] tracking-[-.07em]">
             Rebuild the path from interest to revenue.
           </h1>
-          <p className="mt-6 max-w-[640px] text-[18px] leading-[1.55] text-[#f5f0e7]/65">
+          <p className="mt-6 max-w-[640px] text-[18px] leading-[1.55] text-[#f5f0e7]/70">
             When the diagnosis shows that the problem is structural, Revenue Architecture redesigns the commercial system around the buying decision — positioning, economic framing, offers, buying events, pricing and upgrade logic.
           </p>
-          <div className="mt-6 flex items-baseline gap-4 font-mono-ui text-[10px] uppercase tracking-[.13em] text-[#f5f0e7]/55">
+          <div className="mt-6 flex items-baseline gap-4 text-[12px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>
             <span>$10,000</span>
             <span className="text-[#f5f0e7]/30">·</span>
             <span>2 weeks</span>
@@ -1050,12 +1072,12 @@ function RevenueArchitecturePage() {
 
         {/* What it covers */}
         <div className="mt-24">
-          <p className="font-mono-ui text-[10px] font-bold uppercase tracking-[.18em] text-[#e96a3a]">What the engagement covers</p>
+          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>What the engagement covers</p>
           <div className="mt-10 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {covers.map(([title, body]) => (
               <article key={title} className="border-t border-[#f5f0e7]/15 py-5">
-                <h3 className="font-mono-ui text-[10px] font-bold uppercase tracking-[.13em] text-[#e96a3a]">{title}</h3>
-                <p className="mt-3 max-w-[340px] text-[15px] leading-[1.55] text-[#f5f0e7]/62">{body}</p>
+                <h3 className="text-[11px] font-semibold uppercase tracking-[.1em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>{title}</h3>
+                <p className="mt-3 max-w-[340px] text-[15px] leading-[1.55] text-[#f5f0e7]/68">{body}</p>
               </article>
             ))}
           </div>
@@ -1063,23 +1085,23 @@ function RevenueArchitecturePage() {
 
         {/* Relationship */}
         <div className="mt-24 border-t border-[#f5f0e7]/15 pt-10">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-12">
             <div>
               <div className="border-t border-[#f5f0e7]/20 py-8">
-                <span className="font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#e96a3a]">01</span>
+                <span className="font-mono-ui text-[10px] text-[#e96a3a]">01</span>
                 <h3 className="mt-4 font-display text-[clamp(2rem,3.5vw,3rem)] leading-none tracking-[-.05em]">DIAGNOSE</h3>
-                <p className="mt-2 font-mono-ui text-[11px] uppercase tracking-[.12em] text-[#f5f0e7]/45">Revenue Leak Diagnosis</p>
-                <p className="mt-1 font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#e96a3a]">$1,000 · 3–4 days</p>
-                <p className="mt-4 max-w-[380px] text-[16px] leading-[1.5] text-[#f5f0e7]/60">Find the break.</p>
+                <p className="mt-2 text-[12px] font-medium uppercase tracking-[.1em] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>Revenue Leak Diagnosis</p>
+                <p className="mt-1 text-[11px] font-medium uppercase tracking-[.1em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>$1,000 · 3–4 days</p>
+                <p className="mt-4 max-w-[380px] text-[16px] leading-[1.5] text-[#f5f0e7]/68">Find the break.</p>
               </div>
             </div>
             <div>
               <div className="border-t border-[#f5f0e7]/20 py-8">
-                <span className="font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#e96a3a]">02</span>
+                <span className="font-mono-ui text-[10px] text-[#e96a3a]">02</span>
                 <h3 className="mt-4 font-display text-[clamp(2rem,3.5vw,3rem)] leading-none tracking-[-.05em]">REBUILD</h3>
-                <p className="mt-2 font-mono-ui text-[11px] uppercase tracking-[.12em] text-[#f5f0e7]/45">Revenue Architecture</p>
-                <p className="mt-1 font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#e96a3a]">$10,000 · 2 weeks</p>
-                <p className="mt-4 max-w-[380px] text-[16px] leading-[1.5] text-[#f5f0e7]/60">Rebuild the system around it.</p>
+                <p className="mt-2 text-[12px] font-medium uppercase tracking-[.1em] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>Revenue Architecture</p>
+                <p className="mt-1 text-[11px] font-medium uppercase tracking-[.1em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>$10,000 · 2 weeks</p>
+                <p className="mt-4 max-w-[380px] text-[16px] leading-[1.5] text-[#f5f0e7]/68">Rebuild the system around it.</p>
               </div>
             </div>
           </div>
@@ -1091,18 +1113,18 @@ function RevenueArchitecturePage() {
           <h2 className="font-display text-[clamp(2.2rem,4vw,3.5rem)] leading-[.9] tracking-[-.06em]">Who Revenue Architecture is for</h2>
           <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2">
             <div className="border-t border-[#f5f0e7]/20 pt-6">
-              <span className="font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#f5f0e7]/50">Strong fit</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[.12em] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>Strong fit</span>
               <ul className="mt-6 space-y-4">
                 {strongFit.map((item) => (
-                  <li key={item} className="flex gap-3 text-[15px] leading-[1.5] text-[#f5f0e7]/60"><Check size={16} className="mt-0.5 shrink-0 text-[#e96a3a]" />{item}</li>
+                  <li key={item} className="flex gap-3 text-[15px] leading-[1.5] text-[#f5f0e7]/68"><Check size={16} className="mt-0.5 shrink-0 text-[#e96a3a]" />{item}</li>
                 ))}
               </ul>
             </div>
             <div className="border-t border-[#f5f0e7]/20 pt-6">
-              <span className="font-mono-ui text-[10px] font-bold uppercase tracking-[.14em] text-[#f5f0e7]/50">Not fit</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[.12em] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>Not fit</span>
               <ul className="mt-6 space-y-4">
                 {notFit.map((item) => (
-                  <li key={item} className="flex gap-3 text-[15px] leading-[1.5] text-[#f5f0e7]/60"><Minus size={16} className="mt-0.5 shrink-0 text-[#f5f0e7]/30" />{item}</li>
+                  <li key={item} className="flex gap-3 text-[15px] leading-[1.5] text-[#f5f0e7]/68"><Minus size={16} className="mt-0.5 shrink-0 text-[#f5f0e7]/30" />{item}</li>
                 ))}
               </ul>
             </div>
@@ -1113,9 +1135,9 @@ function RevenueArchitecturePage() {
         <div className="mt-24 border-t border-[#f5f0e7]/15 pt-10">
           <p className="font-display text-[clamp(1.8rem,3.5vw,2.8rem)] leading-[1.08] tracking-[-.04em]">The revenue problem starts with the diagnosis.</p>
           <div className="mt-8 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
-            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">START WITH THE DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" /></a>
+            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn text-[11px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}>START WITH THE DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" /></a>
           </div>
-          <p className="mt-5 font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45">
+          <p className="mt-5 text-[11px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/50" style={{ fontFamily: 'var(--app-font-sans)' }}>
             Already diagnosed the problem? Email <a href="mailto:paul@nasiba.co" className="border-b border-[#f5f0e7]/20 pb-0.5 transition-colors hover:text-[#e96a3a] hover:border-[#e96a3a]">paul@nasiba.co</a>
           </p>
         </div>
@@ -1162,7 +1184,7 @@ function DiagnosisPage() {
   return (
     <main className="page-grain min-h-[100dvh] bg-[#202536] text-[#f5f0e7]">
       <Header onNavigate={navigate} />
-      <div className="mx-auto max-w-[1400px] px-5 pb-20 pt-40 sm:px-8 lg:px-12 lg:pb-28">
+      <div className="mx-auto max-w-[1180px] px-5 pb-20 pt-40 sm:px-8 lg:px-12 lg:pb-28">
 
         {/* Hero */}
         <div className="border-t border-[#f5f0e7]/20 pt-6">
@@ -1172,7 +1194,7 @@ function DiagnosisPage() {
           <p className="mt-6 max-w-[600px] text-[18px] leading-[1.55] text-[#f5f0e7]/65">
             A focused async commercial diagnosis of where the path from interest to payment is breaking.
           </p>
-          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 font-mono-ui text-[10px] uppercase tracking-[.13em] text-[#f5f0e7]/55">
+          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-[12px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>
             <span>$1,000</span>
             <span>3–4 DAYS</span>
             <span>ASYNCHRONOUS</span>
@@ -1182,15 +1204,15 @@ function DiagnosisPage() {
 
         {/* Diagnostic Lenses */}
         <div className="mt-28">
-          <p className="font-mono-ui text-[10px] font-bold uppercase tracking-[.18em] text-[#e96a3a]">Diagnostic method</p>
+          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>Diagnostic method</p>
           <h2 className="mt-5 max-w-[460px] font-display text-[clamp(2.2rem,4vw,3.5rem)] leading-[.9] tracking-[-.07em]">Six ways to find a leak.</h2>
-          <p className="mt-7 max-w-[420px] text-[15px] leading-[1.6] text-[#f5f0e7]/62">Not a scorecard. A way to inspect the whole commercial chain before choosing a fix.</p>
+          <p className="mt-7 max-w-[420px] text-[15px] leading-[1.6] text-[#f5f0e7]/68">Not a scorecard. A way to inspect the whole commercial chain before choosing a fix.</p>
           <div className="mt-14 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {diagnosticLenses.map(([number, title, body]) => (
               <article key={number} className="border-t border-[#f5f0e7]/15 py-5">
                 <div className="flex justify-between font-mono-ui text-[10px] text-[#e96a3a]"><span>{number}</span><span>+</span></div>
-                <h3 className="mt-8 font-display text-[28px] tracking-[-.04em]">{title}</h3>
-                <p className="mt-3 max-w-[310px] text-[14px] leading-[1.55] text-[#f5f0e7]/62">{body}</p>
+                <h3 className="mt-8 font-display text-[26px] tracking-[-.04em]">{title}</h3>
+                <p className="mt-3 max-w-[310px] text-[15px] leading-[1.55] text-[#f5f0e7]/68">{body}</p>
               </article>
             ))}
           </div>
@@ -1205,12 +1227,12 @@ function DiagnosisPage() {
               const answerId = `diag-faq-answer-${index}`;
               return (
                 <div key={question} className="border-b border-[#f5f0e7]/15">
-                  <button type="button" onClick={() => setOpenFaq(isOpen ? null : index)} className="flex w-full items-center justify-between gap-5 py-5 text-left transition-colors duration-200 hover:bg-[#202536]/50 px-3 -mx-3 radius-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e96a3a]" aria-expanded={isOpen} aria-controls={answerId}>
+                  <button type="button" onClick={() => setOpenFaq(isOpen ? null : index)} className="flex w-full items-center justify-between gap-5 py-6 text-left transition-colors duration-200 hover:bg-[#202536]/50 px-3 -mx-3 radius-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e96a3a]" aria-expanded={isOpen} aria-controls={answerId}>
                     <span className="font-display text-[20px] leading-[1.1] tracking-[-.02em] text-[#f5f0e7]">{question}</span>
-                    <ChevronDown size={16} className={`shrink-0 text-[#e96a3a] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+                    <ChevronDown size={18} className={`shrink-0 text-[#e96a3a] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
                   </button>
                   <div id={answerId} role="region" className="faq-answer" data-state={isOpen ? 'open' : 'closed'}>
-                    <div className="max-w-[620px] pb-6 pr-8 text-[15px] leading-[1.6] text-[#f5f0e7]/62">{answer}</div>
+                    <div className="max-w-[620px] pb-7 pr-8 text-[16px] leading-[1.6] text-[#f5f0e7]/70">{answer}</div>
                   </div>
                 </div>
               );
@@ -1221,8 +1243,8 @@ function DiagnosisPage() {
         <div className="mt-24 border-t border-[#f5f0e7]/15 pt-10">
           <p className="font-display text-[clamp(1.8rem,3.5vw,2.8rem)] leading-[1.08] tracking-[-.04em]">Ready to find the leak?</p>
           <div className="mt-8 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
-            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">START THE DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" /></a>
-            <a href="mailto:paul@nasiba.co" className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45 border-b border-[#f5f0e7]/20 pb-0.5 transition-colors duration-200 hover:text-[#e96a3a] hover:border-[#e96a3a]">EMAIL PAUL</a>
+            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn text-[11px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}>START THE DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" /></a>
+            <a href="mailto:paul@nasiba.co" className="text-[11px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/50 border-b border-[#f5f0e7]/20 pb-0.5 transition-colors duration-200 hover:text-[#e96a3a] hover:border-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>EMAIL PAUL</a>
           </div>
         </div>
 
@@ -1253,14 +1275,14 @@ function About() {
   return (
     <main className="page-grain min-h-[100dvh] bg-[#202536] text-[#f5f0e7]">
       <Header onNavigate={navigate} />
-      <div className="mx-auto max-w-[1400px] px-5 pb-20 pt-40 sm:px-8 lg:px-12 lg:pb-28">
+      <div className="mx-auto max-w-[1180px] px-5 pb-20 pt-40 sm:px-8 lg:px-12 lg:pb-28">
 
         {/* Nasiba — statement */}
         <div className="border-t border-[#f5f0e7]/20 pt-6">
           <h1 className="font-display text-[clamp(3rem,7vw,7rem)] leading-[.87] tracking-[-.07em] text-[#f5f0e7]">
             A specialist Revenue Architecture agency for SaaS.
           </h1>
-          <p className="mt-6 max-w-[600px] text-[18px] leading-[1.55] text-[#f5f0e7]/65">
+          <p className="mt-6 max-w-[600px] text-[18px] leading-[1.55] text-[#f5f0e7]/70">
             Nasiba works on the commercial path between product interest and revenue — positioning, economic framing, offers, buying events and upgrade logic.
           </p>
         </div>
@@ -1270,7 +1292,7 @@ function About() {
           <h2 className="font-display text-[clamp(2.2rem,4vw,3.5rem)] leading-[.92] tracking-[-.06em] text-[#f5f0e7]">
             Revenue problems are often diagnosed at the wrong level.
           </h2>
-          <p className="mt-7 text-[17px] leading-[1.65] text-[#f5f0e7]/62">
+          <p className="mt-7 text-[17px] leading-[1.65] text-[#f5f0e7]/68">
             Nasiba exists to examine the commercial path as a system — not as a collection of isolated conversion problems. Most SaaS teams are trained to optimize individual components. But revenue depends on a sequence of commercial transitions. Nasiba exists to identify where that sequence breaks.
           </p>
         </div>
@@ -1281,7 +1303,7 @@ function About() {
             <h2 className="font-display text-[clamp(1.8rem,3vw,2.5rem)] leading-[1.05] tracking-[-.05em] text-[#f5f0e7]/85">
               Senior work stays senior.
             </h2>
-            <p className="mt-6 max-w-[480px] text-[16px] leading-[1.6] text-[#f5f0e7]/60">
+            <p className="mt-6 max-w-[480px] text-[16px] leading-[1.6] text-[#f5f0e7]/68">
               The person diagnosing the commercial problem stays close to the strategic work. No account layer, no retainer structure, and no handoff to a generic delivery team.
             </p>
           </div>
@@ -1289,15 +1311,15 @@ function About() {
             <div className="space-y-4 border-t border-[#f5f0e7]/15 pt-6">
               <div className="flex items-center gap-4">
                 <span className="h-px w-6 bg-[#e96a3a]" />
-                <span className="font-mono-ui text-[10px] uppercase tracking-[.14em] text-[#f5f0e7]/45">Direct strategic involvement</span>
+                <span className="text-[12px] tracking-[.04em] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>Direct strategic involvement</span>
               </div>
               <div className="flex items-center gap-4">
                 <span className="h-px w-6 bg-[#e96a3a]" />
-                <span className="font-mono-ui text-[10px] uppercase tracking-[.14em] text-[#f5f0e7]/45">Fixed scope</span>
+                <span className="text-[12px] tracking-[.04em] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>Fixed scope</span>
               </div>
               <div className="flex items-center gap-4">
                 <span className="h-px w-6 bg-[#e96a3a]" />
-                <span className="font-mono-ui text-[10px] uppercase tracking-[.14em] text-[#f5f0e7]/45">Async delivery</span>
+                <span className="text-[12px] tracking-[.04em] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>Async delivery</span>
               </div>
             </div>
           </div>
@@ -1309,25 +1331,25 @@ function About() {
             <div>
               <div className="flex h-14 w-14 items-center justify-center border border-[#e96a3a] font-mono-ui text-[16px] font-bold text-[#e96a3a]">P</div>
               <p className="mt-6 font-mono-ui text-[11px] font-bold uppercase tracking-[.16em] text-[#f5f0e7]">Paul</p>
-              <p className="mt-1 font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45">Founder &amp; Principal</p>
+              <p className="mt-1 text-[12px] tracking-[.04em] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>Founder &amp; Principal</p>
               <div className="mt-6 space-y-2">
-                <p className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45">
+                <p className="text-[12px] tracking-[.04em] text-[#f5f0e7]/60">
                   <a href="https://www.linkedin.com/in/paul-coll/" target="_blank" rel="noopener noreferrer" className="border-b border-[#f5f0e7]/20 pb-0.5 transition-colors hover:text-[#e96a3a] hover:border-[#e96a3a]">LinkedIn →</a>
                 </p>
-                <p className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45">
+                <p className="text-[12px] tracking-[.04em] text-[#f5f0e7]/60">
                   <a href="https://x.com/1Paul_coll" target="_blank" rel="noopener noreferrer" className="border-b border-[#f5f0e7]/20 pb-0.5 transition-colors hover:text-[#e96a3a] hover:border-[#e96a3a]">X / Twitter →</a>
                 </p>
-                <p className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45">
+                <p className="text-[12px] tracking-[.04em] text-[#f5f0e7]/60">
                   <a href="mailto:paul@nasiba.co" className="border-b border-[#f5f0e7]/20 pb-0.5 transition-colors hover:text-[#e96a3a] hover:border-[#e96a3a]">paul@nasiba.co</a>
                 </p>
               </div>
             </div>
             <div className="max-w-[600px]">
-              <p className="text-[17px] leading-[1.6] text-[#f5f0e7]/65">
+              <p className="text-[17px] leading-[1.6] text-[#f5f0e7]/70">
                 Paul leads Nasiba&apos;s diagnostic and strategic work across positioning, economic value, offers, buying events and monetization architecture.
               </p>
               <div className="mt-8">
-                <a href="/cases" className="inline-flex items-center gap-3 border-b border-[#e96a3a] pb-1 font-mono-ui text-[10px] font-bold uppercase tracking-[.12em] text-[#e96a3a] transition-colors duration-200 hover:text-[#f18a61]">VIEW CLIENT CASES →</a>
+                <a href="/cases" className="inline-flex items-center gap-3 border-b-2 border-[#e96a3a] pb-1.5 text-[12px] font-semibold uppercase tracking-[.1em] text-[#e96a3a] transition-colors duration-200 hover:text-[#f18a61]" style={{ fontFamily: 'var(--app-font-sans)' }}>VIEW CLIENT CASES →</a>
               </div>
             </div>
           </div>
@@ -1359,14 +1381,14 @@ function CasesIndex() {
   return (
     <main className="page-grain min-h-[100dvh] bg-[#202536] text-[#f5f0e7]">
       <Header onNavigate={navigate} />
-      <div className="mx-auto max-w-[1400px] px-5 pb-20 pt-40 sm:px-8 lg:px-12 lg:pb-28">
+      <div className="mx-auto max-w-[1180px] px-5 pb-20 pt-40 sm:px-8 lg:px-12 lg:pb-28">
 
         {/* Hero */}
         <div className="border-t border-[#f5f0e7]/20 pt-6">
           <h1 className="font-display text-[clamp(3rem,7vw,7rem)] leading-[.87] tracking-[-.07em] text-[#f5f0e7]">
             Client work
           </h1>
-          <p className="mt-6 max-w-[600px] text-[18px] leading-[1.55] text-[#f5f0e7]/65">
+          <p className="mt-6 max-w-[600px] text-[18px] leading-[1.55] text-[#f5f0e7]/70">
             Selected commercial diagnosis, positioning and messaging work across SaaS products.
           </p>
         </div>
@@ -1374,26 +1396,26 @@ function CasesIndex() {
         {/* Cases List */}
         <div className="mt-20 border-t border-[#f5f0e7]/15">
           {casesData.map((c) => (
-            <a key={c.slug} href={`/cases/${c.slug}`} className="group grid grid-cols-1 gap-4 border-b border-[#f5f0e7]/15 py-10 transition-all duration-200 hover:bg-[#f5f0e7]/[.03] hover:px-3 -mx-3 px-0 radius-block sm:grid-cols-[200px_1fr] sm:gap-8 sm:py-12">
+            <a key={c.slug} href={`/cases/${c.slug}`} className="group grid grid-cols-1 gap-4 border-b border-[#f5f0e7]/15 py-10 transition-all duration-200 hover:bg-[#f5f0e7]/[.03] hover:translate-y-[-2px] radius-block sm:grid-cols-[200px_1fr] sm:gap-8 sm:py-12">
               <div>
-                <h2 className="font-mono-ui text-[12px] font-bold uppercase tracking-[.14em] text-[#f5f0e7] group-hover:text-[#e96a3a] transition-colors duration-200">{c.name}</h2>
-                <p className="mt-3 font-mono-ui text-[9px] uppercase tracking-[.12em] text-[#e96a3a]">{c.engagement}</p>
+                <h2 className="font-display text-[20px] font-semibold tracking-[-.02em] text-[#f5f0e7] group-hover:text-[#e96a3a] transition-colors duration-200">{c.name}</h2>
+                <p className="mt-2 text-[11px] font-medium uppercase tracking-[.08em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>{c.engagement}</p>
               </div>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <div>
-                  <span className="font-mono-ui text-[9px] uppercase tracking-[.12em] text-[#e96a3a]">Problem</span>
-                  <p className="mt-2 text-[14px] leading-[1.5] text-[#f5f0e7]/58">{c.problem}</p>
+                  <span className="text-[11px] font-medium uppercase tracking-[.08em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>Problem</span>
+                  <p className="mt-2 text-[14px] leading-[1.5] text-[#f5f0e7]/65">{c.problem}</p>
                 </div>
                 <div>
-                  <span className="font-mono-ui text-[9px] uppercase tracking-[.12em] text-[#e96a3a]">Intervention</span>
-                  <p className="mt-2 text-[14px] leading-[1.5] text-[#f5f0e7]/58">{c.intervention}</p>
+                  <span className="text-[11px] font-medium uppercase tracking-[.08em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>Intervention</span>
+                  <p className="mt-2 text-[14px] leading-[1.5] text-[#f5f0e7]/65">{c.intervention}</p>
                 </div>
                 <div>
-                  <span className="font-mono-ui text-[9px] uppercase tracking-[.12em] text-[#e96a3a]">Outcome</span>
-                  <p className="mt-2 text-[14px] leading-[1.5] text-[#f5f0e7]/58">{c.shortOutcome}</p>
+                  <span className="text-[11px] font-medium uppercase tracking-[.08em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>Outcome</span>
+                  <p className="mt-2 text-[14px] leading-[1.5] text-[#f5f0e7]/65">{c.shortOutcome}</p>
                 </div>
               </div>
-              <span className="hidden sm:flex items-center font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#e96a3a] opacity-0 transition-opacity duration-200 group-hover:opacity-100">VIEW CASE →</span>
+              <span className="hidden sm:flex items-center text-[11px] font-semibold uppercase tracking-[.1em] text-[#e96a3a] opacity-0 transition-opacity duration-200 group-hover:opacity-100" style={{ fontFamily: 'var(--app-font-sans)' }}>VIEW CASE →</span>
             </a>
           ))}
         </div>
@@ -1443,17 +1465,17 @@ function CaseDetail({ slug }: { slug: string }) {
   return (
     <main className="page-grain min-h-[100dvh] bg-[#202536] text-[#f5f0e7]">
       <Header onNavigate={navigate} />
-      <div className="mx-auto max-w-[1400px] px-5 pb-20 pt-40 sm:px-8 lg:px-12 lg:pb-28">
+      <div className="mx-auto max-w-[1180px] px-5 pb-20 pt-40 sm:px-8 lg:px-12 lg:pb-28">
 
         {/* Hero */}
         <div className="border-t border-[#f5f0e7]/20 pt-6">
-          <p className="font-mono-ui text-[10px] uppercase tracking-[.18em] text-[#e96a3a]">
+          <p className="text-[12px] font-medium uppercase tracking-[.1em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>
             <a href="/cases" className="transition-colors hover:text-[#f18a61]">CASES</a> → {data.name.toUpperCase()}
           </p>
           <h1 className="mt-8 font-display text-[clamp(3rem,7vw,7rem)] leading-[.87] tracking-[-.07em] text-[#f5f0e7]">
             {data.name}
           </h1>
-          <p className="mt-4 font-mono-ui text-[10px] uppercase tracking-[.14em] text-[#e96a3a]">
+          <p className="mt-4 text-[11px] font-medium uppercase tracking-[.1em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>
             {data.engagementType}
           </p>
         </div>
@@ -1464,10 +1486,10 @@ function CaseDetail({ slug }: { slug: string }) {
             <article key={section.label} className={`grid grid-cols-1 gap-6 border-b border-[#f5f0e7]/15 py-10 sm:grid-cols-[120px_1fr] sm:gap-10 transition-colors duration-200 px-3 -mx-3 ${idx % 2 === 0 ? 'hover:bg-[#f5f0e7]/[.02]' : ''}`}>
               <div>
                 <span className="font-mono-ui text-[10px] text-[#e96a3a]">{section.label}</span>
-                <h3 className="mt-3 font-mono-ui text-[11px] font-bold uppercase tracking-[.14em] text-[#f5f0e7]/70">{section.title}</h3>
+                <h3 className="mt-3 text-[11px] font-semibold uppercase tracking-[.1em] text-[#f5f0e7]/75" style={{ fontFamily: 'var(--app-font-sans)' }}>{section.title}</h3>
               </div>
               <div className="max-w-[720px]">
-                <p className="text-[16px] leading-[1.6] text-[#f5f0e7]/65">{section.body}</p>
+                <p className="text-[16px] leading-[1.6] text-[#f5f0e7]/70">{section.body}</p>
               </div>
             </article>
           ))}
@@ -1475,8 +1497,8 @@ function CaseDetail({ slug }: { slug: string }) {
 
         {/* Navigation */}
         <div className="mt-16 flex items-center justify-between border-t border-[#f5f0e7]/15 pt-8">
-          <a href="/cases" className="inline-flex items-center gap-3 border-b border-[#e96a3a] pb-1 font-mono-ui text-[10px] font-bold uppercase tracking-[.12em] text-[#e96a3a] transition-colors duration-200 hover:text-[#f18a61]">← ALL CASES</a>
-          <a href={isLast ? '/cases' : `/cases/${nextSlug}`} className="inline-flex items-center gap-3 border-b border-[#e96a3a] pb-1 font-mono-ui text-[10px] font-bold uppercase tracking-[.12em] text-[#e96a3a] transition-colors duration-200 hover:text-[#f18a61]">{isLast ? 'ALL CASES' : `${nextName.toUpperCase()}`} →</a>
+          <a href="/cases" className="inline-flex items-center gap-3 border-b-2 border-[#e96a3a] pb-1.5 text-[11px] font-semibold uppercase tracking-[.1em] text-[#e96a3a] transition-colors duration-200 hover:text-[#f18a61]" style={{ fontFamily: 'var(--app-font-sans)' }}>← ALL CASES</a>
+          <a href={isLast ? '/cases' : `/cases/${nextSlug}`} className="inline-flex items-center gap-3 border-b-2 border-[#e96a3a] pb-1.5 text-[11px] font-semibold uppercase tracking-[.1em] text-[#e96a3a] transition-colors duration-200 hover:text-[#f18a61]" style={{ fontFamily: 'var(--app-font-sans)' }}>{isLast ? 'ALL CASES' : `${nextName.toUpperCase()}`} →</a>
         </div>
 
         <SiteFooter variant="dark" />
@@ -1508,7 +1530,7 @@ function PrivacyPage() {
       <div className="mx-auto max-w-[900px] px-5 pb-20 pt-40 sm:px-8 lg:pb-28">
         <div className="border-t border-[#cfc7b7] pt-6">
           <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-[.9] tracking-[-.06em] text-[#202536]">Privacy</h1>
-          <p className="mt-4 font-mono-ui text-[10px] uppercase tracking-[.14em] text-[#6c6b68]">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          <p className="mt-4 text-[12px] font-medium uppercase tracking-[.08em] text-[#6c6b68]" style={{ fontFamily: 'var(--app-font-sans)' }}>Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
         </div>
         <div className="mt-12 space-y-8 border-t border-[#cfc7b7] pt-10 text-[16px] leading-[1.7] text-[#55575c]">
           <p>Nasiba (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) operates the nasiba.co website. This page informs you of our policies regarding the collection, use and disclosure of personal information when you use our service.</p>
@@ -1548,7 +1570,7 @@ function TermsPage() {
       <div className="mx-auto max-w-[900px] px-5 pb-20 pt-40 sm:px-8 lg:pb-28">
         <div className="border-t border-[#cfc7b7] pt-6">
           <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-[.9] tracking-[-.06em] text-[#202536]">Terms</h1>
-          <p className="mt-4 font-mono-ui text-[10px] uppercase tracking-[.14em] text-[#6c6b68]">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          <p className="mt-4 text-[12px] font-medium uppercase tracking-[.08em] text-[#6c6b68]" style={{ fontFamily: 'var(--app-font-sans)' }}>Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
         </div>
         <div className="mt-12 space-y-8 border-t border-[#cfc7b7] pt-10 text-[16px] leading-[1.7] text-[#55575c]">
           <p>These terms govern your use of nasiba.co and any engagement with Nasiba. By engaging our services, you agree to the following terms.</p>
