@@ -220,8 +220,8 @@ function SiteFooter({ variant = 'dark' }: { variant?: 'dark' | 'light' }) {
       <div className={`mt-10 flex flex-col justify-between gap-4 border-t ${border} pt-6 sm:flex-row sm:items-center`}>
         <div className={`font-mono-ui text-[9px] uppercase tracking-[.13em] ${textMuted}`}>&copy; {new Date().getFullYear()} Nasiba</div>
         <div className="flex gap-5">
-          <a href="/privacy" className={`font-mono-ui text-[9px] uppercase tracking-[.13em] ${textMuted} border-b border-transparent pb-0.5 transition-colors ${linkHover}`}>Privacy</a>
-          <a href="/terms" className={`font-mono-ui text-[9px] uppercase tracking-[.13em] ${textMuted} border-b border-transparent pb-0.5 transition-colors ${linkHover}`}>Terms</a>
+          <a href="/privacy" className={`font-mono-ui text-[9px] uppercase tracking-[.13em] ${textMuted} border-b border-transparent pb-0.5 transition-colors duration-200 ${linkHover}`}>Privacy</a>
+          <a href="/terms" className={`font-mono-ui text-[9px] uppercase tracking-[.13em] ${textMuted} border-b border-transparent pb-0.5 transition-colors duration-200 ${linkHover}`}>Terms</a>
         </div>
       </div>
     </footer>
@@ -264,7 +264,7 @@ function Header({ onNavigate, variant = 'dark' }: { onNavigate: (id: string) => 
               {item.label}
             </a>
           ))}
-          <a href="/start" className={`flex items-center gap-2 ${btnBg} px-4 py-2.5 font-mono-ui text-[9px] font-bold uppercase tracking-[0.1em] ${btnText} transition-colors ${hoverBg} focus-visible:outline-none focus-visible:ring-2 ${dark ? 'focus-visible:ring-[#f5f0e7]' : 'focus-visible:ring-[#202536]'}`}>
+          <a href="/start" className={`flex items-center gap-2 ${btnBg} px-4 py-2.5 radius-btn font-mono-ui text-[9px] font-bold uppercase tracking-[0.1em] ${btnText} transition-all duration-[160ms] ${hoverBg} hover-lift focus-visible:outline-none focus-visible:ring-2 ${dark ? 'focus-visible:ring-[#f5f0e7]' : 'focus-visible:ring-[#202536]'}`}>
             START DIAGNOSIS <ArrowRight size={13} strokeWidth={2.5} />
           </a>
         </nav>
@@ -281,7 +281,7 @@ function Header({ onNavigate, variant = 'dark' }: { onNavigate: (id: string) => 
               <ArrowDownRight size={14} className={accentText} />
             </a>
           ))}
-          <a href="/start" className={`mt-3 flex w-full items-center justify-between ${btnBg} px-3 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[0.12em] ${btnText}`}>
+          <a href="/start" className={`mt-3 flex w-full items-center justify-between ${btnBg} px-3 py-4 radius-btn font-mono-ui text-[10px] font-bold uppercase tracking-[0.12em] ${btnText} transition-all duration-[160ms]`}>
             START DIAGNOSIS <ArrowRight size={14} />
           </a>
         </nav>
@@ -309,8 +309,8 @@ function Hero({ onNavigate }: { onNavigate: (id: string) => void }) {
             An asynchronous diagnosis of the commercial gaps between product interest and payment — from positioning and economic value to buying events, upgrade logic and messaging.
           </p>
           <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
-            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[0.1em] text-[#202536] transition-colors hover:bg-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">
-              START THE REVENUE LEAK DIAGNOSIS <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn font-mono-ui text-[10px] font-bold uppercase tracking-[0.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">
+              START THE REVENUE LEAK DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" />
             </a>
           </div>
           <div className="mt-7 font-mono-ui text-[11px] font-bold uppercase tracking-[.16em] text-[#f5f0e7]/78">$1,000 · 3–4 DAYS · ASYNCHRONOUS</div>
@@ -371,7 +371,7 @@ function RevenuePathMap() {
               {steps.map((step, i) => (
                 <div key={step.name} className="flex items-center">
                   <div className="flex flex-col items-center">
-                    <div className={`flex h-12 w-12 items-center justify-center border font-mono-ui text-[9px] font-bold tracking-[.1em] ${step.active ? 'border-[#e96a3a] text-[#e96a3a]' : 'border-[#f5f0e7]/20 text-[#f5f0e7]/30'}`}>
+                    <div className={`flex h-12 w-12 items-center justify-center border radius-block font-mono-ui text-[9px] font-bold tracking-[.1em] ${step.active ? 'border-[#e96a3a] text-[#e96a3a]' : 'border-[#f5f0e7]/20 text-[#f5f0e7]/30'}`}>
                       {step.active ? <Check size={16} /> : <span className="text-[#e96a3a]">✗</span>}
                     </div>
                     <span className={`mt-3 font-mono-ui text-[9px] uppercase tracking-[.12em] ${step.active ? 'text-[#f5f0e7]/70' : 'text-[#e96a3a]'}`}>{step.name}</span>
@@ -388,7 +388,7 @@ function RevenuePathMap() {
               {steps.map((step, i) => (
                 <div key={step.name} className="flex items-start gap-4">
                   <div className="flex flex-col items-center">
-                    <div className={`flex h-10 w-10 items-center justify-center border font-mono-ui text-[9px] font-bold ${step.active ? 'border-[#e96a3a] text-[#e96a3a]' : 'border-[#f5f0e7]/20 text-[#f5f0e7]/30'}`}>
+                    <div className={`flex h-10 w-10 items-center justify-center border radius-block font-mono-ui text-[9px] font-bold ${step.active ? 'border-[#e96a3a] text-[#e96a3a]' : 'border-[#f5f0e7]/20 text-[#f5f0e7]/30'}`}>
                       {step.active ? <Check size={14} /> : <span className="text-[#e96a3a]">✗</span>}
                     </div>
                     {i < steps.length - 1 && <div className={`w-px h-8 ${step.active && steps[i + 1].active ? 'bg-[#f5f0e7]/25' : 'bg-[#e96a3a]/40'}`} />}
@@ -401,7 +401,7 @@ function RevenuePathMap() {
             {/* Annotations */}
             <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-3">
               {annotations.map((a) => (
-                <div key={a.position} className="border-l-2 border-[#e96a3a] pl-5">
+                <div key={a.position} className="border-l-2 border-[#e96a3a] pl-5 transition-colors duration-200 hover:bg-[#f5f0e7]/[.03] px-3 -mx-3 py-2 radius-block">
                   <p className="font-mono-ui text-[9px] uppercase tracking-[.14em] text-[#e96a3a]">{a.position}</p>
                   <p className="mt-3 font-display text-[17px] leading-[1.4] tracking-[-.02em] text-[#f5f0e7]/60 italic">{a.text}</p>
                 </div>
@@ -497,7 +497,7 @@ function Diagnosis() {
             </p>
             <div className="mt-10 grid grid-cols-1 gap-px border-y border-[#cfc7b7] bg-[#cfc7b7] md:grid-cols-2 lg:grid-cols-3">
               {outputs.map(([number, title, body]) => (
-                <article key={number} className="min-h-[200px] bg-[#f5f0e7] p-5 sm:p-6">
+                <article key={number} className="min-h-[200px] bg-[#f5f0e7] p-5 sm:p-6 transition-colors duration-200 hover:bg-[#f5f0e7]/80">
                   <span className="font-mono-ui text-[10px] text-[#e15b2e]">{number}</span>
                   <h3 className="mt-8 font-display text-[26px] leading-[.95] tracking-[-.05em] text-[#202536]">{title}</h3>
                   <p className="mt-3 text-[13px] leading-[1.5] text-[#55575c]">{body}</p>
@@ -505,7 +505,7 @@ function Diagnosis() {
               ))}
             </div>
           </div>
-          <div id="offer" className="bg-[#202536] p-7 text-[#f5f0e7] sm:p-10">
+          <div id="offer" className="bg-[#202536] p-7 text-[#f5f0e7] radius-panel sm:p-10 transition-shadow duration-200 hover:shadow-lg">
             <div className="flex items-start justify-between border-b border-[#f5f0e7]/20 pb-8">
               <span className="font-mono-ui text-[10px] uppercase tracking-[.14em] text-[#e96a3a]">The working room</span>
               <span className="font-display text-[52px] leading-none tracking-[-.06em]">$1,000</span>
@@ -523,7 +523,7 @@ function Diagnosis() {
               <span>ASYNCHRONOUS</span>
               <span>FIXED SCOPE</span>
             </div>
-            <a href="/start" className="mt-8 flex w-full items-center justify-between bg-[#e96a3a] px-5 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-colors hover:bg-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">
+            <a href="/start" className="mt-8 flex w-full items-center justify-between bg-[#e96a3a] px-5 py-4 radius-btn font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">
               START THE DIAGNOSIS <ArrowRight size={16} />
             </a>
             <p className="mt-8 border-t border-[#f5f0e7]/15 pt-5 font-mono-ui text-[9px] uppercase tracking-[.14em] text-[#f5f0e7]/40">No retainer. No recurring commitment. No ongoing consulting.</p>
@@ -547,7 +547,7 @@ function CasesTeaser() {
         <div className="mt-16 space-y-0">
           {casesData.map((c) => (
             <div key={c.slug} className="border-t border-[#cfc7b7]">
-              <a href={`/cases/${c.slug}`} className="group block py-10 transition-colors hover:bg-[#f5f0e7]/60 sm:py-12">
+              <a href={`/cases/${c.slug}`} className="group block py-10 transition-all duration-200 hover:bg-[#f5f0e7]/60 hover:px-4 -mx-4 px-0 radius-block sm:py-12">
                 <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
                   <div className="sm:w-[200px]">
                     <h3 className="font-mono-ui text-[12px] font-bold uppercase tracking-[.14em] text-[#202536] group-hover:text-[#e15b2e]">{c.name}</h3>
@@ -574,7 +574,7 @@ function CasesTeaser() {
         </div>
 
         <div className="mt-8">
-          <a href="/cases" className="inline-flex items-center gap-3 border-b border-[#e15b2e] pb-1 font-mono-ui text-[10px] font-bold uppercase tracking-[.12em] text-[#e15b2e] transition-colors hover:text-[#c94a22]">VIEW ALL CASES →</a>
+          <a href="/cases" className="inline-flex items-center gap-3 border-b border-[#e15b2e] pb-1 font-mono-ui text-[10px] font-bold uppercase tracking-[.12em] text-[#e15b2e] transition-colors duration-200 hover:text-[#c94a22]">VIEW ALL CASES →</a>
         </div>
       </div>
     </section>
@@ -685,12 +685,11 @@ function FAQ() {
       <div className="mx-auto max-w-[1100px] px-5 py-28 sm:px-8 lg:py-36">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-24">
           <h2 className="font-display text-[clamp(3.3rem,5.5vw,5.6rem)] leading-[.9] tracking-[-.07em] text-[#202536]">The useful<br /><em className="text-[#e15b2e]">short version.</em></h2>
-          <div className="border-t border-[#202536]/15">
-            {homepageFaqs.map(([question, answer], index) => {
+          <div className="border-t border-[#202536]/15">              {homepageFaqs.map(([question, answer], index) => {
               const isOpen = openIndex === index;
               return (
                 <div key={question} className="border-b border-[#202536]/15">
-                  <button type="button" onClick={() => setOpenIndex(isOpen ? null : index)} className="flex w-full items-center justify-between gap-6 py-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e15b2e]" aria-expanded={isOpen}>
+                  <button type="button" onClick={() => setOpenIndex(isOpen ? null : index)} className="flex w-full items-center justify-between gap-6 py-6 text-left transition-colors duration-200 hover:bg-[#ddd8ce]/60 px-2 -mx-2 radius-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e15b2e]" aria-expanded={isOpen}>
                     <span className="font-display text-[25px] leading-[1.1] tracking-[-.03em] text-[#202536]">{question}</span>
                     <ChevronDown size={18} className={`shrink-0 text-[#e15b2e] transition-transform ${isOpen ? 'rotate-180' : ''}`} />
                   </button>
@@ -714,7 +713,7 @@ function FinalCTA({ onNavigate }: { onNavigate: (id: string) => void }) {
           <h2 className="font-display text-[clamp(4rem,9vw,9.2rem)] leading-[.84] tracking-[-.08em]">Your product may not need more traffic<span className="text-[#e96a3a]">.</span></h2>
           <p className="mt-8 max-w-[590px] text-[18px] leading-[1.55] text-[#f5f0e7]/60">It may need a better path from the attention you already have to the revenue you want.</p>
           <div className="mt-12 flex flex-col items-start gap-7 sm:flex-row sm:items-center">
-            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-colors hover:bg-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">START THE DIAGNOSIS → <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" /></a>
+            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">START THE DIAGNOSIS → <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" /></a>
             <a href="mailto:paul@nasiba.co" className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45 border-b border-[#f5f0e7]/20 pb-0.5 transition-colors hover:text-[#e96a3a] hover:border-[#e96a3a]">EMAIL PAUL</a>
           </div>
         </div>
@@ -894,7 +893,7 @@ function StartPage() {
                 type="text"
                 autoComplete="name"
                 required
-                className={`w-full border ${fieldErrors.name ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-transparent px-4 py-3.5 font-mono-ui text-[13px] text-[#f5f0e7] outline-none transition-colors placeholder:text-[#f5f0e7]/30 focus:border-[#e96a3a] sm:text-[14px]`}
+                className={`w-full border ${fieldErrors.name ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-transparent px-4 py-3.5 radius-input font-mono-ui text-[13px] text-[#f5f0e7] outline-none transition-colors placeholder:text-[#f5f0e7]/30 focus:border-[#e96a3a] focus-visible:outline-2 focus-visible:outline-[#e96a3a] sm:text-[14px]`}
                 placeholder="Your name"
               />
               {fieldErrors.name && <p className="mt-2 font-mono-ui text-[10px] uppercase tracking-[.1em] text-[#e96a3a]">{fieldErrors.name}</p>}
@@ -909,7 +908,7 @@ function StartPage() {
                 type="text"
                 autoComplete="url"
                 required
-                className={`w-full border ${fieldErrors.website ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-transparent px-4 py-3.5 font-mono-ui text-[13px] text-[#f5f0e7] outline-none transition-colors placeholder:text-[#f5f0e7]/30 focus:border-[#e96a3a] sm:text-[14px]`}
+                className={`w-full border ${fieldErrors.website ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-transparent px-4 py-3.5 radius-input font-mono-ui text-[13px] text-[#f5f0e7] outline-none transition-colors placeholder:text-[#f5f0e7]/30 focus:border-[#e96a3a] focus-visible:outline-2 focus-visible:outline-[#e96a3a] sm:text-[14px]`}
                 placeholder="https://"
               />
               {fieldErrors.website && <p className="mt-2 font-mono-ui text-[10px] uppercase tracking-[.1em] text-[#e96a3a]">{fieldErrors.website}</p>}
@@ -924,7 +923,7 @@ function StartPage() {
                 type="email"
                 autoComplete="email"
                 required
-                className={`w-full border ${fieldErrors.email ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-transparent px-4 py-3.5 font-mono-ui text-[13px] text-[#f5f0e7] outline-none transition-colors placeholder:text-[#f5f0e7]/30 focus:border-[#e96a3a] sm:text-[14px]`}
+                className={`w-full border ${fieldErrors.email ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-transparent px-4 py-3.5 radius-input font-mono-ui text-[13px] text-[#f5f0e7] outline-none transition-colors placeholder:text-[#f5f0e7]/30 focus:border-[#e96a3a] focus-visible:outline-2 focus-visible:outline-[#e96a3a] sm:text-[14px]`}
                 placeholder="you@company.com"
               />
               {fieldErrors.email && <p className="mt-2 font-mono-ui text-[10px] uppercase tracking-[.1em] text-[#e96a3a]">{fieldErrors.email}</p>}
@@ -937,7 +936,7 @@ function StartPage() {
                 id="start-issue"
                 name="primaryIssue"
                 required
-                className={`w-full border ${fieldErrors.primaryIssue ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-[#202536] px-4 py-3.5 font-mono-ui text-[13px] text-[#f5f0e7] outline-none transition-colors focus:border-[#e96a3a] sm:text-[14px]`}
+                className={`w-full border ${fieldErrors.primaryIssue ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-[#202536] px-4 py-3.5 radius-input font-mono-ui text-[13px] text-[#f5f0e7] outline-none transition-colors focus:border-[#e96a3a] focus-visible:outline-2 focus-visible:outline-[#e96a3a] sm:text-[14px]`}
                 defaultValue=""
               >
                 <option value="" disabled>Select an issue</option>
@@ -962,7 +961,7 @@ function StartPage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="flex w-full items-center justify-between bg-[#e96a3a] px-5 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-colors hover:bg-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7] disabled:opacity-60 disabled:cursor-not-allowed"
+                className="flex w-full items-center justify-between bg-[#e96a3a] px-5 py-4 radius-btn font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7] disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {submitting ? 'SENDING...' : 'SEND DIAGNOSIS REQUEST'} <ArrowRight size={16} />
               </button>
@@ -1125,7 +1124,7 @@ function RevenueArchitecturePage() {
         <div className="mt-28 border-t border-[#f5f0e7]/15 pt-12">
           <p className="font-display text-[clamp(2rem,4vw,3.5rem)] leading-[1.05] tracking-[-.05em]">The revenue problem starts with the diagnosis.</p>
           <div className="mt-8 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
-            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-colors hover:bg-[#f18a61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">START WITH THE DIAGNOSIS <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" /></a>
+            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">START WITH THE DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" /></a>
           </div>
           <p className="mt-5 font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45">
             Already diagnosed the problem? Email <a href="mailto:paul@nasiba.co" className="border-b border-[#f5f0e7]/20 pb-0.5 transition-colors hover:text-[#e96a3a] hover:border-[#e96a3a]">paul@nasiba.co</a>
@@ -1156,7 +1155,13 @@ function ArchitectureRedirect() {
 /* ─── /diagnosis page — holds the removed lenses + detailed FAQ ─── */
 
 function DiagnosisPage() {
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [, setLocation] = useLocation();
+
+  useEffect(() => {
+    document.title = 'Revenue Leak Diagnosis — Nasiba';
+  }, []);
+
   const navigate = (id: string) => {
     if (id === 'about-nav') { setLocation('/about'); return; }
     if (id === 'cases-nav') { setLocation('/cases'); return; }
@@ -1206,12 +1211,26 @@ function DiagnosisPage() {
         <div className="mt-32 border-t border-[#f5f0e7]/15 pt-16">
           <h2 className="font-display text-[clamp(2.5rem,4.5vw,4rem)] leading-[.9] tracking-[-.07em]">Questions</h2>
           <div className="mt-12 space-y-0">
-            {diagnosisFaqs.map(([question, answer]) => (
-              <div key={question} className="border-b border-[#f5f0e7]/15 py-6">
-                <p className="font-display text-[22px] leading-[1.1] tracking-[-.03em] text-[#f5f0e7]">{question}</p>
-                <p className="mt-4 max-w-[620px] text-[15px] leading-[1.6] text-[#f5f0e7]/58">{answer}</p>
-              </div>
-            ))}
+            {diagnosisFaqs.map(([question, answer], index) => {
+              const isOpen = openFaq === index;
+              return (
+                <div key={question} className="border-b border-[#f5f0e7]/15">
+                  <button type="button" onClick={() => setOpenFaq(isOpen ? null : index)} className="flex w-full items-center justify-between gap-6 py-6 text-left transition-colors duration-200 hover:bg-[#202536]/60 px-3 -mx-3 radius-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e96a3a]" aria-expanded={isOpen}>
+                    <span className="font-display text-[22px] leading-[1.1] tracking-[-.03em] text-[#f5f0e7]">{question}</span>
+                    <ChevronDown size={16} className={`shrink-0 text-[#e96a3a] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  {isOpen && <div className="max-w-[620px] pb-6 pr-8 text-[15px] leading-[1.6] text-[#f5f0e7]/58">{answer}</div>}
+                </div>
+              );
+            })}          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="mt-28 border-t border-[#f5f0e7]/15 pt-12">
+          <p className="font-display text-[clamp(2rem,4vw,3.5rem)] leading-[1.05] tracking-[-.05em]">Ready to find the leak?</p>
+          <div className="mt-8 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+            <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn font-mono-ui text-[10px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]">START THE DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" /></a>
+            <a href="mailto:paul@nasiba.co" className="font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#f5f0e7]/45 border-b border-[#f5f0e7]/20 pb-0.5 transition-colors duration-200 hover:text-[#e96a3a] hover:border-[#e96a3a]">EMAIL PAUL</a>
           </div>
         </div>
 
@@ -1221,10 +1240,16 @@ function DiagnosisPage() {
   );
 }
 
+
 /* ─── About Page ─── */
 
 function About() {
   const [, setLocation] = useLocation();
+
+  useEffect(() => {
+    document.title = 'About — Nasiba';
+  }, []);
+
   const navigate = (id: string) => {
     if (id === 'about-nav') return;
     if (id === 'cases-nav') { setLocation('/cases'); return; }
@@ -1310,7 +1335,7 @@ function About() {
                 Paul leads Nasiba&apos;s diagnostic and strategic work across positioning, economic value, offers, buying events and monetization architecture.
               </p>
               <div className="mt-8">
-                <a href="/cases" className="inline-flex items-center gap-3 border-b border-[#e96a3a] pb-1 font-mono-ui text-[10px] font-bold uppercase tracking-[.12em] text-[#e96a3a] transition-colors hover:text-[#f18a61]">VIEW CLIENT CASES →</a>
+                <a href="/cases" className="inline-flex items-center gap-3 border-b border-[#e96a3a] pb-1 font-mono-ui text-[10px] font-bold uppercase tracking-[.12em] text-[#e96a3a] transition-colors duration-200 hover:text-[#f18a61]">VIEW CLIENT CASES →</a>
               </div>
             </div>
           </div>
@@ -1326,6 +1351,11 @@ function About() {
 
 function CasesIndex() {
   const [, setLocation] = useLocation();
+
+  useEffect(() => {
+    document.title = 'Client Work — Nasiba';
+  }, []);
+
   const navigate = (id: string) => {
     if (id === 'about-nav') { setLocation('/about'); return; }
     if (id === 'cases-nav') return;
@@ -1352,9 +1382,9 @@ function CasesIndex() {
         {/* Cases List */}
         <div className="mt-20 border-t border-[#f5f0e7]/15">
           {casesData.map((c) => (
-            <a key={c.slug} href={`/cases/${c.slug}`} className="group grid grid-cols-1 gap-4 border-b border-[#f5f0e7]/15 py-10 transition-colors hover:bg-[#f5f0e7]/5 sm:grid-cols-[200px_1fr] sm:gap-8 sm:py-12">
+            <a key={c.slug} href={`/cases/${c.slug}`} className="group grid grid-cols-1 gap-4 border-b border-[#f5f0e7]/15 py-10 transition-all duration-200 hover:bg-[#f5f0e7]/[.03] hover:px-3 -mx-3 px-0 radius-block sm:grid-cols-[200px_1fr] sm:gap-8 sm:py-12">
               <div>
-                <h2 className="font-mono-ui text-[12px] font-bold uppercase tracking-[.14em] text-[#f5f0e7] group-hover:text-[#e96a3a]">{c.name}</h2>
+                <h2 className="font-mono-ui text-[12px] font-bold uppercase tracking-[.14em] text-[#f5f0e7] group-hover:text-[#e96a3a] transition-colors duration-200">{c.name}</h2>
                 <p className="mt-3 font-mono-ui text-[9px] uppercase tracking-[.12em] text-[#e96a3a]">{c.engagement}</p>
               </div>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -1371,6 +1401,7 @@ function CasesIndex() {
                   <p className="mt-2 text-[14px] leading-[1.5] text-[#f5f0e7]/58">{c.shortOutcome}</p>
                 </div>
               </div>
+              <span className="hidden sm:flex items-center font-mono-ui text-[10px] uppercase tracking-[.12em] text-[#e96a3a] opacity-0 transition-opacity duration-200 group-hover:opacity-100">VIEW CASE →</span>
             </a>
           ))}
         </div>
@@ -1386,6 +1417,10 @@ function CasesIndex() {
 function CaseDetail({ slug }: { slug: string }) {
   const [, setLocation] = useLocation();
   const data = caseDetails[slug];
+
+  useEffect(() => {
+    if (data) document.title = `${data.name} — Nasiba`;
+  }, [data]);
 
   const navigate = (id: string) => {
     if (id === 'about-nav') { setLocation('/about'); return; }
@@ -1433,8 +1468,8 @@ function CaseDetail({ slug }: { slug: string }) {
 
         {/* Sections */}
         <div className="mt-20 border-t border-[#f5f0e7]/15">
-          {sections.map((section) => (
-            <article key={section.label} className="grid grid-cols-1 gap-6 border-b border-[#f5f0e7]/15 py-10 sm:grid-cols-[120px_1fr] sm:gap-10">
+          {sections.map((section, idx) => (
+            <article key={section.label} className={`grid grid-cols-1 gap-6 border-b border-[#f5f0e7]/15 py-10 sm:grid-cols-[120px_1fr] sm:gap-10 transition-colors duration-200 px-3 -mx-3 ${idx % 2 === 0 ? 'hover:bg-[#f5f0e7]/[.02]' : ''}`}>
               <div>
                 <span className="font-mono-ui text-[10px] text-[#e96a3a]">{section.label}</span>
                 <h3 className="mt-3 font-mono-ui text-[11px] font-bold uppercase tracking-[.14em] text-[#f5f0e7]/70">{section.title}</h3>
@@ -1448,8 +1483,8 @@ function CaseDetail({ slug }: { slug: string }) {
 
         {/* Navigation */}
         <div className="mt-16 flex items-center justify-between border-t border-[#f5f0e7]/15 pt-8">
-          <a href="/cases" className="inline-flex items-center gap-3 border-b border-[#e96a3a] pb-1 font-mono-ui text-[10px] font-bold uppercase tracking-[.12em] text-[#e96a3a] transition-colors hover:text-[#f18a61]">← ALL CASES</a>
-          <a href={isLast ? '/cases' : `/cases/${nextSlug}`} className="inline-flex items-center gap-3 border-b border-[#e96a3a] pb-1 font-mono-ui text-[10px] font-bold uppercase tracking-[.12em] text-[#e96a3a] transition-colors hover:text-[#f18a61]">{isLast ? 'ALL CASES' : `${nextName.toUpperCase()}`} →</a>
+          <a href="/cases" className="inline-flex items-center gap-3 border-b border-[#e96a3a] pb-1 font-mono-ui text-[10px] font-bold uppercase tracking-[.12em] text-[#e96a3a] transition-colors duration-200 hover:text-[#f18a61]">← ALL CASES</a>
+          <a href={isLast ? '/cases' : `/cases/${nextSlug}`} className="inline-flex items-center gap-3 border-b border-[#e96a3a] pb-1 font-mono-ui text-[10px] font-bold uppercase tracking-[.12em] text-[#e96a3a] transition-colors duration-200 hover:text-[#f18a61]">{isLast ? 'ALL CASES' : `${nextName.toUpperCase()}`} →</a>
         </div>
 
         <SiteFooter variant="dark" />
@@ -1462,6 +1497,11 @@ function CaseDetail({ slug }: { slug: string }) {
 
 function PrivacyPage() {
   const [, setLocation] = useLocation();
+
+  useEffect(() => {
+    document.title = 'Privacy — Nasiba';
+  }, []);
+
   const navigate = (id: string) => {
     if (id === 'about-nav') { setLocation('/about'); return; }
     if (id === 'cases-nav') { setLocation('/cases'); return; }
@@ -1474,18 +1514,20 @@ function PrivacyPage() {
     <main className="page-grain min-h-[100dvh] bg-[#f5f0e7]">
       <Header onNavigate={navigate} variant="light" />
       <div className="mx-auto max-w-[900px] px-5 pb-20 pt-40 sm:px-8 lg:pb-28">
-        <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-[.9] tracking-[-.06em] text-[#202536]">Privacy</h1>
-        <p className="mt-4 font-mono-ui text-[10px] uppercase tracking-[.14em] text-[#6c6b68]">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-        <div className="mt-12 space-y-8 border-t border-[#cfc7b7] pt-10 text-[16px] leading-[1.65] text-[#55575c]">
+        <div className="border-t border-[#cfc7b7] pt-6">
+          <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-[.9] tracking-[-.06em] text-[#202536]">Privacy</h1>
+          <p className="mt-4 font-mono-ui text-[10px] uppercase tracking-[.14em] text-[#6c6b68]">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+        </div>
+        <div className="mt-12 space-y-8 border-t border-[#cfc7b7] pt-10 text-[16px] leading-[1.7] text-[#55575c]">
           <p>Nasiba (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) operates the nasiba.co website. This page informs you of our policies regarding the collection, use and disclosure of personal information when you use our service.</p>
-          <h2 className="font-display text-[24px] tracking-[-.04em] text-[#202536]">Information Collection</h2>
+          <h2 className="font-display text-[22px] tracking-[-.04em] text-[#202536]">Information Collection</h2>
           <p>We collect information you provide directly, such as when you initiate a diagnosis engagement, contact us by email, or provide business context as part of an engagement.</p>
-          <h2 className="font-display text-[24px] tracking-[-.04em] text-[#202536]">Use of Information</h2>
+          <h2 className="font-display text-[22px] tracking-[-.04em] text-[#202536]">Use of Information</h2>
           <p>We use collected information to deliver our services, communicate with you, and improve our offerings. We do not sell your personal information to third parties.</p>
-          <h2 className="font-display text-[24px] tracking-[-.04em] text-[#202536]">Confidentiality</h2>
+          <h2 className="font-display text-[22px] tracking-[-.04em] text-[#202536]">Confidentiality</h2>
           <p>All business context, product information and materials shared during an engagement are treated as confidential. We do not share client information without explicit consent.</p>
-          <h2 className="font-display text-[24px] tracking-[-.04em] text-[#202536]">Contact</h2>
-          <p>For privacy-related inquiries, contact <a href="mailto:paul@nasiba.co" className="border-b border-[#e15b2e] pb-0.5 text-[#e15b2e] transition-colors hover:text-[#c94a22]">paul@nasiba.co</a>.</p>
+          <h2 className="font-display text-[22px] tracking-[-.04em] text-[#202536]">Contact</h2>
+          <p>For privacy-related inquiries, contact <a href="mailto:paul@nasiba.co" className="border-b border-[#e15b2e] pb-0.5 text-[#e15b2e] transition-colors duration-200 hover:text-[#c94a22]">paul@nasiba.co</a>.</p>
         </div>
         <SiteFooter variant="light" />
       </div>
@@ -1495,6 +1537,11 @@ function PrivacyPage() {
 
 function TermsPage() {
   const [, setLocation] = useLocation();
+
+  useEffect(() => {
+    document.title = 'Terms — Nasiba';
+  }, []);
+
   const navigate = (id: string) => {
     if (id === 'about-nav') { setLocation('/about'); return; }
     if (id === 'cases-nav') { setLocation('/cases'); return; }
@@ -1507,18 +1554,20 @@ function TermsPage() {
     <main className="page-grain min-h-[100dvh] bg-[#f5f0e7]">
       <Header onNavigate={navigate} variant="light" />
       <div className="mx-auto max-w-[900px] px-5 pb-20 pt-40 sm:px-8 lg:pb-28">
-        <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-[.9] tracking-[-.06em] text-[#202536]">Terms</h1>
-        <p className="mt-4 font-mono-ui text-[10px] uppercase tracking-[.14em] text-[#6c6b68]">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-        <div className="mt-12 space-y-8 border-t border-[#cfc7b7] pt-10 text-[16px] leading-[1.65] text-[#55575c]">
+        <div className="border-t border-[#cfc7b7] pt-6">
+          <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-[.9] tracking-[-.06em] text-[#202536]">Terms</h1>
+          <p className="mt-4 font-mono-ui text-[10px] uppercase tracking-[.14em] text-[#6c6b68]">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+        </div>
+        <div className="mt-12 space-y-8 border-t border-[#cfc7b7] pt-10 text-[16px] leading-[1.7] text-[#55575c]">
           <p>These terms govern your use of nasiba.co and any engagement with Nasiba. By engaging our services, you agree to the following terms.</p>
-          <h2 className="font-display text-[24px] tracking-[-.04em] text-[#202536]">Services</h2>
+          <h2 className="font-display text-[22px] tracking-[-.04em] text-[#202536]">Services</h2>
           <p>Nasiba provides Revenue Architecture diagnosis and strategic consulting services for SaaS companies. All engagements are fixed-scope and asynchronous unless otherwise agreed in writing.</p>
-          <h2 className="font-display text-[24px] tracking-[-.04em] text-[#202536]">Engagement Terms</h2>
+          <h2 className="font-display text-[22px] tracking-[-.04em] text-[#202536]">Engagement Terms</h2>
           <p>The Revenue Leak Diagnosis is $1,000, delivered in 3–4 business days. Revenue Architecture is $10,000, delivered in 2 weeks. Payment is due before work begins. There are no retainers or recurring commitments.</p>
-          <h2 className="font-display text-[24px] tracking-[-.04em] text-[#202536]">Deliverables</h2>
+          <h2 className="font-display text-[22px] tracking-[-.04em] text-[#202536]">Deliverables</h2>
           <p>Deliverables are as described in the engagement scope. Nasiba provides strategic direction and recommendations. Implementation is the responsibility of the client unless otherwise agreed.</p>
-          <h2 className="font-display text-[24px] tracking-[-.04em] text-[#202536]">Contact</h2>
-          <p>For terms-related inquiries, contact <a href="mailto:paul@nasiba.co" className="border-b border-[#e15b2e] pb-0.5 text-[#e15b2e] transition-colors hover:text-[#c94a22]">paul@nasiba.co</a>.</p>
+          <h2 className="font-display text-[22px] tracking-[-.04em] text-[#202536]">Contact</h2>
+          <p>For terms-related inquiries, contact <a href="mailto:paul@nasiba.co" className="border-b border-[#e15b2e] pb-0.5 text-[#e15b2e] transition-colors duration-200 hover:text-[#c94a22]">paul@nasiba.co</a>.</p>
         </div>
         <SiteFooter variant="light" />
       </div>
