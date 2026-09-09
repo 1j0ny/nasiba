@@ -1,4 +1,4 @@
-import { Fragment, type ReactNode, useEffect, useState } from 'react';
+import { Fragment, type CSSProperties, type ReactNode, useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   ArrowDownRight,
@@ -176,6 +176,31 @@ function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; 
     >
       {children}
     </div>
+  );
+}
+
+/*
+ * Editorial dash list: reusable list whose “—” marker is CSS-owned
+ * (.list-editorial-dash > li::before) instead of hardcoded text inside each
+ * item. Plain-text extraction (SEO readers, text-only rendering) therefore
+ * sees exactly one marker per item — never the extractor's own bullet plus
+ * a hardcoded dash. Optional string children get a stable key; nodes pass
+ * through untouched.
+ */
+function EditorialDashList({ items, className = '', itemClassName = '', style }: {
+  items: Array<ReactNode>;
+  className?: string;
+  itemClassName?: string;
+  style?: CSSProperties;
+}) {
+  return (
+    <ul className={`list-editorial-dash ${className}`} style={style}>
+      {items.map((item, index) => (
+        <li key={typeof item === 'string' ? item : index} className={`flex items-start gap-2.5 ${itemClassName}`}>
+          {item}
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -678,14 +703,18 @@ function Engagement() {
                     <span>$10,000</span>
                     <span>2 weeks · Asynchronous</span>
                   </div>
-                  <ul className="mt-6 grid max-w-[570px] grid-cols-1 gap-x-6 gap-y-3 border-t border-[#f5f0e7]/15 pt-5 text-[11px] font-medium uppercase leading-[1.5] tracking-[.08em] text-[#f5f0e7]/65 sm:grid-cols-2 list-editorial" style={{ fontFamily: 'var(--app-font-sans)' }}>
-                    <li className="flex items-start gap-2.5"><span className="text-[#e96a3a] mt-0.5 shrink-0">—</span> Positioning audit</li>
-                    <li className="flex items-start gap-2.5"><span className="text-[#e96a3a] mt-0.5 shrink-0">—</span> Economic framing</li>
-                    <li className="flex items-start gap-2.5"><span className="text-[#e96a3a] mt-0.5 shrink-0">—</span> Offer ladder restructuring</li>
-                    <li className="flex items-start gap-2.5"><span className="text-[#e96a3a] mt-0.5 shrink-0">—</span> Buying-event design</li>
-                    <li className="flex items-start gap-2.5"><span className="text-[#e96a3a] mt-0.5 shrink-0">—</span> Pricing &amp; upgrade logic</li>
-                    <li className="flex items-start gap-2.5"><span className="text-[#e96a3a] mt-0.5 shrink-0">—</span> Homepage &amp; messaging implementation guidance</li>
-                  </ul>
+                  <EditorialDashList
+                    className="mt-6 grid max-w-[570px] grid-cols-1 gap-x-6 gap-y-3 border-t border-[#f5f0e7]/15 pt-5 text-[11px] font-medium uppercase leading-[1.5] tracking-[.08em] text-[#f5f0e7]/65 sm:grid-cols-2"
+                    style={{ fontFamily: 'var(--app-font-sans)' }}
+                    items={[
+                      'Positioning audit',
+                      'Economic framing',
+                      'Offer ladder restructuring',
+                      'Buying-event design',
+                      'Pricing & upgrade logic',
+                      'Homepage & messaging implementation guidance',
+                    ]}
+                  />
                 </div>
               </div>
             </div>

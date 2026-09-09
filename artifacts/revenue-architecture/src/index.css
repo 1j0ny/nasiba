@@ -359,6 +359,22 @@
     padding-left: 0;
   }
 
+  /* Dash-marker editorial list: the marker is CSS-owned (::before) instead of
+     hardcoded text inside each <li>, so every rendering context — full CSS,
+     no-CSS fallback, plain-text/SEO extraction — shows exactly one marker
+     per item. Requires <li> to be a flex container (the ::before becomes its
+     first flex item, replacing the old inline <span> marker). */
+  .list-editorial-dash {
+    list-style: none;
+    padding-left: 0;
+  }
+  .list-editorial-dash > li::before {
+    content: '—';
+    flex-shrink: 0;
+    margin-top: 2px; /* optical alignment with uppercase text (was mt-0.5) */
+    color: #e96a3a;
+  }
+
   /* ─── Hover proximity (desktop only) ─── */
   .hover-proximity {
     transition: transform .2s var(--ease-standard), box-shadow .2s ease;
