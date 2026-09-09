@@ -1,4 +1,4 @@
-import { Fragment, type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { Fragment, type ReactNode, useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   ArrowDownRight,
@@ -12,6 +12,12 @@ import {
   X,
 } from 'lucide-react';
 import { ErrorBoundary } from '@/components/error-boundary';
+import {
+  isBrowser,
+  scrollToSection as scrollToSectionReducedMotionAware,
+  useReducedMotion,
+  useReveal,
+} from '@/lib/motion';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import NotFound from '@/pages/not-found';
 import { Route, Switch, useLocation, useRoute, Router as WouterRouter } from 'wouter';
@@ -143,46 +149,32 @@ const diagnosisFaqs = [
   ['Who is this for?', 'B2B and AI SaaS companies with existing users, traffic or demand and a monetization problem worth solving.'],
 ];
 
-/* ─── Helpers ─── */
+/* ─── Motion (centralized) ───
+ *
+ * - scrollToSection: reduced-motion-aware (instant instead of smooth when
+ *   prefers-reduced-motion is set).
+ * - useReveal/Reveal: visible-by-default one-time editorial reveal backed by
+ *   a single shared IntersectionObserver (see src/lib/motion.ts).
+ * - Signature choreography (hero, revenue path, sample leak map) stays
+ *   bespoke and CSS-driven — deliberately not routed through Reveal.
+ */
 
 function scrollToSection(id: string, onDone?: () => void) {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  onDone?.();
+  scrollToSectionReducedMotionAware(id, onDone);
 }
 
-/* ─── IntersectionObserver-based scroll reveal hook ─── */
-function useInView(threshold = 0.15) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) { setVisible(true); return; }
-    const obs = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) { setVisible(true); obs.disconnect(); }
-    }, { threshold });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [threshold]);
-  return { ref, visible };
-}
-
-/* Reveal wrapper: wraps children with scroll-triggered fade-up */
+/* Reveal wrapper: visible-by-default one-time editorial reveal. */
 function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
-  const { ref, visible } = useInView();
+  const reducedMotion = useReducedMotion();
+  const { ref, revealed } = useReveal({ skip: reducedMotion });
   return (
-    <div ref={ref} className={`${visible ? 'sr-only-init sr-visible' : 'sr-only-init'} ${className}`} style={{ transitionDelay: delay ? `${delay}s` : undefined }}>
+    <div
+      ref={ref}
+      data-motion="reveal"
+      className={revealed ? `reveal reveal-visible ${className}` : `reveal ${className}`}
+      style={delay ? { transitionDelay: `${delay}s` } : undefined}
+    >
       {children}
-    </div>
-  );
-}
-
-function Eyebrow({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
-  return (
-    <div className={`mb-6 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.14em] ${dark ? 'text-[#e96a3a]' : 'text-[#e15b2e]'}`} style={{ fontFamily: 'var(--app-font-sans)' }}>
-      <span className="h-px w-8 bg-current" />
-      <span>{children}</span>
     </div>
   );
 }
@@ -370,7 +362,7 @@ function Hero({ onNavigate }: { onNavigate: (id: string) => void }) {
             {/* Bottom: bar path from DEMAND to PAYMENT — bars animate sequentially */}
             <div className="hero-graph-bars flex h-[120px] items-end justify-between gap-2" style={{ transformOrigin: 'bottom' }}>
               {[82, 63, 49, 36, 25, 17].map((height, index) => (
-                <div key={height} className="relative flex h-full flex-1 items-end" style={{ animationDelay: `${.95 + index * .08}s` }}>
+                <div key={height} className="relative flex h-full flex-1 items-end">
                   <div className={`w-full ${index === 3 ? 'bg-[#e96a3a]' : 'bg-[#f5f0e7]/22'}`} style={{ height: `${height}%`, transformOrigin: 'bottom' }} />
                 </div>
               ))}
@@ -1231,6 +1223,8 @@ function RevenueArchitecturePage() {
 
 function ArchitectureRedirect() {
   useEffect(() => {
+    // Client-only navigation guard: runs only after hydration in a browser.
+    if (!isBrowser()) return;
     window.location.replace('/revenue-architecture');
   }, []);
   return (
@@ -1763,23 +1757,19 @@ const samplePriorities = [
   },
 ];
 
+/*
+ * Sample leak map — signature staged draw (line → break → stages → labels →
+ * note). The choreography lives in CSS (.leakmap-* in index.css) keyed off a
+ * single `is-drawn` class so that:
+ *  - prerendered/no-JS HTML shows the fully drawn map (visible by default),
+ *  - hydration adds `is-drawn` and CSS plays the staged sequence once,
+ *  - prefers-reduced-motion shows the static map (no observer, no delays).
+ */
 function SampleLeakMap() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [drawn, setDrawn] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) { setDrawn(true); return; }
-    const obs = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) { setDrawn(true); obs.disconnect(); }
-    }, { threshold: 0.3 });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
+  const reducedMotion = useReducedMotion();
 
   return (
-    <div ref={ref} className="border-t border-[#f5f0e7]/15 pt-10">
+    <div className={`leakmap border-t border-[#f5f0e7]/15 pt-10 ${reducedMotion ? 'leakmap-static' : ''}`}>
       <div className="flex items-center justify-between">
         <p className="text-[11px] font-semibold uppercase tracking-[.12em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>The sample leak map</p>
         <p className="text-[10px] font-medium uppercase tracking-[.1em] text-[#f5f0e7]/45" style={{ fontFamily: 'var(--app-font-sans)' }}>Structural map — not measured data</p>
@@ -1789,51 +1779,37 @@ function SampleLeakMap() {
       <div className="mt-12 hidden lg:block">
         <div className="relative">
           <div
-            className="absolute left-0 right-0 top-[15px] h-px bg-[#f5f0e7]/20 origin-left"
-            style={{ transform: drawn ? 'scaleX(1)' : 'scaleX(0)', transition: 'transform .9s cubic-bezier(.22,1,.36,1) .2s' }}
+            className="leakmap-line absolute left-0 right-0 top-[15px] h-px bg-[#f5f0e7]/20 origin-left"
           />
           <div
-            className="absolute top-[15px] left-[48%] h-px w-[8%]"
+            className="leakmap-break absolute top-[15px] left-[48%] h-px w-[8%]"
             style={{
               backgroundImage: 'repeating-linear-gradient(to right, #e96a3a 0px, #e96a3a 4px, transparent 4px, transparent 10px)',
-              transformOrigin: 'left center',
-              transform: drawn ? 'scaleX(1)' : 'scaleX(0)',
-              transition: 'transform .4s cubic-bezier(.22,1,.36,1) .9s',
-              opacity: drawn ? 1 : 0,
             }}
           />
           <div className="grid grid-cols-6 gap-4">
             {sampleLeakStages.map((stage, i) => (
-              <div key={stage.name} className="flex flex-col items-center">
+              <div key={stage.name} className="flex flex-col items-center" style={{ '--leakmap-i': i } as React.CSSProperties}>
                 <div
-                  className={`relative z-10 flex h-[30px] w-[30px] items-center justify-center radius-block bg-[#202536] ${stage.state === 'break' ? 'border-2 border-dashed border-[#e96a3a]' : 'border border-[#e96a3a]/70'}`}
-                  style={{
-                    opacity: drawn ? 1 : 0,
-                    transform: drawn ? 'translateY(0)' : 'translateY(6px)',
-                    transition: `opacity .35s cubic-bezier(.22,1,.36,1) ${.35 + i * .15}s, transform .35s cubic-bezier(.22,1,.36,1) ${.35 + i * .15}s`,
-                  }}
+                  className={`leakmap-stage relative z-10 flex h-[30px] w-[30px] items-center justify-center radius-block bg-[#202536] ${stage.state === 'break' ? 'border-2 border-dashed border-[#e96a3a]' : 'border border-[#e96a3a]/70'}`}
                 >
                   {stage.state === 'break'
                     ? <span className="text-[11px] font-bold text-[#e96a3a]">✗</span>
                     : <div className="h-2 w-2 rounded-full bg-[#e96a3a]" />}
                 </div>
                 <span
-                  className={`mt-3 text-center text-[10px] uppercase tracking-[.08em] ${stage.state === 'break' ? 'font-semibold text-[#e96a3a]' : 'font-medium text-[#f5f0e7]/65'}`}
+                  className={`leakmap-stage-label mt-3 text-center text-[10px] uppercase tracking-[.08em] ${stage.state === 'break' ? 'font-semibold text-[#e96a3a]' : 'font-medium text-[#f5f0e7]/65'}`}
                   style={{
                     fontFamily: 'var(--app-font-sans)',
-                    opacity: drawn ? 1 : 0,
-                    transition: `opacity .35s ease ${.45 + i * .15}s`,
                   }}
                 >
                   {stage.name}
                 </span>
                 {stage.state === 'break' && (
                   <span
-                    className="mt-2 text-[9px] font-bold uppercase tracking-[.12em] text-[#e96a3a]"
+                    className="leakmap-break-badge mt-2 text-[9px] font-bold uppercase tracking-[.12em] text-[#e96a3a]"
                     style={{
                       fontFamily: 'var(--app-font-sans)',
-                      opacity: drawn ? 1 : 0,
-                      transition: `opacity .35s ease 1.25s`,
                     }}
                   >
                     Primary break
@@ -1844,12 +1820,7 @@ function SampleLeakMap() {
           </div>
           {/* Textual annotation of the break — meaning is never carried by color alone */}
           <div
-            className="mt-8 border-l-2 border-[#e96a3a] pl-4"
-            style={{
-              opacity: drawn ? 1 : 0,
-              transform: drawn ? 'translateY(0)' : 'translateY(6px)',
-              transition: 'opacity .4s ease 1.3s, transform .4s cubic-bezier(.22,1,.36,1) 1.3s',
-            }}
+            className="leakmap-note mt-8 border-l-2 border-[#e96a3a] pl-4"
           >
             <p className="font-display text-[15px] leading-[1.4] tracking-[-.02em] text-[#f5f0e7]/70">“The buyer never reaches a rational reason to pay — paid only offers more of what free already solved.”</p>
           </div>
