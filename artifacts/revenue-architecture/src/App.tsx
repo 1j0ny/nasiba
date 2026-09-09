@@ -907,7 +907,7 @@ function StartPage() {
       fd.append('website', website);
       fd.append('email', email);
       fd.append('primaryIssue', primaryIssue);
-      fd.append('subject', `New Revenue Leak Diagnosis — ${website}`);
+      fd.append('subject', `New Nasiba Diagnosis Request — ${website}`);
       fd.append('replyto', email);
       fd.append('botcheck', botcheck);
 
@@ -1620,7 +1620,7 @@ function PrivacyPage() {
           <h2 className="font-display text-[22px] tracking-[-.04em] text-[#202536]">Information Collection</h2>
           <p>We collect information you provide directly, such as when you initiate a diagnosis engagement, contact us by email, or provide business context as part of an engagement.</p>
           <h2 className="font-display text-[22px] tracking-[-.04em] text-[#202536]">Use of Information</h2>
-          <p>We use collected information to deliver our services, communicate with you, and improve our offerings. We do not sell your personal information to third parties.</p>
+          <p>We use collected information to deliver our services, communicate with you, and improve our offerings. We do not sell your personal information to third parties. When you submit a diagnosis request through this site, the information you provide is transmitted to and processed by a third-party form service on our behalf.</p>
           <h2 className="font-display text-[22px] tracking-[-.04em] text-[#202536]">Confidentiality</h2>
           <p>All business context, product information and materials shared during an engagement are treated as confidential. We do not share client information without explicit consent.</p>
           <h2 className="font-display text-[22px] tracking-[-.04em] text-[#202536]">Contact</h2>
@@ -2035,10 +2035,12 @@ function SampleDiagnosisPage() {
                       </div>
                     )}
 
-                    <div className="mt-6 border-l-2 border-[#e96a3a] pl-4">
-                      <p className="text-[10px] font-medium uppercase tracking-[.1em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>Commercial consequence</p>
-                      <p className="mt-2 text-[15px] leading-[1.5] text-[#f5f0e7]/65">{section.consequence}</p>
-                    </div>
+                    {section.consequence && (
+                      <div className="mt-6 border-l-2 border-[#e96a3a] pl-4">
+                        <p className="text-[10px] font-medium uppercase tracking-[.1em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>Commercial consequence</p>
+                        <p className="mt-2 text-[15px] leading-[1.5] text-[#f5f0e7]/65">{section.consequence}</p>
+                      </div>
+                    )}
                   </div>
                 </article>
               </Reveal>

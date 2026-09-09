@@ -18,10 +18,10 @@ try {
 }
 
 const version = {
-  site: 'nasiba',
+  site: 'nasiba.co',
   commit,
   builtAt: new Date().toISOString(),
-  version: 'production-prelaunch-proof-v1',
+  version: 'production-launch-ready-v1',
 };
 
 const outPath = resolve(distDir, 'version.json');
