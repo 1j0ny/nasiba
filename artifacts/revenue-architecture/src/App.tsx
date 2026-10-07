@@ -434,7 +434,7 @@ function Hero({ onNavigate }: { onNavigate: (id: string) => void }) {
               START WITH THE RIGHT DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1.5" />
             </a>
           </div>
-          <div className="hero-meta mt-6 text-[12px] font-semibold uppercase tracking-[.12em] text-[#f5f0e7]/82" style={{ fontFamily: 'var(--app-font-sans)' }}>$1,000 · 3–4 DAYS · ASYNCHRONOUS</div>
+          <div className="hero-meta mt-6 text-[12px] font-semibold uppercase tracking-[.12em] text-[#f5f0e7]/82" style={{ fontFamily: 'var(--app-font-sans)' }}>$1,000 · ASYNCHRONOUS · FIXED SCOPE</div>
           <p className="hero-sub mt-4 max-w-[480px] text-[15px] font-medium leading-[1.5] text-[#f5f0e7]/85">For live SaaS products finding the first buyer — or converting existing demand into revenue.</p>
         </div>
 
@@ -523,7 +523,7 @@ function DiagnosisRouter() {
             <article className="flex flex-col py-10 lg:pl-12">
               <div className="flex items-baseline justify-between gap-4">
                 <span className="font-mono-ui text-[11px] text-[#e15b2e]">02</span>
-                <span className="text-right text-[10px] font-medium uppercase tracking-[.12em] text-[#202536]/50" style={{ fontFamily: 'var(--app-font-sans)' }}>Demand exists, but conversion doesn&apos;t</span>
+                <span className="text-right text-[10px] font-medium uppercase tracking-[.12em] text-[#202536]/50" style={{ fontFamily: 'var(--app-font-sans)' }}>Demand exists, but paid conversion is weak</span>
               </div>
               <h3 className="mt-8 font-display text-[clamp(1.9rem,3vw,2.7rem)] leading-[.95] tracking-[-.05em] text-[#202536]">Revenue Leak Diagnosis</h3>
               <p className="mt-4 max-w-[480px] text-[16px] leading-[1.6] text-[#44464c]">Users, traffic or demand already exist. The problem is finding where that interest stops becoming payment.</p>
@@ -2537,7 +2537,7 @@ function FirstBuyerDiagnosisPage() {
     <div className={className}>
       <p className="text-[10px] font-semibold uppercase tracking-[.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>Already have users or demand, but weak paid conversion?</p>
       <p className="mt-2 text-[14px] leading-[1.5] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>
-        Revenue Leak Diagnosis may be the better starting point. <a href="/diagnosis" className="border-b border-[#e96a3a]/50 pb-0.5 text-[#e96a3a]/90 transition-colors duration-200 hover:text-[#e96a3a] hover:border-[#e96a3a]">See Revenue Leak Diagnosis →</a>
+        Revenue Leak Diagnosis may be the better starting point. <a href="/diagnosis" className="whitespace-nowrap border-b border-[#e96a3a]/50 pb-0.5 text-[#e96a3a]/90 transition-colors duration-200 hover:text-[#e96a3a] hover:border-[#e96a3a]">See Revenue Leak Diagnosis →</a>
       </p>
     </div>
   );
