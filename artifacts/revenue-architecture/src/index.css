@@ -283,6 +283,49 @@
     animation: leakmap-note-appear .4s var(--ease-standard) 1.3s both;
   }
 
+  /* ─── First Buyer Path — signature staged draw ───
+   * Same visible-by-default contract as the sample leak map: the
+   * prerendered/no-JS map is fully drawn; hydration adds .js-anim and the
+   * component adds .is-drawn, and CSS plays the sequence once:
+   * stages appear (ASSUMPTION → INVITATION → INTERPRETATION → BUYING
+   * TRIGGER), then the mismatch/break is revealed after BUYING TRIGGER, then
+   * FIRST YES resolves (stage + badge + note). Reduced motion shows the
+   * static, fully drawn path — all information preserved.
+   */
+  .fbpath .fbpath-line { transform: scaleX(1); transform-origin: left center; }
+  .fbpath .fbpath-break { opacity: 1; transform: scaleX(1); transform-origin: left center; }
+  .fbpath .fbpath-stage { opacity: 1; }
+  .fbpath .fbpath-stage-label { opacity: 1; }
+  .fbpath .fbpath-badge { opacity: 1; }
+  .fbpath .fbpath-note { opacity: 1; transform: none; }
+
+  .js-anim .fbpath.is-drawn .fbpath-line {
+    animation: path-draw .9s var(--ease-standard) .2s both;
+  }
+  .js-anim .fbpath.is-drawn .fbpath-break {
+    /* Mismatch revealed after the stages: scaleX draw + opacity fade. */
+    animation:
+      path-draw .4s var(--ease-standard) 1s both,
+      leakmap-fade-in .4s ease 1s both;
+  }
+  .js-anim .fbpath.is-drawn .fbpath-stage {
+    animation: leakmap-stage-appear .35s var(--ease-standard) both;
+    animation-delay: calc(.35s + var(--fbpath-i, 0) * .15s);
+  }
+  .js-anim .fbpath.is-drawn .fbpath-stage-label {
+    animation: leakmap-fade-in .35s ease both;
+    animation-delay: calc(.45s + var(--fbpath-i, 0) * .15s);
+  }
+  /* The mismatch/break becomes visible after BUYING TRIGGER (i=3 → 0.9s),
+   * and only then FIRST YES (i=4) with its badge and note. */
+  .js-anim .fbpath.is-drawn .fbpath-stage-labels-locked {}
+  .js-anim .fbpath.is-drawn .fbpath-badge {
+    animation: leakmap-fade-in .35s ease 1.25s both;
+  }
+  .js-anim .fbpath.is-drawn .fbpath-note {
+    animation: leakmap-note-appear .4s var(--ease-standard) 1.35s both;
+  }
+
   /* ─── Micro-interactions ─── */
 
   /* CTA button: subtle lift */
@@ -424,6 +467,9 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* reduced motion is also handled in the generic block above; the fbpath
+ * choreography plays only under .js-anim and is disabled below. */
+
 /* ─── Reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -449,6 +495,18 @@
   .js-anim .leakmap.is-drawn .leakmap-stage-label,
   .js-anim .leakmap.is-drawn .leakmap-break-badge,
   .js-anim .leakmap.is-drawn .leakmap-note {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+
+  /* First Buyer Path: static, fully drawn — information preserved. */
+  .js-anim .fbpath.is-drawn .fbpath-line,
+  .js-anim .fbpath.is-drawn .fbpath-break,
+  .js-anim .fbpath.is-drawn .fbpath-stage,
+  .js-anim .fbpath.is-drawn .fbpath-stage-label,
+  .js-anim .fbpath.is-drawn .fbpath-badge,
+  .js-anim .fbpath.is-drawn .fbpath-note {
     animation: none !important;
     opacity: 1;
     transform: none;

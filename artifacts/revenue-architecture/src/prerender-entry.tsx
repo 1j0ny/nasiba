@@ -11,6 +11,12 @@ export interface RouteConfig {
   title: string;
   description: string;
   canonical?: string;
+  /** Indexing override for thin/transactional pages (e.g. /start). */
+  robots?: string;
+  /** Optional Open Graph description override when intent differs from the meta description. */
+  ogDescription?: string;
+  /** Optional JSON-LD block (accepted as-is; prerendered into raw HTML head). */
+  structuredData?: Record<string, unknown>;
 }
 
 export const routes: RouteConfig[] = [
@@ -50,14 +56,42 @@ export const routes: RouteConfig[] = [
     description: 'A focused async commercial diagnosis of where the path from interest to payment is breaking. Diagnostic lenses, deliverables, and engagement details.',
   },
   {
+    path: '/first-buyer-diagnosis',
+    title: 'First Buyer Diagnosis for SaaS \u2014 Nasiba',
+    description: 'Find who your first real SaaS buyer should be, why they haven\u2019t said yes, and which buyer hypothesis your next acquisition cycle should test.',
+    ogDescription: 'Find the buyer, mismatch and buying trigger your next SaaS acquisition cycle should actually test.',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: 'First Buyer Diagnosis',
+      serviceType: 'SaaS commercial diagnosis / positioning diagnosis',
+      description: 'Find who your first real SaaS buyer should be, why they haven\u2019t said yes yet, and which buyer hypothesis the next acquisition cycle should test. $1,000, delivered in 5\u20137 days, asynchronous.',
+      provider: {
+        '@type': 'Organization',
+        name: 'Nasiba',
+        url: 'https://www.nasiba.co',
+      },
+      areaServed: 'Worldwide',
+      offers: {
+        '@type': 'Offer',
+        price: '1000',
+        priceCurrency: 'USD',
+        url: 'https://www.nasiba.co/first-buyer-diagnosis',
+      },
+    },
+  },
+  {
     path: '/sample-diagnosis',
     title: 'Sample Revenue Leak Diagnosis — Nasiba',
     description: 'See an illustrative Revenue Leak Diagnosis showing how Nasiba identifies the commercial break, root cause, buying event, offer logic and priority map for a SaaS product.',
   },
   {
     path: '/start',
-    title: 'Start a Revenue Leak Diagnosis \u2014 Nasiba',
-    description: 'Start a $1,000 asynchronous Revenue Leak Diagnosis for your SaaS. Share your product and primary monetization issue to begin.',
+    title: 'Start a Diagnosis \u2014 Nasiba',
+    description: 'Start a $1,000 asynchronous SaaS diagnosis. Choose the commercial state you are in — finding the first real buyer, or converting existing demand into revenue.',
+    // Transactional, thin intake page: keep out of the index, keep
+    // internal links (and their equity) intact.
+    robots: 'noindex, follow',
   },
   {
     path: '/revenue-architecture',
@@ -116,6 +150,21 @@ export function renderPage(route: RouteConfig, template: string): string {
     `<meta name="description" content="${escapeHtml(route.description)}"`,
   );
 
+  // Indexing override (e.g. noindex, follow on the thin /start page)
+  if (route.robots) {
+    if (/<meta name="robots"/.test(html)) {
+      html = html.replace(
+        /<meta name="robots" content=".*?"/,
+        `<meta name="robots" content="${escapeHtml(route.robots)}"`,
+      );
+    } else {
+      html = html.replace(
+        '</head>',
+        `    <meta name="robots" content="${escapeHtml(route.robots)}" />\n  </head>`,
+      );
+    }
+  }
+
   // Add canonical URL before </head>
   const canonicalUrl = route.canonical || `https://www.nasiba.co${route.path}`;
   if (!html.includes('rel="canonical"')) {
@@ -137,9 +186,10 @@ export function renderPage(route: RouteConfig, template: string): string {
   );
 
   // Replace OG description
+  const ogDescription = route.ogDescription ?? route.description;
   html = html.replace(
     /<meta property="og:description" content=".*?"/,
-    `<meta property="og:description" content="${escapeHtml(route.description)}"`,
+    `<meta property="og:description" content="${escapeHtml(ogDescription)}"`,
   );
 
   // Add OG URL
@@ -170,6 +220,18 @@ export function renderPage(route: RouteConfig, template: string): string {
 
   // Inject rendered HTML into root div
   html = html.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
+
+  // JSON-LD structured data — Service schema written by the prerenderer,
+  // so it lands in raw HTML without adding a client bundle or dependency.
+  if (route.structuredData) {
+    const jsonLd = JSON.stringify(route.structuredData)
+      .replace(/</g, '\\u003c')
+      .replace(/>/g, '\\u003e');
+    html = html.replace(
+      '</head>',
+      `    <script type="application/ld+json">${jsonLd}</script>\n  </head>`,
+    );
+  }
 
   return html;
 }

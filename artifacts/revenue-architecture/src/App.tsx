@@ -27,10 +27,25 @@ const queryClient = new QueryClient();
 /* ─── Navigation ─── */
 
 const navItems = [
-  { label: 'DIAGNOSIS', id: 'diagnosis', href: '/diagnosis' },
   { label: 'REVENUE ARCHITECTURE', id: 'revenue-architecture', href: '/revenue-architecture' },
   { label: 'CASES', id: 'cases-nav', href: '/cases' },
   { label: 'ABOUT', id: 'about-nav', href: '/about' },
+];
+
+/* The two entry diagnoses — rendered as a restrained dropdown (desktop)
+ * and as child links (mobile). No mega-menu, no hub page: the homepage
+ * router section remains the primary diagnosis hub. */
+const diagnosisNav = [
+  {
+    href: '/first-buyer-diagnosis',
+    label: 'FIRST BUYER DIAGNOSIS',
+    description: 'For live SaaS still finding the first real buyer',
+  },
+  {
+    href: '/diagnosis',
+    label: 'REVENUE LEAK DIAGNOSIS',
+    description: 'For SaaS with demand but weak paid conversion',
+  },
 ];
 
 /* ─── Data ─── */
@@ -131,10 +146,12 @@ const caseDetails: Record<string, {
 /* ─── Homepage FAQ (reduced to genuine buying objections) ─── */
 
 const homepageFaqs = [
+  ['Which diagnosis is right for me?', 'If the product is live but you do not yet have enough buying signal to know which buyer or use case has real pull, start with the First Buyer Diagnosis. If users, traffic or demand already exist and the problem is converting that interest into revenue, start with the Revenue Leak Diagnosis.'],
+  ['Is First Buyer Diagnosis lead generation?', 'No. It identifies which buyer and buying hypothesis your acquisition should test. It does not run outbound, generate lead lists or buy traffic.'],
+  ['What if I\u2019m not sure which diagnosis fits?', 'Start the request and choose \u201cNot sure.\u201d I\u2019ll determine which diagnosis matches the commercial state before the engagement begins.'],
   ['What does asynchronous mean?', 'No recurring meetings or calls. The engagement is conducted through the product, website, pricing, onboarding and business context you provide, with the diagnosis delivered asynchronously.'],
   ['Do I need to book a call?', 'No. There is no call required to start. The work begins with a focused intake and the materials listed in What I Need. Any clarification happens asynchronously.'],
-  ['What do you need from us to start?', 'A short intake, product access or a guided walkthrough, your current pricing and plan logic, and the seven inputs listed on the diagnosis page. The requests stay focused and the work stays asynchronous.'],
-  ['What happens after the diagnosis?', 'You can use the map internally, or choose the separate Revenue Architecture engagement if the diagnosis reveals a broader architectural problem. The deeper engagement is not required for a single leak.'],
+  ['What happens after the diagnosis?', 'You can use the map internally, or choose the separate Revenue Architecture engagement if the diagnosis reveals a broader architectural problem. The deeper engagement is not automatic \u2014 it is only when the problem is structural.'],
   ['Do you work on retainers?', 'No. The work is deliberately focused and asynchronous.'],
 ];
 
@@ -232,7 +249,8 @@ function SiteFooter({ variant = 'dark' }: { variant?: 'dark' | 'light' }) {
           <p className={`text-[11px] font-semibold uppercase tracking-[.1em] ${textMuted} mb-4`} style={{ fontFamily: 'var(--app-font-sans)' }}>Navigation</p>
           <ul className="space-y-2.5">
             {[
-              { label: 'Diagnosis', href: '/diagnosis' },
+              { label: 'First Buyer Diagnosis', href: '/first-buyer-diagnosis' },
+              { label: 'Revenue Leak Diagnosis', href: '/diagnosis' },
               { label: 'Revenue Architecture', href: '/revenue-architecture' },
               { label: 'Cases', href: '/cases' },
               { label: 'About', href: '/about' },
@@ -280,6 +298,7 @@ function SiteFooter({ variant = 'dark' }: { variant?: 'dark' | 'light' }) {
 
 function Header({ onNavigate, variant = 'dark' }: { onNavigate: (id: string) => void; variant?: 'dark' | 'light' }) {
   const [open, setOpen] = useState(false);
+  const [diagnosesOpen, setDiagnosesOpen] = useState(false);
   const dark = variant === 'dark';
   const textMain = dark ? 'text-[#f5f0e7]' : 'text-[#202536]';
   const textMuted = dark ? 'text-[#f5f0e7]/65' : 'text-[#202536]/65';
@@ -307,6 +326,51 @@ function Header({ onNavigate, variant = 'dark' }: { onNavigate: (id: string) => 
           </span>
         </a>
         <nav className="hidden items-center gap-6 xl:gap-8 md:flex" aria-label="Primary navigation">
+          {/* DIAGNOSES — restrained dropdown (two entry diagnoses, no mega-menu) */}
+          <div
+            className="relative"
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') setDiagnosesOpen(false);
+              if (e.key === 'ArrowDown' && !diagnosesOpen) {
+                e.preventDefault();
+                setDiagnosesOpen(true);
+              }
+            }}
+          >
+            <button
+              type="button"
+              aria-expanded={diagnosesOpen}
+              aria-haspopup="true"
+              onClick={() => setDiagnosesOpen((current) => !current)}
+              onBlur={(e) => { if (!e.currentTarget.parentElement?.contains(e.relatedTarget as Node | null)) setDiagnosesOpen(false); }}
+              className={`flex items-center gap-1.5 text-[12px] font-medium uppercase tracking-[0.08em] ${textMuted} transition-colors ${dark ? 'hover:text-[#f5f0e7]' : 'hover:text-[#202536]'} focus-visible:outline-none focus-visible:ring-2 ${accentBorder} focus-visible:ring-offset-2 ${dark ? 'focus-visible:ring-offset-[#202536]' : 'focus-visible:ring-offset-[#f5f0e7]'}`}
+              style={{ fontFamily: 'var(--app-font-sans)' }}
+            >
+              DIAGNOSES
+              <ChevronDown size={13} strokeWidth={2.5} aria-hidden="true" className={`transition-transform duration-[160ms] ${diagnosesOpen ? 'rotate-180' : ''}`} />
+            </button>
+            {diagnosesOpen && (
+              <div
+                className="absolute left-0 top-full z-50 pt-2"
+                onMouseLeave={() => setDiagnosesOpen(false)}
+              >
+                <div className="w-[320px] border border-[#f5f0e7]/20 bg-[#202536] shadow-lg radius-block" role="menu" aria-label="Diagnoses">
+                  {diagnosisNav.map((d) => (
+                    <a
+                      key={d.href}
+                      href={d.href}
+                      role="menuitem"
+                      onClick={() => setDiagnosesOpen(false)}
+                      className="block border-b border-[#f5f0e7]/10 px-5 py-4 text-left transition-colors duration-200 last:border-0 hover:bg-[#f5f0e7]/[.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#e96a3a]"
+                    >
+                      <span className="block text-[11px] font-semibold uppercase tracking-[.1em] text-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}>{d.label}</span>
+                      <span className="mt-1 block font-display text-[14px] normal-case tracking-[-.01em] leading-[1.4] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-serif)' }}>{d.description}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
           {navItems.map((item) => (
             <a key={item.id} href={item.href} onClick={(e) => { if (item.href.startsWith('/#')) { e.preventDefault(); scrollToSection(item.id); } }} className={`text-[12px] font-medium uppercase tracking-[0.08em] ${textMuted} transition-colors ${dark ? 'hover:text-[#f5f0e7]' : 'hover:text-[#202536]'} focus-visible:outline-none focus-visible:ring-2 ${accentBorder} focus-visible:ring-offset-2 ${dark ? 'focus-visible:ring-offset-[#202536]' : 'focus-visible:ring-offset-[#f5f0e7]'}`} style={{ fontFamily: 'var(--app-font-sans)' }}>
               {item.label}
@@ -323,6 +387,14 @@ function Header({ onNavigate, variant = 'dark' }: { onNavigate: (id: string) => 
       </div>
       {open && (
         <nav id="mobile-navigation" className={`${border} border-b ${bg} px-2 py-4 md:hidden`} aria-label="Mobile navigation">
+          {/* Diagnoses — two child links with descriptions */}
+          <p className={`px-3 pb-2 text-[9px] font-semibold uppercase tracking-[.16em] ${dark ? 'text-[#f5f0e7]/40' : 'text-[#202536]/40'}`} style={{ fontFamily: 'var(--app-font-sans)' }}>Diagnoses</p>
+          {diagnosisNav.map((d) => (
+            <a key={d.href} href={d.href} onClick={() => setOpen(false)} className={`flex flex-col gap-1 border-b ${dark ? 'border-[#f5f0e7]/10' : 'border-[#cfc7b7]'} px-3 py-3.5 pl-6 text-left focus-visible:outline-none focus-visible:ring-2 ${accentBorder}`}>
+              <span className={`text-[12px] font-medium uppercase tracking-[0.08em] ${dark ? 'text-[#f5f0e7]/80' : 'text-[#202536]/80'}`} style={{ fontFamily: 'var(--app-font-sans)' }}>{d.label}</span>
+              <span className={`mt-0.5 block font-display text-[13px] normal-case tracking-[-.01em] leading-[1.4] ${dark ? 'text-[#f5f0e7]/55' : 'text-[#202536]/55'}`} style={{ fontFamily: 'var(--app-font-serif)' }}>{d.description}</span>
+            </a>
+          ))}
           {navItems.map((item) => (
             <a key={item.id} href={item.href} onClick={(e) => { if (item.href.startsWith('/#')) { e.preventDefault(); scrollToSection(item.id); } }} className={`flex w-full items-center justify-between border-b ${dark ? 'border-[#f5f0e7]/10' : 'border-[#cfc7b7]'} px-3 py-4 text-left text-[12px] font-medium uppercase tracking-[0.08em] ${dark ? 'text-[#f5f0e7]/75' : 'text-[#202536]/75'} last:border-0 focus-visible:outline-none focus-visible:ring-2 ${accentBorder}`} style={{ fontFamily: 'var(--app-font-sans)' }}>
               {item.label}
@@ -355,15 +427,15 @@ function Hero({ onNavigate }: { onNavigate: (id: string) => void }) {
             <span className="hero-headline inline">Find where your SaaS is </span><span className="hero-headline-orange inline text-[#e96a3a]">losing revenue.</span>
           </h1>
           <p className="hero-body mt-7 max-w-[520px] text-balance text-[17px] leading-[1.55] text-[#f5f0e7]/72 sm:text-[18px]">
-            An asynchronous diagnosis of the commercial gaps between product interest and payment — from positioning and economic value to buying events, upgrade logic and messaging.
+            Nasiba diagnoses the commercial gap blocking the next buying decision — whether you're still finding the first real buyer or already losing existing demand before payment.
           </p>
           <div className="hero-cta mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
             <a href="/start" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn text-[11px] font-bold uppercase tracking-[0.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}>
-              START THE REVENUE LEAK DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1.5" />
+              START WITH THE RIGHT DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1.5" />
             </a>
           </div>
           <div className="hero-meta mt-6 text-[12px] font-semibold uppercase tracking-[.12em] text-[#f5f0e7]/82" style={{ fontFamily: 'var(--app-font-sans)' }}>$1,000 · 3–4 DAYS · ASYNCHRONOUS</div>
-          <p className="hero-sub mt-4 max-w-[480px] text-[15px] font-medium leading-[1.5] text-[#f5f0e7]/85">For SaaS with users and demand — but weak paid conversion.</p>
+          <p className="hero-sub mt-4 max-w-[480px] text-[15px] font-medium leading-[1.5] text-[#f5f0e7]/85">For live SaaS products finding the first buyer — or converting existing demand into revenue.</p>
         </div>
 
         {/* RIGHT: Diagnostic composition — one coherent diagram, staged animation */}
@@ -397,6 +469,70 @@ function Hero({ onNavigate }: { onNavigate: (id: string) => void }) {
               <span className="text-[10px] font-medium uppercase tracking-[.1em] text-[#f5f0e7]/45" style={{ fontFamily: 'var(--app-font-sans)' }}>Payment</span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Diagnosis Router — the commercial-state decision point ───
+ *
+ * One continuous split-diagnostic system (shared top rule, shared grid,
+ * one vertical divider on desktop, an explicit OR on mobile) — not two
+ * isolated pricing cards. The visitor should ask "which situation
+ * describes me?", not "which tier should I buy?".
+ */
+function DiagnosisRouter() {
+  return (
+    <section id="starting-point" className="scroll-mt-10 bg-[#f5f0e7]">
+      <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+        <Reveal>
+          <div className="max-w-[820px]">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e15b2e]" style={{ fontFamily: 'var(--app-font-sans)' }}>Starting point</p>
+            <h2 className="mt-6 font-display text-[clamp(2.6rem,5vw,4.8rem)] leading-[.9] tracking-[-.07em] text-[#202536]">Start with the commercial state you&apos;re actually in.</h2>
+            <p className="mt-6 max-w-[560px] text-[17px] leading-[1.6] text-[#44464c]">The right diagnosis depends on what signal already exists.</p>
+          </div>
+        </Reveal>
+
+        <div className="mt-14 grid grid-cols-1 border-t border-[#202536]/15 lg:grid-cols-2">
+          {/* PATH 01 — FIRST BUYER */}
+          <Reveal delay={.1}>
+            <article className="flex flex-col border-b border-[#202536]/15 py-10 lg:border-b-0 lg:border-r lg:pr-12">
+              <div className="flex items-baseline justify-between gap-4">
+                <span className="font-mono-ui text-[11px] text-[#e15b2e]">01</span>
+                <span className="text-right text-[10px] font-medium uppercase tracking-[.12em] text-[#202536]/50" style={{ fontFamily: 'var(--app-font-sans)' }}>Still finding the first real buyer</span>
+              </div>
+              <h3 className="mt-8 font-display text-[clamp(1.9rem,3vw,2.7rem)] leading-[.95] tracking-[-.05em] text-[#202536]">First Buyer Diagnosis</h3>
+              <p className="mt-4 max-w-[480px] text-[16px] leading-[1.6] text-[#44464c]">The product is live and you&apos;re testing acquisition, but there isn&apos;t enough buying signal yet to know which buyer, use case or reason to act has real pull.</p>
+              <div className="mt-6 text-[11px] font-medium uppercase tracking-[.12em] text-[#202536]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>$1,000 · 5–7 DAYS · ASYNCHRONOUS</div>
+              <div className="mt-8">
+                <a href="/first-buyer-diagnosis" className="inline-flex items-center gap-2 border-b border-[#e15b2e] pb-1 text-[11px] font-semibold uppercase tracking-[.12em] text-[#e15b2e] transition-colors duration-200 hover:text-[#c94a22] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e15b2e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}>EXPLORE FIRST BUYER DIAGNOSIS <ArrowRight size={13} /></a>
+              </div>
+            </article>
+          </Reveal>
+
+          {/* Mobile OR divider — explicit, decorative */}
+          <div aria-hidden="true" className="flex items-center justify-center gap-4 border-b border-[#202536]/15 py-6 lg:hidden">
+            <span className="h-px w-10 bg-[#202536]/20" />
+            <span className="text-[10px] font-semibold uppercase tracking-[.2em] text-[#202536]/45" style={{ fontFamily: 'var(--app-font-sans)' }}>OR</span>
+            <span className="h-px w-10 bg-[#202536]/20" />
+          </div>
+
+          {/* PATH 02 — REVENUE LEAK */}
+          <Reveal delay={.2}>
+            <article className="flex flex-col py-10 lg:pl-12">
+              <div className="flex items-baseline justify-between gap-4">
+                <span className="font-mono-ui text-[11px] text-[#e15b2e]">02</span>
+                <span className="text-right text-[10px] font-medium uppercase tracking-[.12em] text-[#202536]/50" style={{ fontFamily: 'var(--app-font-sans)' }}>Demand exists, but conversion doesn&apos;t</span>
+              </div>
+              <h3 className="mt-8 font-display text-[clamp(1.9rem,3vw,2.7rem)] leading-[.95] tracking-[-.05em] text-[#202536]">Revenue Leak Diagnosis</h3>
+              <p className="mt-4 max-w-[480px] text-[16px] leading-[1.6] text-[#44464c]">Users, traffic or demand already exist. The problem is finding where that interest stops becoming payment.</p>
+              <div className="mt-6 text-[11px] font-medium uppercase tracking-[.12em] text-[#202536]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>$1,000 · 3–4 DAYS · ASYNCHRONOUS</div>
+              <div className="mt-8">
+                <a href="/diagnosis" className="inline-flex items-center gap-2 border-b border-[#e15b2e] pb-1 text-[11px] font-semibold uppercase tracking-[.12em] text-[#e15b2e] transition-colors duration-200 hover:text-[#c94a22] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e15b2e] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}>EXPLORE REVENUE LEAK DIAGNOSIS <ArrowRight size={13} /></a>
+              </div>
+            </article>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -687,7 +823,19 @@ function Engagement() {
                 <span className="font-mono-ui text-[10px] text-[#e96a3a]">01</span>
                 <div>
                   <h3 className="font-display text-[clamp(2rem,3.5vw,2.8rem)] leading-none tracking-[-.05em]">DIAGNOSE</h3>
-                  <p className="mt-4 max-w-[540px] text-[16px] leading-[1.6] text-[#f5f0e7]/72">Find the leak, its root cause, and the priority map. This is enough when one commercial transition is unclear.</p>
+                  <p className="mt-4 max-w-[540px] text-[16px] leading-[1.6] text-[#f5f0e7]/72">Start with the diagnosis that matches the commercial state.</p>
+                  <div className="mt-5 space-y-4">
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[.1em] text-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}><a href="/first-buyer-diagnosis" className="border-b border-[#e96a3a]/60 pb-0.5 transition-colors duration-200 hover:text-[#e96a3a] hover:border-[#e96a3a]">First Buyer Diagnosis</a></p>
+                      <p className="mt-1.5 max-w-[540px] text-[14px] leading-[1.5] text-[#f5f0e7]/62" style={{ fontFamily: 'var(--app-font-sans)' }}>For live SaaS still identifying the buyer, use case or buying trigger with the strongest pull.</p>
+                    </div>
+                    <p className="text-[10px] font-semibold uppercase tracking-[.18em] text-[#f5f0e7]/45" style={{ fontFamily: 'var(--app-font-sans)' }}>or</p>
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[.1em] text-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}><a href="/diagnosis" className="border-b border-[#e96a3a]/60 pb-0.5 transition-colors duration-200 hover:text-[#e96a3a] hover:border-[#e96a3a]">Revenue Leak Diagnosis</a></p>
+                      <p className="mt-1.5 max-w-[540px] text-[14px] leading-[1.5] text-[#f5f0e7]/62" style={{ fontFamily: 'var(--app-font-sans)' }}>For SaaS with users or demand where the path to payment is already breaking.</p>
+                    </div>
+                  </div>
+                  <p className="mt-5 text-[10px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/45" style={{ fontFamily: 'var(--app-font-sans)' }}>$1,000 · Asynchronous</p>
                 </div>
               </div>
             </div>
@@ -720,7 +868,7 @@ function Engagement() {
             </div>
             </Reveal>
             <Reveal delay={.3}>
-            <p className="mt-9 max-w-[580px] font-display text-[clamp(1.4rem,2.3vw,1.7rem)] leading-[1.08] tracking-[-.03em] text-[#f5f0e7]">The diagnosis identifies the leak. Revenue Architecture rebuilds the system around it.</p>
+            <p className="mt-9 max-w-[580px] font-display text-[clamp(1.4rem,2.3vw,1.7rem)] leading-[1.08] tracking-[-.03em] text-[#f5f0e7]">The diagnosis identifies the problem. Revenue Architecture rebuilds the system around it — only when the problem is structural.</p>
             <p className="mt-5 max-w-[530px] text-[15px] leading-[1.55] text-[#f5f0e7]/68">Not every diagnosis requires deeper work. The second engagement exists when the commercial problem is architectural rather than isolated.</p>
             </Reveal>
           </div>
@@ -733,16 +881,19 @@ function Engagement() {
 /* Fit — compact, MONETIZATION spelling */
 function WhoThisIsFor() {
   const goodFit = [
-    'Existing users and active traffic',
-    'Unclear conversion path from interest to payment',
-    'Monetization friction at pricing, upgrade or onboarding',
-    'SaaS with commercial architecture questions',
+    'Live SaaS product',
+    'Actively trying to win buyers',
+    'Unclear first buyer / use case / buying trigger',
+    'Existing users / traffic / demand with weak conversion into payment or expansion',
+    'Founder-led or small SaaS team',
   ];
   const notFit = [
-    'Pre-PMF products still searching for product-market fit',
-    'Traffic-only problems with no underlying product demand',
-    'Generic copywriting or brand refresh projects',
-    'Execution retainer relationships',
+    'Idea-stage product with nothing live',
+    'Looking only for more traffic / leads',
+    'Needs outbound execution',
+    'Generic copywriting / brand refresh',
+    'Execution retainer',
+    'No product or buyer hypothesis to test',
   ];
   return (
     <section id="who-this-is-for" className="scroll-mt-10 bg-[#f5f0e7]">
@@ -750,7 +901,7 @@ function WhoThisIsFor() {
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[5fr_7fr] lg:gap-12">
           <div>
             <Reveal>
-              <h2 className="font-display text-[clamp(2.2rem,4vw,3.6rem)] leading-[.9] tracking-[-.07em] text-[#202536]">Built for SaaS with demand — but unclear conversion.</h2>
+              <h2 className="font-display text-[clamp(2.2rem,4vw,3.6rem)] leading-[.9] tracking-[-.07em] text-[#202536]">Built for live SaaS products — finding the first buyer or fixing conversion.</h2>
             </Reveal>
           </div>
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
@@ -864,6 +1015,7 @@ function Home() {
 
   return <main className="page-grain overflow-hidden">
     <Hero onNavigate={navigate} />
+    <DiagnosisRouter />
     <RevenuePathMap />
     <RevenueLeakExamples />
     <Diagnosis />
@@ -877,19 +1029,82 @@ function Home() {
 
 /* ─── /start — Intake Page ─── */
 
+/* The single canonical intake serves both entry diagnoses. The situation
+ * question is the router; problem options and metadata adapt to it. Query
+ * parameters (?diagnosis=first-buyer|revenue-leak) preselect — read only
+ * after hydration so prerendered HTML stays stable (no mismatch, no hidden
+ * form). The selection always remains changeable. */
+
+const START_SITUATION_OPTIONS = [
+  { value: 'first-buyer', label: 'We\u2019re still trying to identify / win the first real buyers' },
+  { value: 'revenue-leak', label: 'We already have users or demand, but paid conversion is weak' },
+  { value: 'unsure', label: 'Not sure' },
+];
+
+const FIRST_BUYER_PROBLEMS = [
+  'Unclear ICP',
+  'Too many possible buyers / use cases',
+  'People do not understand the product',
+  'Interest exists, but nobody commits',
+  'Unclear reason to act now',
+  'Acquisition is not producing a clear signal',
+  'Not sure yet',
+  'Other',
+];
+
+const REVENUE_LEAK_PROBLEMS = [
+  'Weak paid conversion',
+  'No upgrade trigger',
+  'Unclear buying event',
+  'Pricing / packaging',
+  'Weak value framing',
+  'Unclear positioning',
+  'Expansion stalls',
+  'Not sure yet',
+  'Other',
+];
+
+/* Neutral union shown before a situation is chosen and for \u201cNot sure\u201d —
+ * no forced self-diagnosis. */
+const UNSURE_PROBLEMS: string[] = Array.from(new Set([...FIRST_BUYER_PROBLEMS, ...REVENUE_LEAK_PROBLEMS]));
+
+const DIAGNOSIS_LABELS: Record<string, string> = {
+  'first-buyer': 'First Buyer Diagnosis',
+  'revenue-leak': 'Revenue Leak Diagnosis',
+  'unsure': 'Not sure',
+};
+
 function StartPage() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [situation, setSituation] = useState('');
+  const [primaryIssue, setPrimaryIssue] = useState('');
 
   useEffect(() => {
-    document.title = 'Start a Revenue Leak Diagnosis — Nasiba';
+    document.title = 'Start a Diagnosis \u2014 Nasiba';
     const meta = document.querySelector('meta[name="description"]') ?? document.createElement('meta');
     meta.setAttribute('name', 'description');
-    meta.setAttribute('content', 'Start a $1,000 asynchronous Revenue Leak Diagnosis for your SaaS. Share your product and primary monetization issue to begin.');
+    meta.setAttribute('content', 'Start a $1,000 asynchronous SaaS diagnosis. Choose the commercial state you are in \u2014 finding the first real buyer, or converting existing demand into revenue.');
     document.head.appendChild(meta);
   }, []);
+
+  /* Query-parameter preselection — strictly post-hydration. */
+  useEffect(() => {
+    if (!isBrowser()) return;
+    const diagnosisParam = new URLSearchParams(window.location.search).get('diagnosis');
+    if (diagnosisParam === 'first-buyer' || diagnosisParam === 'revenue-leak') {
+      setSituation(diagnosisParam);
+    }
+  }, []);
+
+  const problemOptions =
+    situation === 'first-buyer' ? FIRST_BUYER_PROBLEMS :
+    situation === 'revenue-leak' ? REVENUE_LEAK_PROBLEMS :
+    UNSURE_PROBLEMS;
+
+  const diagnosisLabel = DIAGNOSIS_LABELS[situation] ?? 'Unspecified';
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -901,10 +1116,10 @@ function StartPage() {
     const name = String(fd.get('name') ?? '').trim();
     const website = String(fd.get('website') ?? '').trim();
     const email = String(fd.get('email') ?? '').trim();
-    const primaryIssue = String(fd.get('primaryIssue') ?? '').trim();
     const botcheck = String(fd.get('botcheck') ?? '');
 
     const errors: Record<string, string> = {};
+    if (!situation) errors.situation = 'Please select an option';
     if (!name) errors.name = 'Name is required';
     if (!website) errors.website = 'URL is required';
     else {
@@ -926,8 +1141,9 @@ function StartPage() {
       fd.append('name', name);
       fd.append('website', website);
       fd.append('email', email);
+      fd.append('diagnosis', diagnosisLabel);
       fd.append('primaryIssue', primaryIssue);
-      fd.append('subject', `New Nasiba Diagnosis Request — ${website}`);
+      fd.append('subject', `New Nasiba Diagnosis Request \u2014 ${diagnosisLabel} \u2014 ${website}`);
       fd.append('replyto', email);
       fd.append('botcheck', botcheck);
 
@@ -963,20 +1179,26 @@ function StartPage() {
         <div className="border-t border-[#f5f0e7]/20 pt-6">
           <div className="mb-6 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>
             <span className="h-px w-8 bg-current" />
-            <span>REVENUE LEAK DIAGNOSIS</span>
+            <span>{situation === 'first-buyer' ? 'FIRST BUYER DIAGNOSIS' : situation === 'revenue-leak' ? 'REVENUE LEAK DIAGNOSIS' : 'DIAGNOSIS'}</span>
           </div>
           <h1 className="font-display text-[clamp(2.8rem,6vw,5rem)] leading-[.88] tracking-[-.07em]">
             Start with the problem.
           </h1>
           <p className="mt-6 max-w-[520px] text-[17px] leading-[1.55] text-[#f5f0e7]/70">
-            Give us the minimum context needed to understand where monetization appears to be breaking. If it looks like a fit, you&apos;ll receive the next step by email.
+            Give the minimum context needed to understand the commercial state you are in. If it looks like a fit, you&apos;ll receive the next step by email.
           </p>
           <div className="mt-6 flex items-baseline gap-4 text-[12px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>
-            <span>$1,000</span>
-            <span className="text-[#f5f0e7]/30">·</span>
-            <span>3–4 days</span>
-            <span className="text-[#f5f0e7]/30">·</span>
-            <span>asynchronous</span>
+            {situation === 'first-buyer' ? (
+              <>
+                <span>$1,000</span><span className="text-[#f5f0e7]/30">·</span><span>5–7 days</span><span className="text-[#f5f0e7]/30">·</span><span>asynchronous</span>
+              </>
+            ) : situation === 'revenue-leak' ? (
+              <>
+                <span>$1,000</span><span className="text-[#f5f0e7]/30">·</span><span>3–4 days</span><span className="text-[#f5f0e7]/30">·</span><span>asynchronous</span>
+              </>
+            ) : (
+              <span>I&apos;ll determine which diagnosis fits the commercial state.</span>
+            )}
           </div>
         </div>
 
@@ -995,6 +1217,25 @@ function StartPage() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} noValidate className="mt-12 border-t border-[#f5f0e7]/20 pt-10 space-y-8">
+            {/* Situation — the diagnosis router question */}
+            <div>
+              <label htmlFor="start-situation" className="block text-[12px] font-semibold uppercase tracking-[.1em] text-[#f5f0e7]/70 mb-3" style={{ fontFamily: 'var(--app-font-sans)' }}>Which situation best describes the product?</label>
+              <select
+                id="start-situation"
+                name="situation"
+                required
+                value={situation}
+                onChange={(e) => { setSituation(e.target.value); setPrimaryIssue(''); }}
+                className={`w-full border ${fieldErrors.situation ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-[#202536] px-4 py-3.5 radius-input font-mono-ui text-[14px] text-[#f5f0e7] outline-none transition-colors focus:border-[#e96a3a] focus-visible:outline-2 focus-visible:outline-[#e96a3a]`}
+              >
+                <option value="" disabled>Select a situation</option>
+                {START_SITUATION_OPTIONS.map((opt) => (
+                  <option key={opt.value} value={opt.value}>{opt.label}</option>
+                ))}
+              </select>
+              {fieldErrors.situation && <p className="mt-2 font-mono-ui text-[10px] uppercase tracking-[.1em] text-[#e96a3a]">{fieldErrors.situation}</p>}
+            </div>
+
             {/* Name */}
             <div>
               <label htmlFor="start-name" className="block text-[12px] font-semibold uppercase tracking-[.1em] text-[#f5f0e7]/70 mb-3" style={{ fontFamily: 'var(--app-font-sans)' }}>Name</label>
@@ -1040,26 +1281,21 @@ function StartPage() {
               {fieldErrors.email && <p className="mt-2 font-mono-ui text-[10px] uppercase tracking-[.1em] text-[#e96a3a]">{fieldErrors.email}</p>}
             </div>
 
-            {/* Primary Issue */}
+            {/* Problem area — options adapt to the selected situation */}
             <div>
-              <label htmlFor="start-issue" className="block text-[12px] font-semibold uppercase tracking-[.1em] text-[#f5f0e7]/70 mb-3" style={{ fontFamily: 'var(--app-font-sans)' }}>Where does the problem seem to be?</label>
+              <label htmlFor="start-issue" className="block text-[12px] font-semibold uppercase tracking-[.1em] text-[#f5f0e7]/70 mb-3" style={{ fontFamily: 'var(--app-font-sans)' }}>What seems most unclear?</label>
               <select
                 id="start-issue"
                 name="primaryIssue"
                 required
+                value={primaryIssue}
+                onChange={(e) => setPrimaryIssue(e.target.value)}
                 className={`w-full border ${fieldErrors.primaryIssue ? 'border-[#e96a3a]' : 'border-[#f5f0e7]/20'} bg-[#202536] px-4 py-3.5 radius-input font-mono-ui text-[14px] text-[#f5f0e7] outline-none transition-colors focus:border-[#e96a3a] focus-visible:outline-2 focus-visible:outline-[#e96a3a]`}
-                defaultValue=""
               >
                 <option value="" disabled>Select an issue</option>
-                <option value="Weak paid conversion">Weak paid conversion</option>
-                <option value="No upgrade trigger">No upgrade trigger</option>
-                <option value="Unclear buying event">Unclear buying event</option>
-                <option value="Pricing / packaging">Pricing / packaging</option>
-                <option value="Weak value framing">Weak value framing</option>
-                <option value="Unclear positioning">Unclear positioning</option>
-                <option value="Expansion stalls">Expansion stalls</option>
-                <option value="Not sure yet">Not sure yet</option>
-                <option value="Other">Other</option>
+                {problemOptions.map((opt) => (
+                  <option key={opt} value={opt}>{opt}</option>
+                ))}
               </select>
               {fieldErrors.primaryIssue && <p className="mt-2 font-mono-ui text-[10px] uppercase tracking-[.1em] text-[#e96a3a]">{fieldErrors.primaryIssue}</p>}
             </div>
@@ -1137,7 +1373,7 @@ function RevenueArchitecturePage() {
   ];
 
   const notFit = [
-    'Pre-PMF product',
+    'Idea-stage product with nothing live',
     'Traffic acquisition problem only',
     'Generic copywriting request',
     'Ongoing execution retainer',
@@ -1183,16 +1419,26 @@ function RevenueArchitecturePage() {
           </div>
         </div>
 
-        {/* Relationship */}
+        {/* Relationship — Diagnose → Rebuild, both entry diagnoses acknowledged */}
         <div className="mt-24 border-t border-[#f5f0e7]/15 pt-10">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-12">
             <div>
               <div className="border-t border-[#f5f0e7]/20 py-8">
                 <span className="font-mono-ui text-[10px] text-[#e96a3a]">01</span>
                 <h3 className="mt-4 font-display text-[clamp(2rem,3.5vw,3rem)] leading-none tracking-[-.05em]">DIAGNOSE</h3>
-                <p className="mt-2 text-[12px] font-medium uppercase tracking-[.1em] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>Revenue Leak Diagnosis</p>
-                <p className="mt-1 text-[11px] font-medium uppercase tracking-[.1em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>$1,000 · 3–4 days</p>
-                <p className="mt-4 max-w-[380px] text-[16px] leading-[1.5] text-[#f5f0e7]/68">Find the break.</p>
+                <p className="mt-2 text-[14px] leading-[1.5] text-[#f5f0e7]/65" style={{ fontFamily: 'var(--app-font-sans)' }}>Start with the diagnosis that matches the commercial state.</p>
+                <div className="mt-5 space-y-4 border-l-2 border-[#e96a3a]/40 pl-4">
+                  <div>
+                    <p className="text-[12px] font-semibold uppercase tracking-[.1em] text-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}><a href="/first-buyer-diagnosis" className="border-b border-[#e96a3a]/60 pb-0.5 transition-colors duration-200 hover:text-[#e96a3a] hover:border-[#e96a3a]">First Buyer Diagnosis</a></p>
+                    <p className="mt-1.5 text-[13px] leading-[1.5] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>For live SaaS still identifying the buyer, use case or buying trigger with the strongest pull.</p>
+                  </div>
+                  <p className="text-[10px] font-semibold uppercase tracking-[.18em] text-[#f5f0e7]/45" style={{ fontFamily: 'var(--app-font-sans)' }}>or</p>
+                  <div>
+                    <p className="text-[12px] font-semibold uppercase tracking-[.1em] text-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}><a href="/diagnosis" className="border-b border-[#e96a3a]/60 pb-0.5 transition-colors duration-200 hover:text-[#e96a3a] hover:border-[#e96a3a]">Revenue Leak Diagnosis</a></p>
+                    <p className="mt-1.5 text-[13px] leading-[1.5] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>For SaaS with users or demand where the path to payment is already breaking.</p>
+                  </div>
+                </div>
+                <p className="mt-5 text-[10px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/45" style={{ fontFamily: 'var(--app-font-sans)' }}>$1,000 · Asynchronous</p>
               </div>
             </div>
             <div>
@@ -1205,7 +1451,7 @@ function RevenueArchitecturePage() {
               </div>
             </div>
           </div>
-          <p className="mt-8 font-display text-[20px] leading-[1.2] tracking-[-.03em] text-[#f5f0e7]/75">Two steps, only when the problem calls for both.</p>
+          <p className="mt-8 font-display text-[20px] leading-[1.2] tracking-[-.03em] text-[#f5f0e7]/75">Not every diagnosis leads here. Only when the problem is structural.</p>
         </div>
 
         {/* Who it is for */}
@@ -1305,6 +1551,14 @@ function DiagnosisPage() {
           <a href="/sample-diagnosis" className="mt-6 inline-flex items-center gap-2 border-b border-[#f5f0e7]/25 pb-0.5 text-[11px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/65 transition-colors duration-200 hover:text-[#e96a3a] hover:border-[#e96a3a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>
             VIEW A SAMPLE DIAGNOSIS <ArrowRight size={12} />
           </a>
+
+          {/* Contextual branch — one inline note, clearly secondary */}
+          <div className="mt-8 max-w-[560px] border-l-2 border-[#e96a3a]/40 pl-4">
+            <p className="text-[10px] font-semibold uppercase tracking-[.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>Not enough buying signal yet?</p>
+            <p className="mt-2 text-[14px] leading-[1.5] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>
+              If the product is live but you&apos;re still trying to determine which buyer or use case has real pull, the <a href="/first-buyer-diagnosis" className="border-b border-[#e96a3a]/50 pb-0.5 text-[#e96a3a]/90 transition-colors duration-200 hover:text-[#e96a3a] hover:border-[#e96a3a]">First Buyer Diagnosis</a> is the better starting point.
+            </p>
+          </div>
         </div>
 
         {/* Diagnostic Lenses */}
@@ -2083,6 +2337,347 @@ function SampleDiagnosisPage() {
   );
 }
 
+/* ─── /first-buyer-diagnosis — the second entry diagnosis ───
+ *
+ * Own diagnostic model (ASSUMPTION → INVITATION → INTERPRETATION →
+ * BUYING TRIGGER → FIRST YES, with one mismatch break) — a sibling of
+ * the Revenue Path, not a copy. Own five layers, own six outputs.
+ * No fabricated sample, metrics or case studies. Parallel to the
+ * Revenue Leak Diagnosis — never a required sequential step.
+ */
+
+/* The First Buyer Path — own signature diagnostic model.
+ * CSS choreography (.fbpath-* in index.css) keyed off .is-drawn, same
+ * visible-by-default contract as the sample leak map: prerendered and
+ * reduced-motion HTML shows the fully drawn path; hydration plays the
+ * sequence once (path stages → visible mismatch/break → FIRST YES). */
+const firstBuyerStages = [
+  { short: 'ASSUMPTION', long: 'FOUNDER ASSUMPTION' },
+  { short: 'INVITATION', long: 'WHO THE MESSAGE ACTUALLY INVITES' },
+  { short: 'INTERPRETATION', long: 'HOW THAT BUYER INTERPRETS THE PRODUCT' },
+  { short: 'BUYING TRIGGER', long: 'REASON TO ACT NOW' },
+  { short: 'FIRST YES', long: 'FIRST YES' },
+];
+
+function FirstBuyerPath() {
+  const reducedMotion = useReducedMotion();
+
+  return (
+    <div className={`fbpath border-t border-[#f5f0e7]/15 pt-10 ${reducedMotion ? 'fbpath-static' : ''}`}>
+      <div className="flex items-center justify-between">
+        <p className="text-[11px] font-semibold uppercase tracking-[.12em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>The First Buyer Path</p>
+        <p className="text-[10px] font-medium uppercase tracking-[.1em] text-[#f5f0e7]/45" style={{ fontFamily: 'var(--app-font-sans)' }}>Structural map — not measured data</p>
+      </div>
+
+      {/* Desktop: horizontal path with one mismatch break */}
+      <div className="mt-12 hidden lg:block">
+        <div className="relative">
+          <div className="fbpath-line absolute left-0 right-0 top-[15px] h-px bg-[#f5f0e7]/20" />
+          <div
+            className="fbpath-break absolute top-[15px] left-[71%] w-[18%] h-px"
+            style={{
+              backgroundImage: 'repeating-linear-gradient(to right, #e96a3a 0px, #e96a3a 4px, transparent 4px, transparent 10px)',
+            }}
+          />
+          <div className="grid grid-cols-5 gap-4">
+            {firstBuyerStages.map((stage, i) => (
+              <div key={stage.short} className="flex flex-col items-center" style={{ '--fbpath-i': i } as React.CSSProperties}>
+                <div
+                  className={`fbpath-stage relative z-10 flex h-[30px] w-[30px] items-center justify-center radius-block bg-[#202536] ${i === 4 ? 'border border-[#e96a3a]' : 'border border-[#e96a3a]/70'}`}
+                >
+                  <div className="h-2 w-2 rounded-full bg-[#e96a3a]" />
+                </div>
+                <span className="fbpath-stage-label mt-3 text-center text-[10px] font-medium uppercase tracking-[.08em] text-[#f5f0e7]/65" style={{ fontFamily: 'var(--app-font-sans)' }}>{stage.short}</span>
+                <span className="mt-1.5 max-w-[190px] text-center text-[11px] leading-[1.4] text-[#f5f0e7]/40" style={{ fontFamily: 'var(--app-font-sans)' }}>{stage.long}</span>
+                {i === 4 && (
+                  <span className="fbpath-badge mt-2 text-[9px] font-bold uppercase tracking-[.12em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>First commercial signal</span>
+                )}
+              </div>
+            ))}
+          </div>
+          {/* Textual annotation of the mismatch — meaning is never carried by color alone */}
+          <div className="fbpath-note mt-10 border-l-2 border-[#e96a3a] pl-4">
+            <p className="font-display text-[15px] leading-[1.4] tracking-[-.02em] text-[#f5f0e7]/70 italic">“The mismatch can occur at any transition — between what the founder assumes, what the message actually invites, how that buyer interprets the product, and whether a reason to act now ever forms.”</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile: vertical stacked path */}
+      <div className="mt-10 lg:hidden">
+        <ol className="space-y-0">
+          {firstBuyerStages.map((stage, i) => (
+            <li key={stage.short} className="relative flex gap-4 pb-6 last:pb-0">
+              {i < firstBuyerStages.length - 1 && (
+                <span
+                  aria-hidden="true"
+                  className={`absolute left-[14px] top-[30px] h-[calc(100%-30px)] w-px ${i === 3 ? 'bg-[#e96a3a]' : 'bg-[#f5f0e7]/20'}`}
+                />
+              )}
+              <div className="relative z-10 flex h-[30px] w-[30px] shrink-0 items-center justify-center radius-block bg-[#202536] border border-[#e96a3a]/70">
+                <div className="h-2 w-2 rounded-full bg-[#e96a3a]" />
+              </div>
+              <div className="pt-1">
+                <p className="text-[11px] font-medium uppercase tracking-[.08em] text-[#f5f0e7]/65" style={{ fontFamily: 'var(--app-font-sans)' }}>{stage.short}</p>
+                <p className="mt-1 text-[11px] leading-[1.4] text-[#f5f0e7]/40" style={{ fontFamily: 'var(--app-font-sans)' }}>{stage.long}</p>
+                {i === 3 && (
+                  <p className="mt-1.5 text-[9px] font-bold uppercase tracking-[.12em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>The mismatch — where the path can break</p>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+        <div className="mt-6 border-l-2 border-[#e96a3a] pl-4">
+          <p className="font-display text-[15px] leading-[1.4] tracking-[-.02em] text-[#f5f0e7]/70 italic">“The mismatch can occur at any transition — between what the founder assumes, what the message actually invites, how that buyer interprets the product, and whether a reason to act now ever forms.”</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* Five diagnostic layers */
+const firstBuyerLayers = [
+  {
+    number: '01',
+    title: 'ICP Mismatch',
+    question: 'Who does the founder believe the buyer is — and who does the product, message and offer actually invite?',
+    explanation: 'A product can target one buyer in strategy while its language, use cases and offer structure attract a different one. The diagnosis identifies that mismatch before acquisition volume makes the signal noisier.',
+  },
+  {
+    number: '02',
+    title: 'Comprehension Tax',
+    question: 'How much does the buyer need to understand before the product becomes relevant?',
+    explanation: 'If the problem, category or value requires too much explanation, weak response can look like weak demand when the actual failure happens before the buyer reaches the buying question.',
+  },
+  {
+    number: '03',
+    title: 'Category / Comparison Set',
+    question: 'What does the buyer think this product is competing against?',
+    explanation: 'The important comparison may be another product, an internal workflow, a manual workaround, or simply doing nothing. The perceived category determines the standard against which the product is judged.',
+  },
+  {
+    number: '04',
+    title: 'Buying Trigger',
+    question: 'What makes this worth acting on now?',
+    explanation: 'A good use case is not automatically a buying event. The diagnosis identifies the operational or economic change that could move the product from interesting to necessary.',
+  },
+  {
+    number: '05',
+    title: 'Confidence Map',
+    question: 'What is actually known — and what is still only a founder assumption?',
+    explanation: 'The diagnosis separates evidence from belief across ICP, use case, problem, category and buying trigger so the next acquisition cycle tests the right uncertainty.',
+  },
+];
+
+/* Six decision outputs — the decision map, not “five analyses” */
+const firstBuyerOutputs = [
+  ['01', 'Buyer Verdict', 'Which buyer / use-case combination currently represents the strongest first-buyer hypothesis. A decision based on available evidence — not absolute certainty.'],
+  ['02', 'Primary Mismatch', 'The main reason the intended buyer may not currently see a strong reason to act.'],
+  ['03', 'Buying Trigger', 'The event, state or pressure most likely to create a rational reason to buy now.'],
+  ['04', 'Untested Assumptions', 'Which beliefs about the buyer, problem, category or use case are currently being treated as facts without sufficient evidence.'],
+  ['05', 'First 1–2 Tests', 'The smallest positioning / acquisition tests most likely to create a clean signal. Not a giant GTM roadmap.'],
+  ['06', 'What Not to Touch Yet', 'Which parts of the product, offer or messaging should not be rebuilt until the core buyer hypothesis is tested.'],
+];
+
+const firstBuyerInputs = [
+  'The live product',
+  'Current positioning and messaging',
+  'Offer and pricing context',
+  'Acquisition attempts to date',
+  'Current buyer / use-case hypotheses',
+  'An asynchronous written founder interview',
+];
+
+const firstBuyerGoodFit = [
+  'Live SaaS product',
+  'Actively testing acquisition',
+  'Few or no paying customers',
+  'Several plausible ICPs or use cases',
+  'Interest exists but buying signal is unclear',
+  'Founder wants to know what to test before scaling acquisition',
+];
+
+const firstBuyerNotFit = [
+  'Idea-stage product with nothing live',
+  'Looking only for more leads or traffic',
+  'Needs outbound execution',
+  'Needs a sales team / SDR service',
+  'Generic copywriting or brand refresh',
+  'No product or buyer hypothesis to test',
+];
+
+
+function FirstBuyerDiagnosisPage() {
+  const [, setLocation] = useLocation();
+
+  useEffect(() => {
+    document.title = 'First Buyer Diagnosis for SaaS — Nasiba';
+    const description = document.querySelector('meta[name="description"]') ?? document.createElement('meta');
+    description.setAttribute('name', 'description');
+    description.setAttribute('content', 'Find who your first real SaaS buyer should be, why they haven\u2019t said yes, and which buyer hypothesis your next acquisition cycle should test.');
+    document.head.appendChild(description);
+    const ogTitle = document.querySelector('meta[property="og:title"]') ?? document.createElement('meta');
+    ogTitle.setAttribute('property', 'og:title');
+    ogTitle.setAttribute('content', 'First Buyer Diagnosis for SaaS — Nasiba');
+    document.head.appendChild(ogTitle);
+    const ogDescription = document.querySelector('meta[property="og:description"]') ?? document.createElement('meta');
+    ogDescription.setAttribute('property', 'og:description');
+    ogDescription.setAttribute('content', 'Find the buyer, mismatch and buying trigger your next SaaS acquisition cycle should actually test.');
+    document.head.appendChild(ogDescription);
+  }, []);
+
+  const navigate = (id: string) => {
+    if (id === 'about-nav') { setLocation('/about'); return; }
+    if (id === 'cases-nav') { setLocation('/cases'); return; }
+    if (id === 'revenue-architecture') { setLocation('/revenue-architecture'); return; }
+    if (id === 'diagnosis') { setLocation('/diagnosis'); return; }
+    setLocation('/');
+  };
+
+  const revenueLeakBranch = (className: string) => (
+    <div className={className}>
+      <p className="text-[10px] font-semibold uppercase tracking-[.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>Already have users or demand, but weak paid conversion?</p>
+      <p className="mt-2 text-[14px] leading-[1.5] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>
+        Revenue Leak Diagnosis may be the better starting point. <a href="/diagnosis" className="border-b border-[#e96a3a]/50 pb-0.5 text-[#e96a3a]/90 transition-colors duration-200 hover:text-[#e96a3a] hover:border-[#e96a3a]">See Revenue Leak Diagnosis →</a>
+      </p>
+    </div>
+  );
+
+  return (
+    <main className="page-grain min-h-[100dvh] bg-[#202536] text-[#f5f0e7]">
+      <Header onNavigate={navigate} />
+      <div className="mx-auto max-w-[1180px] px-5 pb-20 pt-40 sm:px-8 lg:px-12 lg:pb-28">
+
+        {/* Hero */}
+        <div className="border-t border-[#f5f0e7]/20 pt-6">
+          <div className="mb-6 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>
+            <span className="h-px w-8 bg-current" />
+            <span>FIRST BUYER DIAGNOSIS</span>
+          </div>
+          <h1 className="font-display text-[clamp(3rem,7vw,7rem)] leading-[.87] tracking-[-.07em] text-[#f5f0e7]">
+            Find your first real buyer — and why they haven&apos;t said yes yet.
+          </h1>
+          <p className="mt-6 max-w-[640px] text-[18px] leading-[1.55] text-[#f5f0e7]/70">
+            For live SaaS products actively testing acquisition, but without enough buying signal yet to know which buyer, use case or reason to act has real pull.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-[12px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>
+            <span>$1,000</span>
+            <span>5–7 DAYS</span>
+            <span>ASYNCHRONOUS</span>
+            <span>FIXED SCOPE</span>
+          </div>
+          <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+            <a href="/start?diagnosis=first-buyer" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn text-[11px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}>START THE FIRST BUYER DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" /></a>
+            <a href="mailto:paul@nasiba.co" className="text-[11px] font-medium uppercase tracking-[.12em] text-[#f5f0e7]/50 border-b border-[#f5f0e7]/20 pb-0.5 transition-colors duration-200 hover:text-[#e96a3a] hover:border-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>EMAIL PAUL</a>
+          </div>
+          {revenueLeakBranch('mt-10 max-w-[560px] border-l-2 border-[#e96a3a]/40 pl-4')}
+        </div>
+
+        {/* Own diagnostic model — the First Buyer Path */}
+        <div className="mt-24">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>The diagnostic model</p>
+          <h2 className="mt-5 max-w-[640px] font-display text-[clamp(2.2rem,4.5vw,4rem)] leading-[.9] tracking-[-.07em]">From founder assumption to first yes.</h2>
+          <p className="mt-7 max-w-[560px] text-[16px] leading-[1.6] text-[#f5f0e7]/70">The diagnosis walks the sequence a first buying decision actually has to survive — and locates the transition where it currently breaks.</p>
+          <div className="mt-14">
+            <FirstBuyerPath />
+          </div>
+        </div>
+
+        {/* Five diagnostic layers */}
+        <div className="mt-28">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>What the diagnosis tests</p>
+          <h2 className="mt-5 max-w-[520px] font-display text-[clamp(2.2rem,4.5vw,3.8rem)] leading-[.9] tracking-[-.07em]">Five layers. One buyer question.</h2>
+          <p className="mt-7 max-w-[440px] text-[15px] leading-[1.6] text-[#f5f0e7]/68">Not a scorecard. A structured pass through what a first buyer would need to understand, believe and feel pressed by before saying yes.</p>
+          <div className="mt-14 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {firstBuyerLayers.map((layer) => (
+              <article key={layer.number} className="border-t border-[#f5f0e7]/15 py-5">
+                <span className="font-mono-ui text-[10px] text-[#e96a3a]">{layer.number}</span>
+                <h3 className="mt-8 font-display text-[26px] tracking-[-.04em]">{layer.title}</h3>
+                <p className="mt-4 max-w-[340px] text-[15px] leading-[1.55] text-[#f5f0e7]/75" style={{ fontFamily: 'var(--app-font-sans)' }}>{layer.question}</p>
+                <p className="mt-3 max-w-[340px] text-[14px] leading-[1.55] text-[#f5f0e7]/58" style={{ fontFamily: 'var(--app-font-sans)' }}>{layer.explanation}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        {/* Six decision outputs */}
+        <div className="mt-28">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>The decision map</p>
+          <h2 className="mt-5 max-w-[560px] font-display text-[clamp(2.2rem,4.5vw,3.8rem)] leading-[.9] tracking-[-.07em]">A clearer first-buyer decision.</h2>
+          <p className="mt-7 max-w-[520px] text-[15px] leading-[1.6] text-[#f5f0e7]/68">The five layers produce one decision map — what to test, what to fix, and what to leave alone.</p>
+          <div className="mt-14 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {firstBuyerOutputs.map(([number, title, body]) => (
+              <article key={number} className="border-t border-[#f5f0e7]/15 py-5">
+                <span className="font-mono-ui text-[10px] text-[#e96a3a]">{number}</span>
+                <h3 className="mt-8 font-display text-[24px] tracking-[-.04em]">{title}</h3>
+                <p className="mt-3 max-w-[320px] text-[14px] leading-[1.55] text-[#f5f0e7]/65" style={{ fontFamily: 'var(--app-font-sans)' }}>{body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        {/* Evidence model — built for the stage before clean usage data exists */}
+        <div className="mt-28 border-t border-[#f5f0e7]/15 pt-14">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[5fr_7fr] lg:gap-16">
+            <div>
+              <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] leading-[.92] tracking-[-.06em]">Built for the stage before clean usage data exists.</h2>
+              <p className="mt-8 text-[16px] leading-[1.65] text-[#f5f0e7]/70" style={{ fontFamily: 'var(--app-font-sans)' }}>
+                First Buyer Diagnosis does not depend on a large user cohort or mature analytics. Required stage: the product must already be live, and you must already be actively attempting to acquire, validate or win buyers.
+              </p>
+            </div>
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[.12em] text-[#e96a3a]" style={{ fontFamily: 'var(--app-font-sans)' }}>The diagnosis uses</p>
+              <EditorialDashList
+                className="mt-6 max-w-[520px] border-t border-[#f5f0e7]/15 pt-6 text-[15px] leading-[1.6] text-[#f5f0e7]/72 space-y-3"
+                items={firstBuyerInputs}
+              />
+              <p className="mt-8 max-w-[520px] font-display text-[19px] leading-[1.5] tracking-[-.02em] text-[#f5f0e7]/85 italic">“Compare what the founder intends to sell with what a prospective buyer is actually being invited to understand, value and act on.”</p>
+              <p className="mt-6 max-w-[520px] text-[13px] leading-[1.55] text-[#f5f0e7]/50" style={{ fontFamily: 'var(--app-font-sans)' }}>
+                Not market research at scale. Not customer interviews. Not lead lists. Not outbound execution. A commercial diagnosis for a live SaaS product before enough buying data exists for a Revenue Leak Diagnosis.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Fit */}
+        <div className="mt-24">
+          <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] leading-[.9] tracking-[-.07em]">A decision, not a report.</h2>
+          <p className="mt-5 max-w-[560px] text-[15px] leading-[1.6] text-[#f5f0e7]/68" style={{ fontFamily: 'var(--app-font-sans)' }}>The deliverable is a decision map: the buyer verdict, the primary mismatch, the buying trigger, and what to test (and avoid) next.</p>
+          <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2">
+            <div className="border-t border-[#f5f0e7]/20 pt-6">
+              <span className="text-[11px] font-semibold uppercase tracking-[.12em] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>Good fit</span>
+              <ul className="mt-6 space-y-4 list-editorial">
+                {firstBuyerGoodFit.map((item) => (
+                  <li key={item} className="flex gap-3 text-[15px] leading-[1.5] text-[#f5f0e7]/72"><Check size={16} className="mt-0.5 shrink-0 text-[#e96a3a]" />{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="border-t border-[#f5f0e7]/20 pt-6">
+              <span className="text-[11px] font-semibold uppercase tracking-[.12em] text-[#f5f0e7]/60" style={{ fontFamily: 'var(--app-font-sans)' }}>Not fit</span>
+              <ul className="mt-6 space-y-4 list-editorial">
+                {firstBuyerNotFit.map((item) => (
+                  <li key={item} className="flex gap-3 text-[15px] leading-[1.5] text-[#f5f0e7]/72"><Minus size={16} className="mt-0.5 shrink-0 text-[#f5f0e7]/30" />{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Final CTA */}
+        <div className="mt-24 border-t border-[#f5f0e7]/15 pt-10">
+          <p className="max-w-[760px] font-display text-[clamp(1.8rem,3.5vw,2.8rem)] leading-[1.08] tracking-[-.04em]">You do not need more acquisition volume if you still do not know what the next acquisition cycle is supposed to prove.</p>
+          <p className="mt-5 max-w-[560px] text-[16px] leading-[1.55] text-[#f5f0e7]/65" style={{ fontFamily: 'var(--app-font-sans)' }}>Find the buyer hypothesis, the mismatch and the next 1–2 tests before scaling the signal.</p>
+          <div className="mt-8 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+            <a href="/start?diagnosis=first-buyer" className="group flex items-center gap-5 bg-[#e96a3a] px-5 py-4 radius-btn text-[11px] font-bold uppercase tracking-[.1em] text-[#202536] transition-all duration-[160ms] hover:bg-[#f18a61] hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5f0e7]" style={{ fontFamily: 'var(--app-font-sans)' }}>START THE FIRST BUYER DIAGNOSIS <ArrowRight size={16} className="transition-transform duration-[160ms] group-hover:translate-x-1" /></a>
+          </div>
+          {revenueLeakBranch('mt-10 max-w-[560px] border-l-2 border-[#e96a3a]/40 pl-4')}
+        </div>
+
+        <SiteFooter variant="dark" />
+      </div>
+    </main>
+  );
+}
+
 /* ─── Router ─── */
 
 export function Router() {
@@ -2096,6 +2691,7 @@ export function Router() {
           {(params) => <CaseDetail slug={params.slug} />}
         </Route>
         <Route path="/diagnosis" component={DiagnosisPage} />
+        <Route path="/first-buyer-diagnosis" component={FirstBuyerDiagnosisPage} />
         <Route path="/sample-diagnosis" component={SampleDiagnosisPage} />
         <Route path="/start" component={StartPage} />
         <Route path="/revenue-architecture" component={RevenueArchitecturePage} />
